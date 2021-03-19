@@ -1,28 +1,29 @@
 module Persistence
   module Repositories
-    class TagRepo < ROM::Repository[:tags]
-      commands :create, update: :by_pk, delete: :by_pk
-
+    class TagRepo
       def create_tag(tag)
-        tag_struct = create(tag_changeset(tag))
-        tag.id = tag_struct.id
+        tag_record = tag_relation.create(tag_changeset(tag))
+        tag.id = tag_record.id
 
         tag
       end
 
       def find_by_tag_name(name, &when_not_found)
-        tags_relation = tags.where(tag_name: name)
-        tag = (tags_relation >> tag_mapper).first
-        return when_not_found.call if tag.nil? && block_given?
+        tag_record = tag_relation.find_by(tag_name: name)
+        return tag_mapper.build_tag_from(tag_record) unless tag_record.nil?
 
-        tag
+        when_not_found.call
       end
 
       def delete_all
-        tags.delete
+        tag_relation.destroy_all
       end
 
       private
+
+      def tag_relation
+        TagRelation
+      end
 
       def tag_changeset(tag)
         {tag_name: tag.tag_name}

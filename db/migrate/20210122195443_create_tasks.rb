@@ -1,9 +1,10 @@
-ROM::SQL.migration do
-  change do
-    create_table :tasks do
-      primary_key :id
-      column :title, String, null: false
-      foreign_key :user_id, :users
+class CreateTasks < ActiveRecord::Migration[6.0]
+  def change
+    create_table :tasks do |table|
+      table.string :title, null: false
+
+      table.timestamps
     end
+    add_reference :tasks, :user, foreign_key: true
   end
 end

@@ -1,42 +1,48 @@
 module Persistence
   module Repositories
-    class UserRepo < ROM::Repository[:users]
-      commands :create, update: :by_pk, delete: :by_pk
-
+    class UserRepo
       def all
-        (users >> user_mapper).to_a
+        user_mapper.call user_relation.all
       end
 
       def find(id)
-        users_relation = (users.by_pk(id) >> user_mapper)
-        user = users_relation.one
-        raise UserNotFound, "User with id [#{id}] not found" if user.nil?
-
-        user
+        user_record = find_record_by_id(id)
+        user_mapper.build_user_from user_record
+      rescue ActiveRecord::RecordNotFound
+        raise UserNotFound, "User with id [#{id}] not found"
       end
 
       def update_user(user)
-        update(user.id, user_changeset(user))
+        user_record = find_record_by_id(user.id)
+        user_record.update(user_changeset(user))
 
         user
       end
 
       def create_user(user)
-        user_struct = create(user_changeset(user))
-        user.id = user_struct.id
+        user_record = user_relation.create(user_changeset(user))
+        user.id = user_record.id
 
         user
       end
 
       def delete_user(user)
-        delete(user.id)
+        find_record_by_id(user.id).destroy
       end
 
       def delete_all
-        users.delete
+        user_relation.destroy_all
       end
 
       private
+
+      def find_record_by_id(id)
+        user_relation.find(id)
+      end
+
+      def user_relation
+        UserRelation
+      end
 
       def user_changeset(user)
         {name: user.name}

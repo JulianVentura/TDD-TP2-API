@@ -18,11 +18,9 @@ gem 'rake'
 
 # Component requirements
 gem 'activemodel', require: 'active_model'
+gem 'activerecord'
 gem 'pg'
 gem 'rack-parser', :require => 'rack/parser'
-gem 'rom'
-gem 'rom-sql'
-# gem 'sequel'
 
 # Test requirements
 

@@ -1,8 +1,11 @@
 require 'bundler/setup'
 require 'padrino-core/cli/rake'
 require 'English'
-require 'rom'
-require 'rom/sql/rake_task'
+require 'active_record'
+
+# rubocop:disable Style/MixinUsage
+include ActiveRecord::Tasks
+# rubocop:enable Style/MixinUsage
 
 ENV['RACK_ENV'] ||= 'test'
 require './config/initializers/database'

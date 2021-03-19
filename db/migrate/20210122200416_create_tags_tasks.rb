@@ -1,9 +1,8 @@
-ROM::SQL.migration do
-  change do
-    create_table :tags_tasks do
-      primary_key :id
-      foreign_key :tag_id, :tags
-      foreign_key :task_id, :tasks
+class CreateTagsTasks < ActiveRecord::Migration[6.0]
+  def change
+    create_join_table :tags, :tasks do |t|
+      t.index %i[tag_id task_id]
+      t.index %i[task_id tag_id]
     end
   end
 end

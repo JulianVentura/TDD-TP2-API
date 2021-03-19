@@ -1,8 +1,9 @@
-ROM::SQL.migration do
-  change do
-    create_table :tags do
-      primary_key :id
-      column :tag_name, String, null: false
+class CreateTags < ActiveRecord::Migration[6.0]
+  def change
+    create_table :tags do |table|
+      table.string :tag_name, null: false
+
+      table.timestamps
     end
   end
 end

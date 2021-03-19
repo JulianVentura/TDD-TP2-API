@@ -1,8 +1,10 @@
-ROM::SQL.migration do
-  change do
-    create_table :users do
-      primary_key :id
-      column :name, String, null: false
+require 'active_record'
+
+class CreateUsers < ActiveRecord::Migration[6.0]
+  def change
+    create_table :users do |table|
+      table.string :name, null: false
+      table.timestamps
     end
   end
 end

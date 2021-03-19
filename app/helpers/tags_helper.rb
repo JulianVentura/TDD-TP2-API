@@ -4,7 +4,7 @@ module WebTemplate
   class App
     module TagsHelper
       def tag_repo
-        Persistence::Repositories::TagRepo.new(DB)
+        Persistence::Repositories::TagRepo.new
       end
 
       def tag_params

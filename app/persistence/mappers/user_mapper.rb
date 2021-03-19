@@ -1,5 +1,3 @@
-require 'rom/transformer'
-
 module Persistence
   module Mappers
     class UserMapper
