@@ -5,6 +5,7 @@ AllCops:
     - 'bin/**/*'
     - 'config/**/*'
     - '**/*.ru'
+    - 'db/schema.rb'
   SuggestExtensions: false
 
 # Avoid methods longer than 30 lines of code
