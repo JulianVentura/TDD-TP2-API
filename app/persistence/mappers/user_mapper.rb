@@ -10,6 +10,10 @@ module Persistence
       def build_user_from(user_attributes)
         User.new(user_attributes.name, user_attributes.id)
       end
+
+      def user_changeset(user)
+        {name: user.name, id: user.id}
+      end
     end
   end
 end

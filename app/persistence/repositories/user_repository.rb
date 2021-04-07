@@ -1,6 +1,6 @@
 module Persistence
   module Repositories
-    class UserRepo
+    class UserRepository
       def all
         user_mapper.call user_relation.all
       end
@@ -12,21 +12,18 @@ module Persistence
         raise UserNotFound, "User with id [#{id}] not found"
       end
 
-      def update_user(user)
-        user_record = find_record_by_id(user.id)
-        user_record.update(user_changeset(user))
+      def save(user)
+        if user.id.nil?
+          user_record = user_relation.create(user_changeset(user))
+          user.id = user_record.id
+        else
+          user_relation.update(user_changeset(user))
+        end
 
         user
       end
 
-      def create_user(user)
-        user_record = user_relation.create(user_changeset(user))
-        user.id = user_record.id
-
-        user
-      end
-
-      def delete_user(user)
+      def delete(user)
         find_record_by_id(user.id).destroy
       end
 
@@ -45,7 +42,7 @@ module Persistence
       end
 
       def user_changeset(user)
-        {name: user.name}
+        user_mapper.user_changeset(user)
       end
 
       def user_mapper
