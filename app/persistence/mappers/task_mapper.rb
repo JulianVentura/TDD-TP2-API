@@ -5,15 +5,24 @@ module Persistence
         tasks.map do |task_attributes|
           user = user_mapper.build_user_from(task_attributes.user)
           task = build_task_from(task_attributes, user)
-          task_attributes.tags.each do |tag|
-            task.add_tag tag_mapper.build_tag_from(tag)
-          end
           task
         end
       end
 
       def build_task_from(task_attributes, user)
-        Task.new(user, task_attributes.title, task_attributes.id)
+        task = Task.new(user, task_attributes.title, task_attributes.id)
+        task_attributes.tags.each do |tag|
+          task.add_tag tag_mapper.build_tag_from(tag)
+        end
+        task
+      end
+
+      def task_changeset(task)
+        {title: task.title, user_id: task.user.id}
+      end
+
+      def tags_relation_changeset(task)
+        tag_mapper.tags_relation_changeset(task)
       end
 
       def user_mapper

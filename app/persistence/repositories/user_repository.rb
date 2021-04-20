@@ -38,7 +38,7 @@ module Persistence
       end
 
       def user_relation
-        UserRelation
+        Persistence::Relations::UserRelation
       end
 
       def user_changeset(user)
