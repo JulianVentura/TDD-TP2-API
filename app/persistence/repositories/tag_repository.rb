@@ -2,58 +2,50 @@ module Persistence
   module Repositories
     class TagRepository
       def all
-        tag_mapper.call tag_relation.all
+        tags
       end
 
       def save(tag)
         if tag.id.nil?
-          tag_record = tag_relation.create(tag_changeset(tag))
-          tag.id = tag_record.id
+          tag.id = tags.size
+          tags << tag
         else
-          tag_relation.update(tag_changeset(tag))
+          tags[tag.id] = tag
         end
 
         tag
       end
 
       def find(id)
-        tag_record = find_record_by_id(id)
-        tag_mapper.build_tag_from tag_record
-      rescue ActiveRecord::RecordNotFound
-        raise TagNotFound, "Tag with id [#{id}] not found"
+        find_record_by_id(id).clone
       end
 
       def find_by_tag_name(name, &when_not_found)
-        tag_record = tag_relation.find_by(tag_name: name)
-        return tag_mapper.build_tag_from(tag_record) unless tag_record.nil?
+        tag = tags.find { |t| t.tag_name == name }
+        return tag unless tag.nil?
 
         when_not_found.call
       end
 
       def delete_all
-        tag_relation.destroy_all
+        tags.clear
       end
 
       def delete(tag)
-        find_record_by_id(tag.id).destroy
+        tags.delete_at(tag.id)
       end
 
       private
 
       def find_record_by_id(id)
-        tag_relation.find(id)
+        tag = tags[id]
+        raise TagNotFound, "Tag with id [#{id}] not found" if tag.nil?
+
+        tag
       end
 
-      def tag_relation
-        Persistence::Relations::TagRelation
-      end
-
-      def tag_changeset(tag)
-        tag_mapper.tag_changeset(tag)
-      end
-
-      def tag_mapper
-        Persistence::Mappers::TagMapper.new
+      def tags
+        @@tags ||= []
       end
     end
   end

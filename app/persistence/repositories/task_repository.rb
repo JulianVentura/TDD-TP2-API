@@ -2,57 +2,43 @@ module Persistence
   module Repositories
     class TaskRepository
       def all
-        task_mapper.call task_relation.all
+        tasks
       end
 
       def save(task)
         if task.id.nil?
-          task_record = task_relation.create(task_changeset(task))
-          task.id = task_record.id
+          task.id = tasks.size
+          tasks << task
         else
-          task_relation.update(task_changeset(task))
-          task_record = find_record_by_id(task.id)
+          tasks[task.id] = task
         end
-        task_record.tags = tags_relation_changeset(task)
 
         task
       end
 
       def find(id)
-        task_record = find_record_by_id(id)
-        task_mapper.build_task_from task_record, task_record.user
-      rescue ActiveRecord::RecordNotFound
-        raise TaskNotFound, "Task with id [#{id}] not found"
+        find_record_by_id(id).clone
       end
 
       def delete_all
-        task_relation.destroy_all
+        tasks.clear
       end
 
       def delete(task)
-        find_record_by_id(task.id).destroy
+        tasks.delete_at(task.id)
       end
 
       private
 
-      def task_changeset(task)
-        task_mapper.task_changeset(task)
-      end
-
       def find_record_by_id(id)
-        task_relation.find(id)
+        task = tasks[id]
+        raise TaskNotFound, "Task with id [#{id}] not found" if task.nil?
+
+        task
       end
 
-      def task_relation
-        Persistence::Relations::TaskRelation
-      end
-
-      def tags_relation_changeset(task)
-        task_mapper.tags_relation_changeset(task)
-      end
-
-      def task_mapper
-        Persistence::Mappers::TaskMapper.new
+      def tasks
+        @@tasks ||= []
       end
     end
   end

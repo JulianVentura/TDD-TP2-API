@@ -48,3 +48,5 @@ RSpec/DescribedClass:
   Enabled: false
 RSpec/InstanceVariable:
   Enabled: false
+Style/ClassVars:
+  Enabled: false

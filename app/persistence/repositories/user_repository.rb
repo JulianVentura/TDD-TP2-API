@@ -2,51 +2,43 @@ module Persistence
   module Repositories
     class UserRepository
       def all
-        user_mapper.call user_relation.all
+        users
       end
 
       def find(id)
-        user_record = find_record_by_id(id)
-        user_mapper.build_user_from user_record
-      rescue ActiveRecord::RecordNotFound
-        raise UserNotFound, "User with id [#{id}] not found"
+        find_record_by_id(id).clone
       end
 
       def save(user)
         if user.id.nil?
-          user_record = user_relation.create(user_changeset(user))
-          user.id = user_record.id
+          user.id = users.size
+          users << user
         else
-          user_relation.update(user_changeset(user))
+          users[user.id] = user
         end
 
         user
       end
 
       def delete(user)
-        find_record_by_id(user.id).destroy
+        users.delete_at(user.id)
       end
 
       def delete_all
-        user_relation.destroy_all
+        users.clear
       end
 
       private
 
       def find_record_by_id(id)
-        user_relation.find(id)
+        user = users[id]
+        raise UserNotFound, "User with id [#{id}] not found" if user.nil?
+
+        user
       end
 
-      def user_relation
-        Persistence::Relations::UserRelation
-      end
-
-      def user_changeset(user)
-        user_mapper.user_changeset(user)
-      end
-
-      def user_mapper
-        Persistence::Mappers::UserMapper.new
+      def users
+        @@users ||= []
       end
     end
   end
