@@ -4,7 +4,7 @@ module WebTemplate
   class App
     module TaskHelper
       def task_repo
-        Persistence::Repositories::TaskRepo.new(DB)
+        Persistence::Repositories::TaskRepository.new
       end
 
       def task_params
@@ -18,10 +18,6 @@ module WebTemplate
 
       def tasks_to_json(tasks)
         tasks.map { |task| task_attributes(task) }.to_json
-      end
-
-      def task_mapper
-        Persistence::Mappers::TaskMapper.new
       end
 
       private

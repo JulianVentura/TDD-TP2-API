@@ -5,6 +5,7 @@ AllCops:
     - 'bin/**/*'
     - 'config/**/*'
     - '**/*.ru'
+    - 'db/schema.rb'
   SuggestExtensions: false
 
 # Avoid methods longer than 30 lines of code
@@ -42,4 +43,10 @@ RSpec/ExampleLength:
 Style/HashSyntax:
   EnforcedStyle: no_mixed_keys
 Layout/SpaceInsideHashLiteralBraces:
+  Enabled: false
+RSpec/DescribedClass:
+  Enabled: false
+RSpec/InstanceVariable:
+  Enabled: false
+Style/ClassVars:
   Enabled: false
