@@ -1,12 +1,12 @@
 version: '3'
 services:
 
-  test_db:
+  testdb:
     image: postgres
     environment:
       POSTGRES_PASSWORD: example
 
-  dev_db:
+  devdb:
     image: postgres
     environment:
       POSTGRES_PASSWORD: example
@@ -26,8 +26,8 @@ services:
         - .:/app
     environment:
         RACK_ENV: "development"
-        TEST_DB_URL: "postgres://postgres:example@test_db:5432/postgres"
-        DEV_DB_URL: "postgres://postgres:example@dev_db:5432/postgres"
+        TEST_DB_URL: "postgres://postgres:example@testdb:5432/postgres"
+        DEV_DB_URL: "postgres://postgres:example@devdb:5432/postgres"
     depends_on:
-      - test_db
-      - dev_db
+      - testdb
+      - devdb
