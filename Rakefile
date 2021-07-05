@@ -8,7 +8,6 @@ include ActiveRecord::Tasks
 # rubocop:enable Style/MixinUsage
 
 ENV['RACK_ENV'] ||= 'test'
-require './config/initializers/active_record'
 
 RACK_ENV = ENV['RACK_ENV'] ||= ENV['RACK_ENV'] ||= 'test' unless defined?(RACK_ENV)
 
