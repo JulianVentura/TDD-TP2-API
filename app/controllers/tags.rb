@@ -2,7 +2,7 @@ WebTemplate::App.controllers :tags, :provides => [:json] do
   get :show, :map => '/tags', :with => :id do
     begin
       tag_id = params[:id]
-      tag = tag_repo.find(tag_id.to_i)
+      tag = tag_repo.find(tag_id)
 
       tag_to_json tag
     rescue TagNotFound => e

@@ -20,6 +20,10 @@ module WebTemplate
         tasks.map { |task| task_attributes(task) }.to_json
       end
 
+      def task_mapper
+        Persistence::Mappers::TaskMapper.new
+      end
+
       private
 
       def task_attributes(task)

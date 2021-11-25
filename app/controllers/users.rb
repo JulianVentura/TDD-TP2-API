@@ -7,7 +7,7 @@ WebTemplate::App.controllers :users, :provides => [:json] do
   get :show, :map => '/users', :with => :id do
     begin
       user_id = params[:id]
-      user = user_repo.find(user_id.to_i)
+      user = user_repo.find(user_id)
 
       user_to_json user
     rescue UserNotFound => e
@@ -18,7 +18,7 @@ WebTemplate::App.controllers :users, :provides => [:json] do
 
   put :update, :map => '/users', :with => :id do
     begin
-      user = user_repo.find(params[:id].to_i)
+      user = user_repo.find(params[:id])
       user.replace_name_with(user_params[:name])
 
       updated_user = user_repo.save(user)
@@ -49,7 +49,7 @@ WebTemplate::App.controllers :users, :provides => [:json] do
 
   delete :destroy, :map => '/users', :with => :id do
     begin
-      user = user_repo.find(params[:id].to_i)
+      user = user_repo.find(params[:id])
       user_repo.delete(user)
 
       status 200

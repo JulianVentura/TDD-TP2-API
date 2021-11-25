@@ -69,7 +69,7 @@ end
 
 When('I change an invalid user name to {string}') do |user_name|
   @request = {name: user_name}.to_json
-  @response = Faraday.put(update_user_url(999_999), @request, header)
+  @response = Faraday.put(update_user_url(-1), @request, header)
   expect(@response.status).to eq(404)
 end
 
