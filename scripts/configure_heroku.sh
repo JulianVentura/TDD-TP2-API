@@ -5,7 +5,7 @@ set -e
 
 # heroku login
 
-APP_NAME=moscu-api-prod
+APP_NAME=moscu-api-test
 
 heroku apps:create $APP_NAME
 heroku addons:create heroku-postgresql:hobby-dev --app $APP_NAME
