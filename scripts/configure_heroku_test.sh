@@ -10,5 +10,5 @@ SUMOLOGIC_SOURCE=https://endpoint4.collection.sumologic.com/receiver/v1/http/ZaV
 
 heroku apps:create $APP_NAME
 heroku addons:create heroku-postgresql:hobby-dev --app $APP_NAME
-heroku config:set RACK_ENV=production --app $APP_NAME
+heroku config:set RACK_ENV=test --app $APP_NAME
 heroku drains:add $SUMOLOGIC_SOURCE --app $APP_NAME
