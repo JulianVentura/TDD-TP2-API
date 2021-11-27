@@ -10,7 +10,7 @@ WebTemplate::App.controllers :users, :provides => [:json] do
       user = user_repo.find(user_id)
 
       user_to_json user
-    rescue UserNotFound => e
+    rescue ObjectNotFound => e
       status 404
       {error: e.message}.to_json
     end
@@ -25,7 +25,7 @@ WebTemplate::App.controllers :users, :provides => [:json] do
 
       status 200
       user_to_json updated_user
-    rescue UserNotFound => e
+    rescue ObjectNotFound => e
       status 404
       {error: e.message}.to_json
     rescue InvalidUser => e
@@ -36,9 +36,7 @@ WebTemplate::App.controllers :users, :provides => [:json] do
 
   post :create, :map => '/users' do
     begin
-      user = User.new(user_params[:name])
-      new_user = user_repo.save(user)
-
+      new_user = UserCreator.new(user_repo, self).create_user(user_params[:name]) # User.new(user_params[:name])
       status 201
       user_to_json new_user
     rescue InvalidUser => e
@@ -53,7 +51,7 @@ WebTemplate::App.controllers :users, :provides => [:json] do
       user_repo.delete(user)
 
       status 200
-    rescue UserNotFound => e
+    rescue ObjectNotFound => e
       status 404
       {error: e.message}.to_json
     end

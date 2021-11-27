@@ -1,10 +1,14 @@
-require 'active_record'
-
-class CreateUsers < ActiveRecord::Migration[6.0]
-  def change
-    create_table :users do |table|
-      table.string :name, null: false
-      table.timestamps
+Sequel.migration do
+  up do
+    create_table(:users) do
+      primary_key :id
+      String :name
+      Date :created_on
+      Date :updated_on
     end
+  end
+
+  down do
+    drop_table(:users)
   end
 end

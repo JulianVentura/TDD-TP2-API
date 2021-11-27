@@ -15,8 +15,6 @@ SimpleCov.start do
   add_group 'Lib', 'lib'
 end
 
-ENV['RACK_ENV'] = 'test'
-
 require "#{__dir__}/../config/boot"
 
 RSpec.configure do |config|

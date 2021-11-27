@@ -1,9 +1,15 @@
-class CreateTags < ActiveRecord::Migration[6.0]
-  def change
-    create_table :tags do |table|
-      table.string :tag_name, null: false
-
-      table.timestamps
+Sequel.migration do
+  up do
+    create_table(:tags) do
+      primary_key :id
+      String :tag_name
+      Date :created_on
+      Date :updated_on
     end
   end
+
+  down do
+    drop_table(:tags)
+  end
 end
+

@@ -17,15 +17,15 @@ source 'https://rubygems.org'
 gem 'rake'
 
 # Component requirements
-gem 'activemodel', require: 'active_model'
-gem 'activerecord'
 gem 'pg'
 gem 'rack-parser', :require => 'rack/parser'
+gem 'sequel'
 
 # Test requirements
 
 # Padrino Stable Gem
 gem 'padrino', '0.15.0'
+# gem 'sinatra', '2.0.8.1' # revisar, en teoria no es necesario pero en un momento lo agregamos por algo
 
 # Or Padrino Edge
 # gem 'padrino', :github => 'padrino/padrino-framework'

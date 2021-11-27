@@ -1,10 +1,16 @@
-class CreateTasks < ActiveRecord::Migration[6.0]
-  def change
-    create_table :tasks do |table|
-      table.string :title, null: false
-
-      table.timestamps
+Sequel.migration do
+  up do
+    create_table(:tasks) do
+      primary_key :id
+      String :title
+      foreign_key :user_id, :users
+      Date :created_on
+      Date :updated_on
     end
-    add_reference :tasks, :user, foreign_key: true
+  end
+
+  down do
+    drop_table(:tasks)
   end
 end
+

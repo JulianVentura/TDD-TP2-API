@@ -3,9 +3,6 @@ GEM
   specs:
     activemodel (6.0.3.3)
       activesupport (= 6.0.3.3)
-    activerecord (6.0.3.3)
-      activemodel (= 6.0.3.3)
-      activesupport (= 6.0.3.3)
     activesupport (6.0.3.3)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 0.7, < 2)
@@ -113,7 +110,7 @@ GEM
     rack (2.2.3)
     rack-parser (0.7.0)
       rack
-    rack-protection (2.1.0)
+    rack-protection (2.0.8.1)
       rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -149,17 +146,18 @@ GEM
       rubocop (~> 1.0)
       rubocop-ast (>= 1.1.0)
     ruby-progressbar (1.10.1)
-    ruby2_keywords (0.0.2)
+    ruby2_keywords (0.0.5)
+    sequel (5.39.0)
     simplecov (0.20.0)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
       simplecov_json_formatter (~> 0.1)
     simplecov-html (0.12.3)
     simplecov_json_formatter (0.1.2)
-    sinatra (2.1.0)
+    sinatra (2.0.8.1)
       mustermann (~> 1.0)
-      rack (~> 2.2)
-      rack-protection (= 2.1.0)
+      rack (~> 2.0)
+      rack-protection (= 2.0.8.1)
       tilt (~> 2.0)
     sys-uname (1.2.2)
       ffi (~> 1.1)
@@ -176,7 +174,6 @@ PLATFORMS
 
 DEPENDENCIES
   activemodel
-  activerecord
   byebug
   cucumber
   faraday
@@ -189,7 +186,9 @@ DEPENDENCIES
   rspec-core
   rubocop
   rubocop-rspec
+  sequel
   simplecov
+  sinatra (= 2.0.8.1)
 
 BUNDLED WITH
-   2.2.6
+   2.2.31
