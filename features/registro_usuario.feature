@@ -1,10 +1,10 @@
 # language: es
 Característica: Registracion
 
-  @wip
+
   Escenario: R1 - Registro exitoso
     Cuando me registro con id 123456, nombre "juan" y mail "juan@test.com"
-    Entonces recibo mensaje de registro exitoso
+    Entonces el registro es exitoso
 
   @wip
   Escenario: R2 - Registro fallido por id duplicado
