@@ -20,6 +20,10 @@ def header
   {'Content-Type' => 'application/json'}
 end
 
+def crear_url_usuarios
+  "#{BASE_URL}/usuarios"
+end
+
 def reset_url
   "#{BASE_URL}/reset"
 end
