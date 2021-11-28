@@ -6,6 +6,6 @@ RSpec.configure do |config|
   config.after :each do
     # Persistence::Repositories::TaskRepository.new.delete_all
     # Persistence::Repositories::TagRepository.new.delete_all
-    # Persistence::Repositories::UserRepository.new.delete_all
+    Persistence::Repositories::RepositorioUsuario.new.delete_all
   end
 end

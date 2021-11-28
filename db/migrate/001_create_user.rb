@@ -3,8 +3,9 @@ Sequel.migration do
     create_table(:usuario) do
       primary_key :id
       String :nombre
-      Date :creado_en
-      Date :actualizado_en
+      String :email
+      Date :created_on
+      Date :updated_on
     end
   end
 

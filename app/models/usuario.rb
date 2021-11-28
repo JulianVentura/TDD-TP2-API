@@ -1,5 +1,6 @@
 class Usuario
-  attr_reader :nombre, :id, :email
+  attr_reader :nombre, :email, :updated_on, :created_on
+  attr_accessor :id
 
   def initialize(nombre, id, email)
     @nombre = nombre

@@ -4,6 +4,7 @@ WebTemplate::App.controllers :usuarios, :provides => [:json] do
     @body ||= request.body.read
     parametros = JSON.parse(@body).symbolize_keys
     nuevo_usuario = Usuario.new(parametros[:nombre], parametros[:id], parametros[:email])
+    Persistence::Repositories::RepositorioUsuario.new.save(nuevo_usuario)
     # modelo?
     # output
     status 201
