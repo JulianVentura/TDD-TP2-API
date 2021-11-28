@@ -67,3 +67,8 @@ Every time you want to start the server, you may repeat step 3 and 4.
 # Acceptance Test
 
 During development, when a developer works on his cucumber create an in-process instance of the application, so it is enough to run cucumber, nothing else is needed.
+
+# Correr tests dentro de docker
+
+RACK_ENV=test bundle exec rake
+bundle exec padrino start -h 0.0.0.0
