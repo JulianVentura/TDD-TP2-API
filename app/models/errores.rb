@@ -20,3 +20,10 @@ class ErrorEmailRepetido < ErrorEnLaAPI
     super(mensaje)
   end
 end
+
+class ErrorFaltanArgumentos < ErrorEnLaAPI
+  def initialize
+    mensaje = 'Error: Faltan argumentos'
+    super(mensaje)
+  end
+end

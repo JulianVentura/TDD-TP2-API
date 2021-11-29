@@ -17,3 +17,8 @@ Característica: Registracion
     Dado que existe un usuario con id 123456, nombre "juan" y mail "juan@test.com"
     Cuando me registro con id 654321, nombre "jorge" y mail "juan@test.com"
     Entonces recibo mensaje de error por email duplicado
+
+  @wip
+  Escenario: R4 - Registro fallido por falta de argumentos
+    Cuando me registro con nombre "juan"
+    Entonces recibo mensaje de error por falta de argumentos

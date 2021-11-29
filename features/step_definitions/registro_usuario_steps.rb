@@ -31,3 +31,11 @@ Entonces('recibo mensaje de error por email duplicado') do
   respuesta = JSON.parse(@response.body)
   expect(respuesta['error']).to eq 'Error: Ya existe un usuario con ese email'
 end
+
+Cuando('me registro con nombre {string}') do |_string|
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Entonces('recibo mensaje de error por falta de argumentos') do
+  pending # Write code here that turns the phrase above into concrete actions
+end

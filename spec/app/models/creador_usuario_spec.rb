@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe 'CreadorUsuario' do
+  let(:repo_usuario) { Persistence::Repositories::RepositorioUsuario.new }
+  let(:creador_usuario) { CreadorUsuario.new(repo_usuario) }
+
   it 'deberia crear un usuario y almacenarlo' do
     nombre = 'juan'
     id = 123
@@ -14,6 +17,12 @@ describe 'CreadorUsuario' do
     allow(repo_usuario).to receive(:existe_email).with(email).and_return(false)
 
     CreadorUsuario.new(repo_usuario).crear_usuario('juan', 123, 'juan@gmail.com')
+  end
+
+  it 'deberia fallar si faltan argumentos' do
+    expect do
+      creador_usuario.crear_usuario('juan', 123, nil)
+    end.to raise_error(ErrorFaltanArgumentos)
   end
 
   context 'ya existe un usuario' do
