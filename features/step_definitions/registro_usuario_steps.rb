@@ -25,3 +25,9 @@ Entonces('recibo mensaje de error por id duplicado') do
   respuesta = JSON.parse(@response.body)
   expect(respuesta['error']).to eq 'Error: Ya estas registrado'
 end
+
+Entonces('recibo mensaje de error por email duplicado') do
+  expect(@response.status).to eq(400)
+  respuesta = JSON.parse(@response.body)
+  expect(respuesta['error']).to eq 'Error: Ya existe un usuario con ese email'
+end
