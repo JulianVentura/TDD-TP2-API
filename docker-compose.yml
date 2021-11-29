@@ -31,3 +31,11 @@ services:
     depends_on:
       - test_db
       - dev_db
+    networks:
+      - my-net
+      - default
+
+networks:
+  my-net:
+    external:
+      name: my-net
