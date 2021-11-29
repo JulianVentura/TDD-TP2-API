@@ -4,7 +4,7 @@ class ErrorEnLaAPI < StandardError
     super()
   end
 
-  attr_reader :mensaje, :codigo
+  attr_reader :mensaje
 end
 
 class ErrorIdRepetido < ErrorEnLaAPI
