@@ -50,3 +50,7 @@ RSpec/InstanceVariable:
   Enabled: false
 Style/ClassVars:
   Enabled: false
+Layout/EndOfLine:
+  Enabled: false
+RSpec/ContextWording:
+  Enabled: false

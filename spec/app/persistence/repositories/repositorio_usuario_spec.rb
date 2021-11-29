@@ -20,6 +20,9 @@ describe Persistence::Repositories::RepositorioUsuario do
       usuario_de_repo = repo_usuario.find(id_usuario)
       expect(usuario_de_repo.id).to eq(id_usuario)
     end
-  end
 
+    it 'deberia existir ese id' do
+      expect(repo_usuario.existe_usuario(id_usuario)).to eq true
+    end
+  end
 end

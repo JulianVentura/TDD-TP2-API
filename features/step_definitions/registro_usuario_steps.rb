@@ -15,10 +15,13 @@ Entonces('el registro es exitoso') do
   expect(usuario['email']).to eq request['email']
 end
 
-Dado('que existe un usuario con id {string}, nombre {string} y mail {string}') do |_string, _string2, _string3|
-  pending # Write code here that turns the phrase above into concrete actions
+Dado('que existe un usuario con id {int}, nombre {string} y mail {string}') do |id_chat, nombre_usuario, email|
+  @request_registro_usuario = {:id => id_chat, :nombre => nombre_usuario, :email => email}.to_json
+  @response = Faraday.post(crear_url_usuarios, @request_registro_usuario, header)
 end
 
-Entonces('recibo mensaje de error por registro fallido') do
-  pending # Write code here that turns the phrase above into concrete actions
+Entonces('recibo mensaje de error por id duplicado') do
+  expect(@response.status).to eq(400)
+  respuesta = JSON.parse(@response.body)
+  expect(respuesta['error']).to eq 'Error: Ya estas registrado'
 end

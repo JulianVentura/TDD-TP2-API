@@ -1,4 +1,5 @@
 WebTemplate::App.controllers :usuarios, :provides => [:json] do
+
   post :create, :map => '/usuarios' do
     # input
     parametros = params_usuario
@@ -7,8 +8,9 @@ WebTemplate::App.controllers :usuarios, :provides => [:json] do
     # output
     status 201
     {:id => nuevo_usuario.id, :nombre => nuevo_usuario.nombre, :email => nuevo_usuario.email}.to_json
-    # rescue InvalidUser => e
-    # status 400
-    # {error: e.message}.to_json
+  rescue ErrorEnLaAPI => e
+    status 400
+    {error: e.mensaje}.to_json
   end
+
 end

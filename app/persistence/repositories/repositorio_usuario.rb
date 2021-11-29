@@ -4,6 +4,10 @@ module Persistence
       self.table_name = :usuario
       self.model_class = 'Usuario'
 
+      def existe_usuario(id)
+        !dataset.first(id: id).nil?
+      end
+
       protected
 
       def load_object(a_hash)
@@ -17,7 +21,6 @@ module Persistence
           email: usuario.email
         }
       end
-
     end
   end
 end
