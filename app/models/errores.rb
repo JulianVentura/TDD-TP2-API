@@ -13,3 +13,10 @@ class ErrorIdRepetido < ErrorEnLaAPI
     super(mensaje)
   end
 end
+
+class ErrorEmailRepetido < ErrorEnLaAPI
+  def initialize
+    mensaje = 'Error: Ya existe un usuario con ese email'
+    super(mensaje)
+  end
+end
