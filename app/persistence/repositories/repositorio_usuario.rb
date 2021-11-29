@@ -8,6 +8,10 @@ module Persistence
         !dataset.first(id: id).nil?
       end
 
+      def existe_email(email)
+        !dataset.first(email: email).nil?
+      end
+
       protected
 
       def load_object(a_hash)

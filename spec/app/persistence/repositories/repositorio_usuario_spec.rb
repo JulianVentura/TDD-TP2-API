@@ -3,7 +3,8 @@ require 'integration_helper'
 describe Persistence::Repositories::RepositorioUsuario do
   let(:repo_usuario) { Persistence::Repositories::RepositorioUsuario.new }
   let(:id_usuario) { 123 }
-  let(:un_usuario) { Usuario.new('Juan', id_usuario, 'juan@gmail.com') }
+  let(:email) { 'juan@gmail.com' }
+  let(:un_usuario) { Usuario.new('Juan', id_usuario, email) }
 
   it 'deberia almacenar un usuario nuevo' do
     repo_usuario.save(un_usuario)
@@ -23,6 +24,10 @@ describe Persistence::Repositories::RepositorioUsuario do
 
     it 'deberia existir ese id' do
       expect(repo_usuario.existe_usuario(id_usuario)).to eq true
+    end
+
+    it 'deberia existir ese email' do
+      expect(repo_usuario.existe_email(email)).to eq true
     end
   end
 end
