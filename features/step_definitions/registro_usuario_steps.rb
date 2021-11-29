@@ -32,10 +32,13 @@ Entonces('recibo mensaje de error por email duplicado') do
   expect(respuesta['error']).to eq 'Error: Ya existe un usuario con ese email'
 end
 
-Cuando('me registro con nombre {string}') do |_string|
-  pending # Write code here that turns the phrase above into concrete actions
+Cuando('me registro con nombre {string}') do |nombre_usuario|
+  @request_registro_usuario = {:nombre => nombre_usuario}.to_json
+  @response = Faraday.post(crear_url_usuarios, @request_registro_usuario, header)
 end
 
 Entonces('recibo mensaje de error por falta de argumentos') do
-  pending # Write code here that turns the phrase above into concrete actions
+  expect(@response.status).to eq(400)
+  respuesta = JSON.parse(@response.body)
+  expect(respuesta['error']).to eq 'Error: Faltan argumentos'
 end
