@@ -1,24 +1,27 @@
 require 'spec_helper'
 
 describe 'CreadorAuto' do
-  let(:repo_auto) { Persistence::Repositories::RepositorioAuto.new }
-  let(:creado_auto) { CreadorAuto.new(repo_auto) }
+  let(:un_usuario) { Usuario.new('Juan', 123, 'juan@email.com') }
+  let(:creador_auto) { CreadorAuto.new(repo_auto) }
 
-  xit 'deberia crear un auto y almacenarlo' do
-    patente = 'AA752OH'
-    modelo = 'Fiat'
-    anio = 1999
-    kilometros = 4000
+  context 'cuando existe un usuario' do
 
-    auto = instance_double(Auto)
-    repo_auto = instance_double(Persistence::Repositories::RepositorioAuto)
+    it 'deberia crear un auto' do
+      patente = 'AA752OH'
+      modelo = 'Fiat'
+      anio = 1999
+      kilometros = 4000
 
-    allow(auto).to receive(:new).with(patente, modelo, anio, kilometros).and_return(auto)
-    allow(repo_auto).to receive(:save).with(auto).and_return(auto)
-    # allow(repo_auto).to receive(:existe_auto).with(patente).and_return(false)
-    # allow(repo_auto).to receive(:existe_email).with(email).and_return(false)
+      auto = instance_double(Auto)
+      repo_auto = instance_double(Persistence::Repositories::RepositorioAuto)
+      repo_usuario = instance_double(Persistence::Repositories::RepositorioUsuario)
 
-    CreadorAuto.new(repo_auto).crear_auto(patente, modelo, anio, kilometros)
+      allow(Auto).to receive(:new).with(patente, modelo, anio, kilometros, un_usuario).and_return(auto)
+      allow(repo_auto).to receive(:save).with(auto).and_return(auto)
+      allow(repo_usuario).to receive(:find).with(un_usuario.id).and_return(un_usuario)
+      
+      CreadorAuto.new(repo_auto, repo_usuario).crear_auto(patente, modelo, anio, kilometros, un_usuario.id)
+    end
   end
 
 end
