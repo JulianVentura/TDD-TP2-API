@@ -18,7 +18,7 @@ describe 'CreadorAuto' do
     # allow(repo_auto).to receive(:existe_auto).with(patente).and_return(false)
     # allow(repo_auto).to receive(:existe_email).with(email).and_return(false)
 
-    CreadoAuto.new(repo_auto).crear_auto(patente, modelo, anio, kilometros)
+    CreadorAuto.new(repo_auto).crear_auto(patente, modelo, anio, kilometros)
   end
 
 end
