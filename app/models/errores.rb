@@ -27,3 +27,9 @@ class ErrorFaltanArgumentos < ErrorEnLaAPI
     super(mensaje)
   end
 end
+
+class ErrorUsuarioInexistente < ErrorEnLaAPI
+  def initialize
+    super('Error: Usuario inexistente')
+  end
+end

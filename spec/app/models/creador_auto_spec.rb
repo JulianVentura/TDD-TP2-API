@@ -18,9 +18,33 @@ describe 'CreadorAuto' do
 
       allow(Auto).to receive(:new).with(patente, modelo, anio, kilometros, un_usuario).and_return(auto)
       allow(repo_auto).to receive(:save).with(auto).and_return(auto)
+      allow(repo_usuario).to receive(:existe_usuario).with(un_usuario.id).and_return(true)
       allow(repo_usuario).to receive(:find).with(un_usuario.id).and_return(un_usuario)
       
       CreadorAuto.new(repo_auto, repo_usuario).crear_auto(patente, modelo, anio, kilometros, un_usuario.id)
+    end
+  end
+
+  context 'cuando no existe un usuario' do
+
+    it 'deberia lanzar ErrorUsuarioInexistente' do
+      patente = 'AA752OH'
+      modelo = 'Fiat'
+      anio = 1999
+      kilometros = 4000
+
+      auto = instance_double(Auto)
+      repo_auto = instance_double(Persistence::Repositories::RepositorioAuto)
+      repo_usuario = instance_double(Persistence::Repositories::RepositorioUsuario)
+
+      allow(Auto).to receive(:new).with(patente, modelo, anio, kilometros, un_usuario).and_return(auto)
+      allow(repo_auto).to receive(:save).with(auto).and_return(auto)
+      allow(repo_usuario).to receive(:existe_usuario).with(un_usuario.id).and_return(false)
+      allow(repo_usuario).to receive(:find).with(un_usuario.id).and_return(un_usuario)
+
+      expect do
+        CreadorAuto.new(repo_auto, repo_usuario).crear_auto(patente, modelo, anio, kilometros, un_usuario.id)
+      end.to raise_error(ErrorUsuarioInexistente)
     end
   end
 
