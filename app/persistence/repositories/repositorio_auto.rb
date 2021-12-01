@@ -10,6 +10,10 @@ module Persistence
         !dataset.first(patente: patente).nil?
       end
 
+      def por_propietario(id_prop)
+        load_collection dataset.where(id_usuario: id_prop)
+      end
+
       protected
 
       def load_object(a_hash)

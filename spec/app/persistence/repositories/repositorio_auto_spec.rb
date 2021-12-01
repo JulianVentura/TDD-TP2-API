@@ -51,4 +51,28 @@ describe Persistence::Repositories::RepositorioAuto do
       expect(repo_auto.existe_auto(@patente_utilizada)).to eq true
     end
   end
+
+  context 'cuando un usuario tiene registrado 3 autos' do
+    let(:otro_usuario) { Usuario.new('jorge', 13_159, 'jorgito@gmail.com') }
+
+    before :each do
+      auto1 = Auto.new('ABC123', 'Fiat', 40_000, 1999, un_usuario)
+      auto2 = Auto.new('ABC124', 'Ford', 3500, 2005, un_usuario)
+      auto3 = Auto.new('ABC125', 'Chevrolet', 1000, 2019, otro_usuario)
+      repo_usuario.save(un_usuario)
+      repo_usuario.save(otro_usuario)
+      repo_auto.save(auto1)
+      repo_auto.save(auto2)
+      repo_auto.save(auto3)
+    end
+
+    it 'debería devolver los autos de juan y no los de jorge' do
+      autos = repo_auto.por_propietario(un_usuario.id)
+      patentes = %w[ABC123 ABC124]
+
+      expect(autos.size).to eq 2
+      expect(patentes).to include autos[0].patente
+      expect(patentes).to include autos[1].patente
+    end
+  end
 end
