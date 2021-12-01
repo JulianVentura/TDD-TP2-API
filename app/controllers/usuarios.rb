@@ -2,7 +2,7 @@ WebTemplate::App.controllers :usuarios, :provides => [:json] do
 
   post :create, :map => '/usuarios' do
     # input
-    parametros = params_usuario
+    parametros = parametros_simbolizados
     nuevo_usuario = CreadorUsuario.new(repo_usuario).crear_usuario(parametros[:nombre], parametros[:id], parametros[:email])
     # modelo?
     # output

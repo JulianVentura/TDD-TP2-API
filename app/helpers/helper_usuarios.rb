@@ -7,7 +7,7 @@ module WebTemplate
         Persistence::Repositories::RepositorioUsuario.new
       end
 
-      def params_usuario
+      def parametros_simbolizados
         @body ||= request.body.read
         JSON.parse(@body).symbolize_keys
       end

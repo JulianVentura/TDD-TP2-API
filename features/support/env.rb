@@ -24,8 +24,16 @@ def crear_url_usuarios
   "#{BASE_URL}/usuarios"
 end
 
+def crear_url_autos
+  "#{BASE_URL}/autos"
+end
+
 def reset_url
   "#{BASE_URL}/reset"
+end
+
+def id_falso
+  4506958
 end
 
 After do |_scenario|

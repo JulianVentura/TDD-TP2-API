@@ -38,10 +38,12 @@ gem 'padrino', '0.15.0'
 group :development, :test do
   gem 'byebug'
   gem 'cucumber'
+  gem 'debase'
   gem 'faraday'
   gem 'rack-test', require: 'rack/test'
   gem 'rspec'
   gem 'rspec-core'
+  gem 'ruby-debug-ide'
   gem 'rubocop', require: false
   gem 'rubocop-rspec', require: false
   gem 'simplecov'
