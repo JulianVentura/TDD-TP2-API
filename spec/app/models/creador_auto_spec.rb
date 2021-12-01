@@ -2,8 +2,10 @@ require 'spec_helper'
 
 describe 'CreadorAuto' do
   let(:un_usuario) { Usuario.new('Juan', 123, 'juan@email.com') }
-  let(:creador_auto) { CreadorAuto.new(repo_auto) }
-
+  let(:repo_usuario) { Persistence::Repositories::RepositorioUsuario.new }
+  let(:repo_auto) { Persistence::Repositories::RepositorioAuto.new }
+  let(:creador_auto) { CreadorAuto.new(repo_auto, repo_usuario) }
+  
   context 'cuando existe un usuario' do
 
     it 'deberia crear un auto' do
@@ -23,6 +25,17 @@ describe 'CreadorAuto' do
       
       CreadorAuto.new(repo_auto, repo_usuario).crear_auto(patente, modelo, anio, kilometros, un_usuario.id)
     end
+
+    it 'deberia fallar si faltan argumentos' do
+      patente = 'AA752OH'
+      anio = 1999
+      kilometros = 4000
+
+      expect do
+        creador_auto.crear_auto(patente, nil, anio, kilometros, un_usuario.id)
+      end.to raise_error(ErrorFaltanArgumentos)
+    end
+
   end
 
   context 'cuando no existe un usuario' do
@@ -47,5 +60,4 @@ describe 'CreadorAuto' do
       end.to raise_error(ErrorUsuarioInexistente)
     end
   end
-
 end

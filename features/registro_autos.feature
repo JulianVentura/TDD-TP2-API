@@ -8,7 +8,6 @@ Característica: Ingreso de auto al sistema
     Cuando ingreso un auto modelo "Fiat Uno", patente "ABC123", kilometros 100000 y año 1999
     Entonces recibo mensaje de ingreso de auto exitoso
 
-  @wip
   Escenario: IA2 - Ingreso fallido por falta de datos
     Cuando ingreso un auto modelo "Fiat Uno" y año 1999
     Entonces recibo mensaje de error por ingreso de auto fallido por falta de datos
