@@ -54,3 +54,5 @@ Layout/EndOfLine:
   Enabled: false
 RSpec/ContextWording:
   Enabled: false
+RPesc/Metrics/ParameterLists:
+  Max: 6

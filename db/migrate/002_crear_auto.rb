@@ -1,11 +1,11 @@
 Sequel.migration do
   up do
     create_table(:auto) do
-      primary_key :id
-      String :patente
+      String :patente, primary_key: true
+      foreign_key :id_usuario, :usuario
       String :modelo
       Integer :kilometros
-      String :anio
+      Integer :anio
       Integer :estado
       Date :created_on
       Date :updated_on

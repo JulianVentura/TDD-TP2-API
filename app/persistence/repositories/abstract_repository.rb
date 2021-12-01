@@ -3,17 +3,17 @@ require 'byebug'
 module Persistence
   module Repositories
     class AbstractRepository
-      def save(a_record)
-        if find_dataset_by_id(a_record.id).first
-          update(a_record)
+      def save(an_object)
+        if find_dataset_by_id(get_id(an_object)).first
+          update(an_object)
         else
-          insert(a_record)
+          insert(an_object)
         end
-        a_record
+        an_object
       end
 
-      def destroy(a_record)
-        find_dataset_by_id(a_record.id).delete
+      def destroy(an_object)
+        find_dataset_by_id(get_id(an_object)).delete
       end
       alias delete destroy
 
@@ -48,17 +48,17 @@ module Persistence
       end
 
       def load_collection(rows)
-        rows.map { |a_record| load_object(a_record) }
+        rows.map { |an_object| load_object(an_object) }
       end
 
-      def update(a_record)
-        find_dataset_by_id(a_record.id).update(update_changeset(a_record))
+      def update(an_object)
+        find_dataset_by_id(get_id(an_object)).update(update_changeset(an_object))
       end
 
-      def insert(a_record)
-        id = dataset.insert(insert_changeset(a_record))
-        a_record.id = id
-        a_record
+      def insert(an_object)
+        id = dataset.insert(insert_changeset(an_object))
+        set_id(an_object, id)
+        an_object
       end
 
       def find_dataset_by_id(id)
@@ -73,16 +73,16 @@ module Persistence
         raise 'Subclass must implement'
       end
 
-      def insert_changeset(a_record)
-        changeset_with_timestamps(a_record).merge(created_on: Date.today)
+      def insert_changeset(an_object)
+        changeset_with_timestamps(an_object).merge(created_on: Date.today)
       end
 
-      def update_changeset(a_record)
-        changeset_with_timestamps(a_record).merge(updated_on: Date.today)
+      def update_changeset(an_object)
+        changeset_with_timestamps(an_object).merge(updated_on: Date.today)
       end
 
-      def changeset_with_timestamps(a_record)
-        changeset(a_record).merge(created_on: a_record.created_on, updated_on: a_record.updated_on)
+      def changeset_with_timestamps(an_object)
+        changeset(an_object).merge(created_on: an_object.created_on, updated_on: an_object.updated_on)
       end
 
       def class_name
@@ -91,6 +91,16 @@ module Persistence
 
       def pk_column
         Sequel[self.class.table_name][:id]
+      end
+
+      private
+
+      def get_id(an_object)
+        an_object.id
+      end
+
+      def set_id(an_object, id)
+        an_object.id = id
       end
     end
   end

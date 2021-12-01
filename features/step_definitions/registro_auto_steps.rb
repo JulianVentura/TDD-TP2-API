@@ -4,6 +4,7 @@ Dado('que existe un usuario con nombre {string} y mail {string}') do |nombre_usu
 end
 
 Cuando('ingreso un auto modelo {string}, patente {string}, kilometros {int} y año {int}') do |modelo, patente, km, anio|
+  # TODO: enviar id_chat
   @request_registro_auto = {:patente => patente, :nombre => modelo, :kilometros => km, :anio => anio}.to_json
   @response = Faraday.post(crear_url_autos, @request_registro_auto, header)
 end
@@ -15,7 +16,7 @@ Entonces('recibo mensaje de ingreso de auto exitoso') do
 
   expect(auto['patente']).to eq request['patente']
   expect(auto['modelo']).to eq request['modelo']
-  expect(auto['email']).to eq request['email']
+  expect(auto['anio']).to eq request['anio']
   expect(auto['kilometros']).to eq request['kilometros']
 end
 
