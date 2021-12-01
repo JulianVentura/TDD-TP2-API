@@ -12,7 +12,6 @@ Característica: Ingreso de auto al sistema
     Cuando ingreso un auto modelo "Fiat Uno" y año 1999
     Entonces recibo mensaje de error por ingreso de auto fallido por falta de datos
 
-  @wip
   Escenario: IA3 - Ingreso fallido por patente repetida
     Dado que existe un auto modelo "Fiat Uno", patente "ABC123", kilometros 100000 y año 1999
     Cuando ingreso un auto modelo "Ford Fiesta", patente "ABC123", kilometros 10000 y año 2010

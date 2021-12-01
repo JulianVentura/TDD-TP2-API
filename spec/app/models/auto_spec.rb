@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Auto do
-  let(:un_usuario) { Usuario.new('juan', 34535, 'juan@gmail.com') }
+  let(:un_usuario) { Usuario.new('juan', 34_535, 'juan@gmail.com') }
 
   context 'cuando es creado' do
     it 'deberia ser valido cuando tiene todos los campos' do

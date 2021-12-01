@@ -4,11 +4,10 @@ Dado('que existe un usuario con nombre {string} y mail {string}') do |nombre_usu
 end
 
 Cuando('ingreso un auto modelo {string}, patente {string}, kilometros {int} y año {int}') do |modelo, patente, km, anio|
-  # TODO: enviar id_chat
   @request_registro_auto = {
-    :patente => patente, 
+    :patente => patente,
     :modelo => modelo,
-    :kilometros => km, 
+    :kilometros => km,
     :anio => anio,
     :id_prop => id_falso
   }.to_json
@@ -25,19 +24,34 @@ Entonces('recibo mensaje de ingreso de auto exitoso') do
   expect(auto['kilometros']).to eq request['kilometros']
 end
 
-Cuando('ingreso un auto modelo {string} y año {int}') do |string, int|
-  pending # Write code here that turns the phrase above into concrete actions
+Cuando('ingreso un auto modelo {string} y año {int}') do |modelo, anio|
+  @request_registro_auto = {
+    :modelo => modelo,
+    :anio => anio,
+    :id_prop => id_falso
+  }.to_json
+  @response = Faraday.post(crear_url_autos, @request_registro_auto, header)
 end
 
 Entonces('recibo mensaje de error por ingreso de auto fallido por falta de datos') do
-  pending # Write code here that turns the phrase above into concrete actions
+  expect(@response.status).to eq(400)
+  respuesta = JSON.parse(@response.body)
+  expect(respuesta['error']).to eq 'Error: Faltan argumentos'
 end
 
-Dado('que existe un auto modelo {string}, patente {string}, kilometros {int} y año {int}') do |string, string2, int, int2|
-  pending # Write code here that turns the phrase above into concrete actions
+Dado('que existe un auto modelo {string}, patente {string}, kilometros {int} y año {int}') do |modelo, patente, km, anio|
+  request_registro_auto = {
+    :patente => patente,
+    :modelo => modelo,
+    :kilometros => km,
+    :anio => anio,
+    :id_prop => id_falso
+  }.to_json
+  Faraday.post(crear_url_autos, request_registro_auto, header)
 end
 
 Entonces('recibo mensaje de error por ingreso de auto fallido por patente repetida') do
-  pending # Write code here that turns the phrase above into concrete actions
+  expect(@response.status).to eq(400)
+  respuesta = JSON.parse(@response.body)
+  expect(respuesta['error']).to eq 'Error: Auto con patente ya registrada'
 end
-

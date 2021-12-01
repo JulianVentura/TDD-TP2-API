@@ -6,6 +6,10 @@ module Persistence
       self.table_name = :auto
       self.model_class = 'Auto'
 
+      def existe_auto(patente)
+        !dataset.first(patente: patente).nil?
+      end
+
       protected
 
       def load_object(a_hash)
@@ -39,7 +43,6 @@ module Persistence
       def set_id(an_object, patente)
         an_object.patente = patente
       end
-
     end
   end
 end

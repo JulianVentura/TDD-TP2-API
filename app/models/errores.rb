@@ -33,3 +33,10 @@ class ErrorUsuarioInexistente < ErrorEnLaAPI
     super('Error: Usuario inexistente')
   end
 end
+
+class ErrorPatenteRepetida < ErrorEnLaAPI
+  def initialize
+    mensaje = 'Error: Auto con patente ya registrada'
+    super(mensaje)
+  end
+end

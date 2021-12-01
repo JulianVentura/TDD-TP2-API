@@ -3,12 +3,12 @@ require 'integration_helper'
 describe Persistence::Repositories::RepositorioAuto do
   let(:repo_auto) { Persistence::Repositories::RepositorioAuto.new }
   let(:patente) { 'AA752OH' }
-  let(:modelo) { 'Fiat' }
+  let(:repo_usuario) { Persistence::Repositories::RepositorioUsuario.new }
+  let(:un_usuario) { Usuario.new('juan', 34_535, 'juan@gmail.com') }
+  let(:un_auto) { Auto.new(patente, 'Fiat', 40_000, 1999, un_usuario) }
 
   context 'cuando existe un usuario' do
-    let(:repo_usuario) { Persistence::Repositories::RepositorioUsuario.new }
-    let(:un_usuario) { Usuario.new('juan', 34535, 'juan@gmail.com') }
-    let(:un_auto) { Auto.new(patente, 'Fiat', 40_000, 1999, un_usuario) }
+    let(:modelo) { 'Fiat' }
 
     before :each do
       repo_usuario.save(un_usuario)
@@ -21,7 +21,7 @@ describe Persistence::Repositories::RepositorioAuto do
 
     it 'deberia tener la misma patente con la que se almaceno' do
       repo_auto.save(un_auto)
-      auto_de_repo =  repo_auto.find(patente)
+      auto_de_repo = repo_auto.find(patente)
       expect(auto_de_repo.patente).to eq(patente)
     end
 
@@ -29,16 +29,26 @@ describe Persistence::Repositories::RepositorioAuto do
       repo_auto.save(un_auto)
       auto_de_repo = repo_auto.find(patente)
       expect(auto_de_repo.modelo).to eq('Fiat')
-      expect(auto_de_repo.kilometros).to eq(40000)
+      expect(auto_de_repo.kilometros).to eq(40_000)
       expect(auto_de_repo.anio).to eq(1999)
     end
 
     it 'deberia tener al mismo usuario con el que se almaceno' do
       repo_auto.save(un_auto)
       auto_de_repo = repo_auto.find(patente)
-      expect(auto_de_repo.usuario.id).to eq(34535)
+      expect(auto_de_repo.usuario.id).to eq(34_535)
     end
-
   end
 
+  context 'cuando existe un auto' do
+    before :each do
+      repo_usuario.save(un_usuario)
+      @nuevo_auto = repo_auto.save(un_auto)
+      @patente_utilizada = un_auto.patente
+    end
+
+    it 'deberia existir esa patente' do
+      expect(repo_auto.existe_auto(@patente_utilizada)).to eq true
+    end
+  end
 end

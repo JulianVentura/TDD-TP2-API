@@ -56,3 +56,5 @@ RSpec/ContextWording:
   Enabled: false
 RPesc/Metrics/ParameterLists:
   Max: 6
+RSpec/MultipleMemoizedHelpers:
+  Max: 6
