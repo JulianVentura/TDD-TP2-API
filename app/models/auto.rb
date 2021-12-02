@@ -13,7 +13,7 @@ class Auto
   end
 
   # Cargar desde la bdd
-  def self.crear_desde_repo(patente, modelo, kilometros, anio, usuario, precio, estado)
+  def self.crear_desde_repo(patente, modelo, kilometros, anio, usuario, precio, estado) # rubocop:disable Metrics/ParameterLists
     Auto.new(patente, modelo, kilometros, anio, usuario, precio, estado)
   end
 
@@ -27,7 +27,8 @@ class Auto
   end
 
   private
-  def initialize(patente, modelo, kilometros, anio, usuario, precio, estado)
+
+  def initialize(patente, modelo, kilometros, anio, usuario, precio, estado) # rubocop:disable Metrics/ParameterLists
     @patente = patente
     @modelo = modelo
     @kilometros = kilometros
@@ -36,5 +37,4 @@ class Auto
     @precio = precio
     @estado = estado
   end
-
 end

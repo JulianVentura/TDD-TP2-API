@@ -4,8 +4,8 @@ describe 'Cotizado' do
   it 'deberia lanzar error al cotizar' do
     cotizado = Cotizado.new
 
-    expect{
+    expect  do
       cotizado.cotizar(100)
-    }.to raise_error(ErrorNoCotizable)
+    end.to raise_error(ErrorNoCotizable)
   end
 end
