@@ -37,7 +37,7 @@ describe Persistence::Repositories::RepositorioAuto do
       repo_auto.save(un_auto)
       auto_de_repo = repo_auto.find(patente)
       expect(auto_de_repo.precio).to eq(0)
-      expect(auto_de_repo.estado).to eq(0)
+      expect(auto_de_repo.estado).to eq(EnRevision.new)
     end
 
     it 'deberia tener al mismo usuario con el que se almaceno' do

@@ -5,7 +5,6 @@ Característica: Cotizacion de autos
     Dado que existe un usuario con nombre "juan" y mail "juan@test.com"
     Y ingreso un auto modelo "Fiat Uno", patente "ABC123", kilometros 100000 y año 1999
 
-  @wip
   Escenario: CO1 - Consulta de cotizado
     Cuando se cotiza el auto de patente "ABC123" con precio 120000
     Y el usuario consulta el estado de sus autos

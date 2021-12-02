@@ -1,15 +1,12 @@
+require_relative 'estado'
+
 class Auto
   attr_reader :modelo, :kilometros, :anio, :usuario, :estado, :updated_on, :created_on, :precio
   attr_accessor :patente
 
-  ESTADO_AUTO = {
-    pendiente: 0,
-    cotizado: 1
-  }.freeze
-
   # Crear auto
   def self.crear(patente, modelo, kilometros, anio, usuario)
-    Auto.new(patente, modelo, kilometros, anio, usuario, 0, ESTADO_AUTO[:pendiente])
+    Auto.new(patente, modelo, kilometros, anio, usuario, 0, EnRevision.new)
   end
 
   # Cargar desde la bdd
@@ -17,13 +14,9 @@ class Auto
     Auto.new(patente, modelo, kilometros, anio, usuario, precio, estado)
   end
 
-  def estado_auto_valor_a_simbolo(valor)
-    ESTADO_AUTO.key(valor)
-  end
-
   def cotizar(precio)
-    @precio = precio
-    @estado = ESTADO_AUTO[:cotizado]
+    @precio = @estado.cotizar(precio)
+    @estado = Cotizado.new
   end
 
   private

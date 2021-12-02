@@ -1,10 +1,15 @@
-require 'byebug'
-
 module Persistence
   module Repositories
     class RepositorioAuto < AbstractRepository
       self.table_name = :auto
       self.model_class = 'Auto'
+
+      ESTADOS = {
+        :en_revision => 'en_revision',
+        'en_revision' => EnRevision,
+        :cotizado => 'cotizado',
+        'cotizado' => Cotizado
+      }.freeze
 
       def existe_auto(patente)
         !dataset.first(patente: patente).nil?
@@ -18,10 +23,10 @@ module Persistence
 
       def load_object(a_hash)
         id_usuario = a_hash[:id_usuario]
-        estado = a_hash[:estado]
+        estado = ESTADOS[a_hash[:estado]].new
         repo_usuario = RepositorioUsuario.new
         usuario = repo_usuario.find(id_usuario)
-        Auto.crear_desde_repo(a_hash[:patente], a_hash[:modelo], a_hash[:kilometros], a_hash[:anio], usuario, 0, estado)
+        Auto.crear_desde_repo(a_hash[:patente], a_hash[:modelo], a_hash[:kilometros], a_hash[:anio], usuario, a_hash[:precio], estado)
       end
 
       def changeset(auto)
@@ -30,8 +35,9 @@ module Persistence
           modelo: auto.modelo,
           kilometros: auto.kilometros,
           anio: auto.anio,
-          estado: auto.estado,
-          id_usuario: auto.usuario.id
+          estado: ESTADOS[auto.estado.estado],
+          id_usuario: auto.usuario.id,
+          precio: auto.precio,
         }
       end
 

@@ -19,7 +19,9 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
         :modelo => nuevo_auto.modelo,
         :kilometros => nuevo_auto.kilometros,
         :anio => nuevo_auto.anio,
-        :id_prop => nuevo_auto.usuario.id
+        :id_prop => nuevo_auto.usuario.id,
+        :precio => nuevo_auto.precio,
+        :estado => nuevo_auto.estado.estado == :en_revision ? 'En revision' : 'Cotizado' # TODO: cambiar
       }.to_json
     rescue ErrorEnLaAPI => e
       status 400
@@ -44,7 +46,9 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
           :kilometros => auto.kilometros,
           :anio => auto.anio,
           :id_prop => auto.usuario.id,
-          :estado => auto.estado.zero? ? 'En revision' : 'Cotizado'
+          :precio => auto.precio,
+          :estado => auto.estado.estado == :en_revision ? 'En revision' : 'Cotizado'
+          # TODO: Hacer una clase logger que se encarge de parsear esto
         }
       end
 
@@ -58,7 +62,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
   patch :list, :map => '/autos/:patente/cotizar' do
     begin
       # input
-      patente = params[:patente].to_i
+      patente = params[:patente]
       parametros = parametros_simbolizados
 
       # modelo
@@ -72,7 +76,8 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
         :kilometros => auto_cotizado.kilometros,
         :anio => auto_cotizado.anio,
         :id_prop => auto_cotizado.usuario.id,
-        :estado => auto_cotizado.estado.zero? ? 'En revision' : 'Cotizado'
+        :precio => auto_cotizado.precio,
+        :estado => auto_cotizado.estado.estado == :en_revision ? 'En revision' : 'Cotizado' # TODO: cambiar
       }.to_json
     rescue ErrorEnLaAPI => e
       status 400
