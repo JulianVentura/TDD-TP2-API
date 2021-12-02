@@ -40,3 +40,10 @@ class ErrorPatenteRepetida < ErrorEnLaAPI
     super(mensaje)
   end
 end
+
+class ErrorNoCotizable < ErrorEnLaAPI
+  def initialize
+    mensaje = 'Error: Auto no cotizable'
+    super(mensaje)
+  end
+end

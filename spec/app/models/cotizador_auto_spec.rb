@@ -6,7 +6,7 @@ describe 'CotizadorAuto' do
   let(:creador_auto) { CreadorAuto.new(repo_auto, repo_usuario) }
   let(:creador_usuario) { CreadorUsuario.new(repo_usuario) }
 
-  xit 'deberia cotizar un auto' do
+  it 'deberia cotizar un auto' do
     patente = 'AA752OH'
     modelo = 'Fiat'
     anio = 1999
