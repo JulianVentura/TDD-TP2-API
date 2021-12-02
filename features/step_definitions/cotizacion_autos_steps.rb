@@ -1,6 +1,6 @@
-Cuando('se cotiza el auto de patente {string} con precio {int}') do |_patente, precio|
+Cuando('se cotiza el auto de patente {string} con precio {int}') do |patente, precio|
   request_registro_usuario = {:cotizacion => precio}.to_json
-  @response = Faraday.patch(cotizar_url_autos, request_registro_usuario, header)
+  @response = Faraday.patch(cotizar_url_autos(patente), request_registro_usuario, header)
   @parse_response = JSON.parse(@response.body)
 end
 

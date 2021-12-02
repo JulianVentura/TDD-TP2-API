@@ -54,4 +54,29 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
       {error: e.mensaje}.to_json
     end
   end
+
+  patch :list, :map => '/autos/:patente/cotizar' do
+    begin
+      # input
+      patente = params[:patente].to_i
+      parametros = parametros_simbolizados
+
+      # modelo
+      auto_cotizado = CotizadorAuto.new(repo_auto).cotizar(patente, parametros[:precio])
+
+      # output
+      status 200
+      {
+        :patente => auto_cotizado.patente,
+        :modelo => auto_cotizado.modelo,
+        :kilometros => auto_cotizado.kilometros,
+        :anio => auto_cotizado.anio,
+        :id_prop => auto_cotizado.usuario.id,
+        :estado => auto_cotizado.estado.zero? ? 'En revision' : 'Cotizado'
+      }.to_json
+    rescue ErrorEnLaAPI => e
+      status 400
+      {error: e.mensaje}.to_json
+    end
+  end
 end

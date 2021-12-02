@@ -1,5 +1,5 @@
 class Auto
-  attr_reader :modelo, :kilometros, :anio, :usuario, :estado, :updated_on, :created_on
+  attr_reader :modelo, :kilometros, :anio, :usuario, :estado, :updated_on, :created_on, :precio
   attr_accessor :patente
 
   ESTADO_AUTO = {
@@ -18,5 +18,10 @@ class Auto
 
   def estado_auto_valor_a_simbolo(valor)
     ESTADO_AUTO.key(valor)
+  end
+
+  def cotizar(precio)
+    @precio = precio
+    @estado = ESTADO_AUTO[:cotizado]
   end
 end
