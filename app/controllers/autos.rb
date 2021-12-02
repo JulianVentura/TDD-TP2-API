@@ -1,5 +1,5 @@
 WebTemplate::App.controllers :autos, :provides => [:json] do
-  post :create, :map => '/autos' do
+  post :crear, :map => '/autos' do
     begin
       # input
       parametros = parametros_simbolizados
@@ -29,7 +29,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
     end
   end
 
-  get :list, :map => '/usuarios/:id_prop/autos' do
+  get :listar, :map => '/usuarios/:id_prop/autos' do
     begin
       # input
       id_prop = params[:id_prop].to_i
@@ -59,7 +59,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
     end
   end
 
-  patch :list, :map => '/autos/:patente/cotizar' do
+  patch :cotizar, :map => '/autos/:patente/cotizar' do
     begin
       # input
       patente = params[:patente]
