@@ -32,6 +32,10 @@ def crear_url_autos_usuario(id_prop)
   "#{BASE_URL}/usuarios/#{id_prop}/autos"
 end
 
+def cotizar_url_autos(patente)
+  "#{BASE_URL}/autos/#{patente}/cotizar"
+end
+
 def reset_url
   "#{BASE_URL}/reset"
 end
