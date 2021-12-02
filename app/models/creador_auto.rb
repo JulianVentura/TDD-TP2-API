@@ -11,7 +11,7 @@ class CreadorAuto
     raise ErrorPatenteRepetida if @repo_auto.existe_auto(patente)
 
     usuario = @repo_usuario.find(id_prop)
-    auto = Auto.new(patente, modelo, anio, kilometros, usuario)
+    auto = Auto.crear(patente, modelo, anio, kilometros, usuario)
     @repo_auto.save(auto)
     auto
   end

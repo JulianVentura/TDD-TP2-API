@@ -7,13 +7,14 @@ class Auto
     cotizado: 1
   }.freeze
 
-  def initialize(patente, modelo, kilometros, anio, usuario)
-    @usuario = usuario
-    @patente = patente
-    @modelo = modelo
-    @kilometros = kilometros
-    @anio = anio
-    @estado = ESTADO_AUTO[:pendiente]
+  # Crear auto
+  def self.crear(patente, modelo, kilometros, anio, usuario)
+    Auto.new(patente, modelo, kilometros, anio, usuario, 0, ESTADO_AUTO[:pendiente])
+  end
+
+  # Cargar desde la bdd
+  def self.crear_desde_repo(patente, modelo, kilometros, anio, usuario, precio, estado)
+    Auto.new(patente, modelo, kilometros, anio, usuario, precio, estado)
   end
 
   def estado_auto_valor_a_simbolo(valor)
@@ -24,4 +25,16 @@ class Auto
     @precio = precio
     @estado = ESTADO_AUTO[:cotizado]
   end
+
+  private
+  def initialize(patente, modelo, kilometros, anio, usuario, precio, estado)
+    @patente = patente
+    @modelo = modelo
+    @kilometros = kilometros
+    @anio = anio
+    @usuario = usuario
+    @precio = precio
+    @estado = estado
+  end
+
 end

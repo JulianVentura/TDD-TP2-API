@@ -5,7 +5,7 @@ describe Persistence::Repositories::RepositorioAuto do
   let(:patente) { 'AA752OH' }
   let(:repo_usuario) { Persistence::Repositories::RepositorioUsuario.new }
   let(:un_usuario) { Usuario.new('juan', 34_535, 'juan@gmail.com') }
-  let(:un_auto) { Auto.new(patente, 'Fiat', 40_000, 1999, un_usuario) }
+  let(:un_auto) { Auto.crear(patente, 'Fiat', 40_000, 1999, un_usuario) }
 
   context 'cuando existe un usuario' do
     let(:modelo) { 'Fiat' }
@@ -33,6 +33,13 @@ describe Persistence::Repositories::RepositorioAuto do
       expect(auto_de_repo.anio).to eq(1999)
     end
 
+    it 'deberia tener los mismo atributos por defecto con los que se almaceno' do
+      repo_auto.save(un_auto)
+      auto_de_repo = repo_auto.find(patente)
+      expect(auto_de_repo.precio).to eq(0)
+      expect(auto_de_repo.estado).to eq(0)
+    end
+
     it 'deberia tener al mismo usuario con el que se almaceno' do
       repo_auto.save(un_auto)
       auto_de_repo = repo_auto.find(patente)
@@ -56,9 +63,9 @@ describe Persistence::Repositories::RepositorioAuto do
     let(:otro_usuario) { Usuario.new('jorge', 13_159, 'jorgito@gmail.com') }
 
     before :each do
-      auto1 = Auto.new('ABC123', 'Fiat', 40_000, 1999, un_usuario)
-      auto2 = Auto.new('ABC124', 'Ford', 3500, 2005, un_usuario)
-      auto3 = Auto.new('ABC125', 'Chevrolet', 1000, 2019, otro_usuario)
+      auto1 = Auto.crear('ABC123', 'Fiat', 40_000, 1999, un_usuario)
+      auto2 = Auto.crear('ABC124', 'Ford', 3500, 2005, un_usuario)
+      auto3 = Auto.crear('ABC125', 'Chevrolet', 1000, 2019, otro_usuario)
       repo_usuario.save(un_usuario)
       repo_usuario.save(otro_usuario)
       repo_auto.save(auto1)

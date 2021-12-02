@@ -17,7 +17,7 @@ describe 'CreadorAuto' do
       repo_auto = instance_double(Persistence::Repositories::RepositorioAuto)
       repo_usuario = instance_double(Persistence::Repositories::RepositorioUsuario)
 
-      allow(Auto).to receive(:new).with(patente, modelo, anio, kilometros, un_usuario).and_return(auto)
+      allow(Auto).to receive(:crear).with(patente, modelo, anio, kilometros, un_usuario).and_return(auto)
       allow(repo_auto).to receive(:save).with(auto).and_return(auto)
       allow(repo_auto).to receive(:existe_auto).with(patente).and_return(false)
       allow(repo_usuario).to receive(:existe_usuario).with(un_usuario.id).and_return(true)
@@ -48,7 +48,7 @@ describe 'CreadorAuto' do
       repo_auto = instance_double(Persistence::Repositories::RepositorioAuto)
       repo_usuario = instance_double(Persistence::Repositories::RepositorioUsuario)
 
-      allow(Auto).to receive(:new).with(patente, modelo, anio, kilometros, un_usuario).and_return(auto)
+      allow(Auto).to receive(:crear).with(patente, modelo, anio, kilometros, un_usuario).and_return(auto)
       allow(repo_auto).to receive(:save).with(auto).and_return(auto)
       allow(repo_usuario).to receive(:existe_usuario).with(un_usuario.id).and_return(false)
       allow(repo_usuario).to receive(:find).with(un_usuario.id).and_return(un_usuario)

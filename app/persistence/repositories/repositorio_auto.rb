@@ -18,9 +18,10 @@ module Persistence
 
       def load_object(a_hash)
         id_usuario = a_hash[:id_usuario]
+        estado = a_hash[:estado]
         repo_usuario = RepositorioUsuario.new
         usuario = repo_usuario.find(id_usuario)
-        Auto.new(a_hash[:patente], a_hash[:modelo], a_hash[:kilometros], a_hash[:anio], usuario)
+        Auto.crear_desde_repo(a_hash[:patente], a_hash[:modelo], a_hash[:kilometros], a_hash[:anio], usuario, 0, estado)
       end
 
       def changeset(auto)
