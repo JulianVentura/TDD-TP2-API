@@ -37,7 +37,7 @@ module Persistence
           anio: auto.anio,
           estado: ESTADOS[auto.estado.estado],
           id_usuario: auto.usuario.id,
-          precio: auto.precio,
+          precio: auto.precio
         }
       end
 

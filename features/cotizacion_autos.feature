@@ -10,3 +10,7 @@ Característica: Cotizacion de autos
     Y el usuario consulta el estado de sus autos
     Entonces recibo una lista que contiene 1 autos
     Y contiene patente "ABC123", estado "Cotizado" y precio 120000
+  
+  Escenario: CO2 - Cotizacion de auto no existente
+    Cuando se cotiza el auto de patente "ZXC123" con precio 120000
+    Entonces obtengo un mensaje de error por auto no existente

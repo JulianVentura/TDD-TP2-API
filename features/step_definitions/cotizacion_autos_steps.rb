@@ -11,3 +11,9 @@ Entonces('contiene patente {string}, estado {string} y precio {int}') do |patent
   expect(auto['estado']).to eq estado
   expect(auto['precio']).to eq precio
 end
+
+Entonces('obtengo un mensaje de error por auto no existente') do
+  expect(@response.status).to eq(400)
+  respuesta = JSON.parse(@response.body)
+  expect(respuesta['error']).to eq 'Error: Auto no existe'
+end

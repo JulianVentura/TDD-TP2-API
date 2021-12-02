@@ -47,3 +47,10 @@ class ErrorNoCotizable < ErrorEnLaAPI
     super(mensaje)
   end
 end
+
+class ErrorAutoNoExiste < ErrorEnLaAPI
+  def initialize
+    mensaje = 'Error: Auto no existe'
+    super(mensaje)
+  end
+end

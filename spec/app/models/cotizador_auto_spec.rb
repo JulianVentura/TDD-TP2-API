@@ -16,6 +16,16 @@ describe 'CotizadorAuto' do
     creador_auto.crear_auto(patente, modelo, anio, kilometros, un_usuario.id)
 
     precio = 12_000
-    CotizadorAuto.new(repo_auto).cotizar(patente, precio)
+    auto = CotizadorAuto.new(repo_auto).cotizar(patente, precio)
+    expect(auto.precio).to eq precio
+  end
+
+  it 'deberia fallar si el auto no existe' do
+    patente = 'AA752OH'
+
+    precio = 12_000
+    expect  do
+      CotizadorAuto.new(repo_auto).cotizar(patente, precio)
+    end.to raise_error(ErrorAutoNoExiste)
   end
 end
