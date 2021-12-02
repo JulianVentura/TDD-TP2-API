@@ -6,6 +6,12 @@ class Estado
   def cotizar(_precio)
     raise ErrorNoCotizable
   end
+
+  def ==(other)
+    @estado == other.estado
+  end
+
+  attr_reader :estado
 end
 
 class EnRevision < Estado
