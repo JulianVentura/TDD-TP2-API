@@ -11,7 +11,7 @@ Característica: Venta a FIUBAK
     Cuando el usuario vende al auto con patente "ABC123" a Fiubak
     Entonces recibe mensaje de confirmacion de venta
 
-  @wip
+
   Escenario: VF2 - Entrega de llaves
     Cuando el usuario vende al auto con patente "ABC123" a Fiubak
     Y se realiza la entrega de llaves

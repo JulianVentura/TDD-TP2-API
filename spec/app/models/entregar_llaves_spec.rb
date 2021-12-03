@@ -25,9 +25,9 @@ describe EntregarLlaves do
       vendedor_auto.vender_a_fiubak(patente, propietario.id)
     end
 
-    xit 'deberia cambiar de propietario a fiubak cuando se entregan las llaves' do
+    it 'deberia cambiar de propietario a fiubak cuando se entregan las llaves' do
       auto_fiubak = described_class.new(repo_auto, repo_usuario).entregar_llaves(patente)
-      expect(auto_fiubak.usuario.id).not_to propietario.id
+      expect(auto_fiubak.usuario.id).to eq Fiubak.new.id
     end
   end
 end
