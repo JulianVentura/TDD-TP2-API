@@ -6,13 +6,11 @@ Cuando('el usuario vende al auto con patente {string} a Fiubak') do |patente|
 end
 
 Entonces('recibe mensaje de confirmacion de venta') do
-  expect(@response.status).to eq(201)
+  expect(@response.status).to eq(200)
   auto = JSON.parse(@response.body)
   request = JSON.parse(@request_venta_auto_a_fiubak)
-  expect(auto['patente']).to eq request['patente']
-  expect(auto['modelo']).to eq request['modelo']
-  expect(auto['anio']).to eq request['anio']
-  expect(auto['kilometros']).to eq request['kilometros']
+  expect(auto['id_prop']).to eq request['id_prop']
+  expect(auto['estado']).to eq 'Esperando entrega'
 end
 
 Cuando('se realiza la entrega de llaves') do

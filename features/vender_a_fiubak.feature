@@ -6,7 +6,7 @@ Característica: Venta a FIUBAK
     Y ingreso un auto modelo "Fiat Uno", patente "ABC123", kilometros 100000 y año 1999
     Y se cotiza el auto de patente "ABC123" con precio 120000
 
-  @wip
+
   Escenario: VF1 - Confirmacion de venta a FIUBAK
     Cuando el usuario vende al auto con patente "ABC123" a Fiubak
     Entonces recibe mensaje de confirmacion de venta

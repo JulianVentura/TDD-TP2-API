@@ -88,11 +88,11 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
   post :vender_a_fiubak, :map => '/autos/:patente/vender_a_fiubak' do
     begin
       # input
-      patente = params[:id_prop]
+      patente = params[:patente]
       parametros = parametros_simbolizados
 
       # modelo
-      auto_vendido = VendedorAuto.new(repo_auto).vender_a_fiubak(patente, parametros[:id_prop])
+      auto_vendido = VendedorAuto.new(repo_auto, repo_usuario).vender_a_fiubak(patente, parametros[:id_prop])
 
       # output
       status 200
@@ -103,7 +103,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
         :anio => auto_vendido.anio,
         :id_prop => auto_vendido.usuario.id,
         :precio => auto_vendido.precio,
-        # :estado => auto_vendido.estado.estado == :en_revision ? 'En revision' : 'Cotizado'
+        :estado => simbolo_estado_a_mensaje(auto_vendido.estado.estado)
       }.to_json
     rescue ErrorEnLaAPI => e
       status 400
