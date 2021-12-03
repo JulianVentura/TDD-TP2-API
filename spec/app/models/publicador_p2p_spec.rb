@@ -34,6 +34,16 @@ describe PublicadorP2P do
         described_class.new(repo_auto, repo_usuario).publicar_p2p(patente, propietario.id, nil)
       end.to raise_error(ErrorFaltanArgumentos)
     end
+
+    it 'deberia fallar si el auto no existe' do
+      patente_inexistente = 'INV999'
+      precio_p2p = 12_000
+
+      expect do
+        described_class.new(repo_auto, repo_usuario).publicar_p2p(patente_inexistente, propietario.id, precio_p2p)
+      end.to raise_error(ErrorAutoNoExiste)
+    end
+
     # TODO: validar que el estado sea cotizar para poder publicar_p2p
   end
 end

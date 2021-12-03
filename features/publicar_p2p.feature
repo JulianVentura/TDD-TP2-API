@@ -14,10 +14,9 @@ Característica: Publicar P2P
     Cuando el usuario publica p2p el auto con patente "ABC123"
     Entonces recibo mensaje de error por falta de argumentos
 
-  @wip
   Escenario: P3 - Publicacion fallida por auto inexistente
-    Cuando el usuario publica p2p el auto con patente "ABC123" con precio 240000"
-    Entonces recibo mensaje de error por auto inexistente
+    Cuando el usuario publica p2p el auto con patente "JKA142" con precio 240000"
+    Entonces obtengo un mensaje de error por auto no existente
 
   @wip
   Escenario: P4 - Publicacion fallida por auto no cotizado
