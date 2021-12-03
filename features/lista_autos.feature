@@ -14,7 +14,6 @@ Escenario: LA2 - Listado sin autos
     Cuando se listan los autos en venta
     Entonces recibo una lista que contiene 0 autos
 
-@wip
 Escenario: LA3 - Listado con 3 autos
     Dado que existe un auto publicado por Fiubak modelo "Fiat Uno", patente "ABC123", kilometros 100000, año 1999 y precio 15000
     Y que existe un auto publicado por Fiubak modelo "Volkswagen Golf", patente "AB123CD", kilometros 0, año 2019 y precio 200000
