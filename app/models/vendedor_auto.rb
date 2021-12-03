@@ -9,6 +9,7 @@ class VendedorAuto
     auto = @repo_auto.find(patente)
     prop_del_auto = @repo_usuario.find(auto.usuario.id)
     raise ErrorUsuarioNoEsElPropietario if id_usuario != prop_del_auto.id
+
     auto.vender_a_fiubak
     @repo_auto.save(auto)
   end

@@ -8,8 +8,9 @@ describe VendedorAuto do
   let(:cotizador_auto) { CotizadorAuto.new(repo_auto) }
 
   context 'ya existe un auto cotizado' do
-    let(:patente){'AA752OH'}
-    let(:propietario){creador_usuario.crear_usuario('Juan', 123, 'juan@email.com')}
+    let(:patente) { 'AA752OH' }
+    let(:propietario) { creador_usuario.crear_usuario('Juan', 123, 'juan@email.com') }
+
     before :each do
       modelo = 'Fiat'
       anio = 1999
@@ -33,5 +34,4 @@ describe VendedorAuto do
       end.to raise_error(ErrorUsuarioNoEsElPropietario)
     end
   end
-
 end

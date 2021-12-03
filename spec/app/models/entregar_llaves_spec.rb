@@ -9,8 +9,8 @@ describe EntregarLlaves do
   let(:vendedor_auto) { VendedorAuto.new(repo_auto, repo_usuario) }
 
   context 'ya existe un auto vendido a fiubak' do
-    let(:patente){'AA752OH'}
-    let(:propietario){creador_usuario.crear_usuario('Juan', 123, 'juan@email.com')}
+    let(:patente) { 'AA752OH' }
+    let(:propietario) { creador_usuario.crear_usuario('Juan', 123, 'juan@email.com') }
 
     before :each do
       repo_usuario.save(Fiubak.new)
@@ -30,5 +30,4 @@ describe EntregarLlaves do
       expect(auto_fiubak.usuario.id).not_to propietario.id
     end
   end
-
 end

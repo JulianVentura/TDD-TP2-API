@@ -1,6 +1,6 @@
 Cuando('el usuario vende al auto con patente {string} a Fiubak') do |patente|
   @request_venta_auto_a_fiubak = {
-    :id_prop => id_falso,
+    :id_prop => id_falso
   }.to_json
   @patente = patente
   @response = Faraday.post(vender_url_autos(patente), @request_venta_auto_a_fiubak, header)
