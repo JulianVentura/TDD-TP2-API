@@ -54,3 +54,10 @@ class ErrorAutoNoExiste < ErrorEnLaAPI
     super(mensaje)
   end
 end
+
+class ErrorUsuarioNoEsElPropietario < ErrorEnLaAPI
+  def initialize
+    mensaje = 'Error: Usuario no es el propietario del auto'
+    super(mensaje)
+  end
+end
