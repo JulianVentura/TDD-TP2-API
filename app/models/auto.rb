@@ -34,7 +34,7 @@ class Auto
   end
 
   def publicar_p2p(precio)
-    # @estado.cotizado?
+    @estado.cotizado?
     @precio = precio
     @estado = Publicado.new
   end

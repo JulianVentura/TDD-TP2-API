@@ -36,6 +36,14 @@ describe Auto do
       expect(nuevo_auto.usuario).to eq otro_usuario
     end
 
+    it 'deberia fallar al llamar publicarp2p si el auto no esta cotizado' do
+      nuevo_auto = described_class.crear('AA752OH', 'Fiat', 40_000, 1999, un_usuario)
+      precio_p2p = 5000
+      expect do
+        nuevo_auto.publicar_p2p(precio_p2p)
+      end.to raise_error(ErrorAutoNoCotizado)
+    end
+
     context 'cuando esta cotizado' do
       let(:un_auto) { described_class.crear('AA752OH', 'Fiat', 40_000, 1999, un_usuario) }
       let(:precio) { 10_000 }
