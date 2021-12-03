@@ -21,7 +21,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
         :anio => nuevo_auto.anio,
         :id_prop => nuevo_auto.usuario.id,
         :precio => nuevo_auto.precio,
-        :estado => nuevo_auto.estado.estado == :en_revision ? 'En revision' : 'Cotizado' # TODO: cambiar
+        :estado => simbolo_estado_a_mensaje(nuevo_auto.estado.estado)
       }.to_json
     rescue ErrorEnLaAPI => e
       status 400
@@ -47,8 +47,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
           :anio => auto.anio,
           :id_prop => auto.usuario.id,
           :precio => auto.precio,
-          :estado => auto.estado.estado == :en_revision ? 'En revision' : 'Cotizado'
-          # TODO: Hacer una clase logger que se encarge de parsear esto
+          :estado => simbolo_estado_a_mensaje(auto.estado.estado)
         }
       end
 
@@ -77,7 +76,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
         :anio => auto_cotizado.anio,
         :id_prop => auto_cotizado.usuario.id,
         :precio => auto_cotizado.precio,
-        :estado => auto_cotizado.estado.estado == :en_revision ? 'En revision' : 'Cotizado' # TODO: cambiar
+        :estado => simbolo_estado_a_mensaje(auto_cotizado.estado.estado)
       }.to_json
     rescue ErrorEnLaAPI => e
       status 400

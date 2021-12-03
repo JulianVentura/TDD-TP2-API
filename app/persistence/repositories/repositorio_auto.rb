@@ -10,9 +10,11 @@ module Persistence
         :cotizado => 'cotizado',
         'cotizado' => Cotizado,
         :esperando_entrega => 'esperando_entrega',
-        'esperando_entrega' => EsperandoEntrega
+        'esperando_entrega' => EsperandoEntrega,
+        :publicado => 'publicado',
+        'publicado' => Publicado
       }.freeze
-      # TODO: poner Publicado
+      # TODO: faltan test unitarios que prueben los estados
 
       def existe_auto(patente)
         !dataset.first(patente: patente).nil?
