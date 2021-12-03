@@ -83,13 +83,12 @@ describe Persistence::Repositories::RepositorioAuto do
     end
   end
 
-
   context 'cuando hay 2 autos con estado "Publicado" y uno "Cotizado"' do
     let(:otro_usuario) { Usuario.new('jorge', 13_159, 'jorgito@gmail.com') }
     let(:creador_auto) { CreadorAuto.new(repo_auto, repo_usuario) }
     let(:cotizador_auto) { CotizadorAuto.new(repo_auto) }
     let(:vendedor_auto) { VendedorAuto.new(repo_auto, repo_usuario) }
-    let(:entrega_llaves) { EntregarLlaves.new(repo_auto, repo_usuario)}
+    let(:entrega_llaves) { EntregarLlaves.new(repo_auto, repo_usuario) }
 
     before :each do
       repo_usuario.save(Fiubak.new)

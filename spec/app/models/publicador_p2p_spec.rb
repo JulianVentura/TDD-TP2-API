@@ -28,8 +28,12 @@ describe PublicadorP2P do
       expect(auto_fiubak.estado).to eq Publicado.new
       expect(auto_fiubak.precio).to eq precio_p2p
     end
+
+    it 'deberia fallar si faltan argumentos' do
+      expect do
+        described_class.new(repo_auto, repo_usuario).publicar_p2p(patente, propietario.id, nil)
+      end.to raise_error(ErrorFaltanArgumentos)
+    end
     # TODO: validar que el estado sea cotizar para poder publicar_p2p
-
-
   end
 end

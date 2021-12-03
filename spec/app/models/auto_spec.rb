@@ -37,8 +37,9 @@ describe Auto do
     end
 
     context 'cuando esta cotizado' do
-      let(:un_auto) {described_class.crear('AA752OH', 'Fiat', 40_000, 1999, un_usuario)}
-      let(:precio) {10_000}
+      let(:un_auto) { described_class.crear('AA752OH', 'Fiat', 40_000, 1999, un_usuario) }
+      let(:precio) { 10_000 }
+
       before :each do
         un_auto.cotizar(precio)
       end

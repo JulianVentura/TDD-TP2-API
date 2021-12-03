@@ -10,6 +10,8 @@ class PublicadorP2P
     prop_del_auto = @repo_usuario.find(id_usuario)
     # raise ErrorUsuarioNoEsElPropietario if id_usuario != prop_del_auto.id
 
+    raise ErrorFaltanArgumentos if patente.nil? || id_usuario.nil? || precio.nil?
+
     auto.publicar_p2p(precio)
     @repo_auto.save(auto)
   end

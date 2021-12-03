@@ -138,7 +138,6 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
 
   get :listar_en_venta, :map => '/autos' do
     begin
-    
       # base de datos
       autos = ListadorAutos.new(repo_auto).listar_publicado
       # output
@@ -157,7 +156,6 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
       end
 
       respuesta.to_json
-
     rescue ErrorEnLaAPI => e
       status 400
       {error: e.mensaje}.to_json
@@ -189,7 +187,4 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
       {error: e.mensaje}.to_json
     end
   end
-
-
-
 end

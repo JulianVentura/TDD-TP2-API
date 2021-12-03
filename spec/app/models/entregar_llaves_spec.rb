@@ -47,6 +47,5 @@ describe EntregarLlaves do
         end.to raise_error(ErrorAutoNoEsperaEntregaLlaves)
       end
     end
-
   end
 end

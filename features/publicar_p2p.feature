@@ -10,14 +10,13 @@ Característica: Publicar P2P
     Cuando el usuario publica p2p el auto con patente "ABC123" con precio 240000"
     Entonces recibo mensaje de publicacion exitosa
 
-  @wip
   Escenario: P2 - Publicacion fallida por falta de datos
-    Cuando ingreso el comando "/publicar_p2p ABC123"
-    Entonces recibo mensaje de error por falta de datos
+    Cuando el usuario publica p2p el auto con patente "ABC123"
+    Entonces recibo mensaje de error por falta de argumentos
 
   @wip
   Escenario: P3 - Publicacion fallida por auto inexistente
-    Cuando ingreso el comando "/publicar_p2p JHK657"
+    Cuando el usuario publica p2p el auto con patente "ABC123" con precio 240000"
     Entonces recibo mensaje de error por auto inexistente
 
   @wip

@@ -7,7 +7,7 @@ describe ListadorAutos do
   let(:creador_usuario) { CreadorUsuario.new(repo_usuario) }
   let(:cotizador_auto) { CotizadorAuto.new(repo_auto) }
   let(:vendedor_auto) { VendedorAuto.new(repo_auto, repo_usuario) }
-  let(:entrega_llaves) { EntregarLlaves.new(repo_auto, repo_usuario)}
+  let(:entrega_llaves) { EntregarLlaves.new(repo_auto, repo_usuario) }
 
   context 'Existen tres autos "Publicado" en Fiubak' do
     let(:un_usuario) { creador_usuario.crear_usuario('jorge', 13_159, 'jorgito@gmail.com') }

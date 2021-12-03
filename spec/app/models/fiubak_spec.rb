@@ -11,6 +11,5 @@ describe Fiubak do
       nuevo_usuario = described_class.new
       expect(nuevo_usuario.es_particular?).to eq false
     end
-
   end
 end
