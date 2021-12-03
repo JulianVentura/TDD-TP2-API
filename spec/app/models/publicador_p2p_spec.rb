@@ -20,16 +20,15 @@ describe PublicadorP2P do
 
       precio = 12_000
       cotizador_auto.cotizar(patente, precio)
-
-      vendedor_auto.vender_a_fiubak(patente, propietario.id)
     end
 
-    xit 'deberia cambiar su estado a "Pendiente" y su precio cuando se publica p2p' do
+    it 'deberia cambiar su estado a "Pendiente" y su precio cuando se publica p2p' do
       precio_p2p = 15_000
       auto_fiubak = described_class.new(repo_auto, repo_usuario).publicar_p2p(patente, propietario.id, precio_p2p)
       expect(auto_fiubak.estado).to eq Publicado.new
       expect(auto_fiubak.precio).to eq precio_p2p
     end
+    # TODO: validar que el estado sea cotizar para poder publicar_p2p
 
 
   end

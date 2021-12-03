@@ -6,7 +6,6 @@ Característica: Publicar P2P
     Y ingreso un auto modelo "Fiat Uno", patente "ABC123", kilometros 100000 y año 1999
     Y se cotiza el auto de patente "ABC123" con precio 120000
 
-  @wip
   Escenario: P1 - Publicacion P2P exitosa
     Cuando el usuario publica p2p el auto con patente "ABC123" con precio 240000"
     Entonces recibo mensaje de publicacion exitosa
