@@ -140,7 +140,6 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
     
       # base de datos
       autos = ListadorAutos.new(repo_auto).listar_publicado
-
       # output
       status 200
       respuesta = autos.map do |auto|
@@ -151,6 +150,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
           :anio => auto.anio,
           :id_prop => auto.usuario.id,
           :precio => auto.precio,
+          :es_fiubak => !auto.usuario.es_particular?,
           :estado => simbolo_estado_a_mensaje(auto.estado.estado)
         }
       end

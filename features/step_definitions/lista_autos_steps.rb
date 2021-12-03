@@ -10,10 +10,10 @@ Cuando('se listan los autos en venta') do
   @parse_response = JSON.parse(@response.body)
 end
 
-Entonces('contiene patente {string} precio {int} y duenio Fiubak') do |patente, precio|
+Y('contiene patente {string} y duenio Fiubak') do |patente|
   match = false
   @parse_response.each do |auto|
-    match = auto['patente'] == patente && auto['precio'] == precio && auto['es_fiubak']
+    match |= (auto['patente'] == patente && auto['es_fiubak'])
   end
 
   expect(match).to eq true
