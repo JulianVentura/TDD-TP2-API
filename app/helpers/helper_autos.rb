@@ -4,6 +4,7 @@ module WebTemplate
   class App
     module HelperAutos
       ESTADOS={:en_revision => 'En revision', :cotizado => 'Cotizado', :esperando_entrega => 'Esperando entrega'}.freeze
+      # TODO: poner estado Publicado
       def repo_auto
         Persistence::Repositories::RepositorioAuto.new
       end

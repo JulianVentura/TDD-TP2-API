@@ -12,6 +12,7 @@ module Persistence
         :esperando_entrega => 'esperando_entrega',
         'esperando_entrega' => EsperandoEntrega
       }.freeze
+      # TODO: poner Publicado
 
       def existe_auto(patente)
         !dataset.first(patente: patente).nil?

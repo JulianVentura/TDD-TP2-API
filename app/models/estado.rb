@@ -35,3 +35,9 @@ class EsperandoEntrega < Estado
     super(:esperando_entrega)
   end
 end
+
+class Publicado < Estado
+  def initialize
+    super(:publicado)
+  end
+end

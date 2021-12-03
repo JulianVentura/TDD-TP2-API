@@ -20,6 +20,7 @@ describe Auto do
     end
 
     it 'deberia actualizar su estado al venderse a fiubak' do
+      # TODO: validar que este cotizado
       nuevo_auto = described_class.crear('AA752OH', 'Fiat', 40_000, 1999, un_usuario)
       nuevo_auto.vender_a_fiubak
 
@@ -33,6 +34,28 @@ describe Auto do
       nuevo_auto.cambiar_de_propietario(otro_usuario)
 
       expect(nuevo_auto.usuario).to eq otro_usuario
+    end
+
+    context 'cuando esta cotizado' do
+      let(:un_auto) {described_class.crear('AA752OH', 'Fiat', 40_000, 1999, un_usuario)}
+      let(:precio) {10_000}
+      before :each do
+        un_auto.cotizar(precio)
+      end
+
+      context 'cuando se vende a fiubak' do
+        before :each do
+          un_auto.vender_a_fiubak
+        end
+
+        it 'deberia multiplicar su precio por la tasa y el estado cambiar a "Publicado" al publicarse' do
+          tasa = 20
+          un_auto.publicar(tasa)
+
+          expect(un_auto.precio).to eq precio * (100 + tasa) / 100
+          expect(un_auto.estado).to eq Publicado.new
+        end
+      end
     end
   end
 end

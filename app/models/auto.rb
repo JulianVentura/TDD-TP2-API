@@ -27,6 +27,11 @@ class Auto
     @usuario = usuario
   end
 
+  def publicar(tasa)
+    @precio = precio * (100 + tasa) / 100
+    @estado = Publicado.new
+  end
+
   private
 
   def initialize(patente, modelo, kilometros, anio, usuario, precio, estado) # rubocop:disable Metrics/ParameterLists
