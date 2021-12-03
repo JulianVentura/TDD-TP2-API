@@ -134,4 +134,34 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
       {error: e.mensaje}.to_json
     end
   end
+
+  get :listar_en_venta, :map => '/autos' do
+    begin
+    
+      # base de datos
+      autos = ListadorAutos.new(repo_auto).en_venta
+
+      # output
+      status 200
+      respuesta = autos.map do |auto|
+        {
+          :patente => auto.patente,
+          :modelo => auto.modelo,
+          :kilometros => auto.kilometros,
+          :anio => auto.anio,
+          :id_prop => auto.usuario.id,
+          :precio => auto.precio,
+          :estado => simbolo_estado_a_mensaje(auto_fiubak.estado.estado)
+        }
+      end
+
+      respuesta.to_json
+      
+    rescue ErrorEnLaAPI => e
+      status 400
+      {error: e.mensaje}.to_json
+    end
+  end
+
+
 end

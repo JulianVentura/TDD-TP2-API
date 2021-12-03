@@ -82,4 +82,51 @@ describe Persistence::Repositories::RepositorioAuto do
       expect(patentes).to include autos[1].patente
     end
   end
+
+
+  context 'cuando hay 2 autos con estado "Publicado" y uno "Cotizado"' do
+    let(:otro_usuario) { Usuario.new('jorge', 13_159, 'jorgito@gmail.com') }
+    let(:creador_auto) { CreadorAuto.new(repo_auto, repo_usuario) }
+    let(:cotizador_auto) { CotizadorAuto.new(repo_auto) }
+    let(:vendedor_auto) { VendedorAuto.new(repo_auto, repo_usuario) }
+    let(:entrega_llaves) { EntregarLlaves.new(repo_auto, repo_usuario)}
+
+    before :each do
+      repo_usuario.save(Fiubak.new)
+      repo_usuario.save(un_usuario)
+      repo_usuario.save(otro_usuario)
+      crear_auto_publicado('ABC123', un_usuario, creador_auto, cotizador_auto, vendedor_auto, entrega_llaves)
+      crear_auto_publicado('ABC124', otro_usuario, creador_auto, cotizador_auto, vendedor_auto, entrega_llaves)
+      crear_auto_cotizado('ABC125', un_usuario, creador_auto, cotizador_auto)
+    end
+
+    it 'por_estado publicado deberia retornar 2 autos' do
+      autos = repo_auto.por_estado(Publicado.new)
+      patentes = %w[ABC123 ABC124]
+
+      expect(autos.size).to eq 2
+      expect(patentes).to include autos[0].patente
+      expect(patentes).to include autos[1].patente
+    end
+  end
+end
+
+def crear_auto_publicado(patente, propietario, creador_auto, cotizador_auto, vendedor_auto, entrega)
+  modelo = 'Fiat'
+  precio = 30_000
+  anio = 2004
+  cotizacion = 15_000
+  creador_auto.crear_auto(patente, modelo, precio, anio, propietario.id)
+  cotizador_auto.cotizar(patente, cotizacion)
+  vendedor_auto.vender_a_fiubak(patente, propietario.id)
+  entrega.entregar_llaves(patente)
+end
+
+def crear_auto_cotizado(patente, propietario, creador_auto, cotizador_auto)
+  modelo = 'Fiat'
+  precio = 30_000
+  anio = 2004
+  cotizacion = 15_000
+  creador_auto.crear_auto(patente, modelo, precio, anio, propietario.id)
+  cotizador_auto.cotizar(patente, cotizacion)
 end

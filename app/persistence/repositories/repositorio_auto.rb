@@ -24,6 +24,10 @@ module Persistence
         load_collection dataset.where(id_usuario: id_prop)
       end
 
+      def por_estado(estado)
+        load_collection dataset.where(estado: ESTADOS[estado.estado])
+      end
+
       protected
 
       def load_object(a_hash)
