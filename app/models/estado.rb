@@ -29,3 +29,9 @@ class Cotizado < Estado
     super(:cotizado)
   end
 end
+
+class EsperandoEntrega < Estado
+  def initialize
+    super(:esperando_entrega)
+  end
+end

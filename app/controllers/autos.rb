@@ -84,4 +84,30 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
       {error: e.mensaje}.to_json
     end
   end
+
+  post :vender_a_fiubak, :map => '/autos/:patente/vender_a_fiubak' do
+    begin
+      # input
+      patente = params[:id_prop]
+      parametros = parametros_simbolizados
+
+      # modelo
+      auto_vendido = VendedorAuto.new(repo_auto).vender_a_fiubak(patente, parametros[:id_prop])
+
+      # output
+      status 200
+      {
+        :patente => auto_vendido.patente,
+        :modelo => auto_vendido.modelo,
+        :kilometros => auto_vendido.kilometros,
+        :anio => auto_vendido.anio,
+        :id_prop => auto_vendido.usuario.id,
+        :precio => auto_vendido.precio,
+        # :estado => auto_vendido.estado.estado == :en_revision ? 'En revision' : 'Cotizado'
+      }.to_json
+    rescue ErrorEnLaAPI => e
+      status 400
+      {error: e.mensaje}.to_json
+    end
+  end
 end

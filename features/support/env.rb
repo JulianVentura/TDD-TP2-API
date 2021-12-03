@@ -36,6 +36,10 @@ def cotizar_url_autos(patente)
   "#{BASE_URL}/autos/#{patente}/cotizar"
 end
 
+def vender_url_autos(patente)
+  "#{BASE_URL}/autos/#{patente}/vender_a_fiubak"
+end
+
 def reset_url
   "#{BASE_URL}/reset"
 end

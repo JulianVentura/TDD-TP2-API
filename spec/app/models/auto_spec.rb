@@ -18,5 +18,13 @@ describe Auto do
       nuevo_auto.cotizar(10_000)
       expect(nuevo_auto.precio).to eq 10_000
     end
+
+    xit 'deberia actualizar su estado al venderse a fiubak' do
+      nuevo_auto = described_class.crear('AA752OH', 'Fiat', 40_000, 1999, un_usuario)
+      nuevo_auto.vender_a_fiubak
+
+      estado_esperado = EsperandoEntrega.new
+      expect(nuevo_auto.estado).to eq estado_esperado
+    end
   end
 end
