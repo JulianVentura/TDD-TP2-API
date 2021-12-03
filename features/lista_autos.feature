@@ -10,7 +10,6 @@ Escenario: LA1 - Listado de un unico auto
     Entonces recibo una lista que contiene 1 autos
     Y contiene patente "ABC123" y duenio Fiubak
 
-@wip
 Escenario: LA2 - Listado sin autos
     Cuando se listan los autos en venta
     Entonces recibo una lista que contiene 0 autos
