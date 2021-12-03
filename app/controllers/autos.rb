@@ -117,7 +117,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
       patente = params[:patente]
 
       # modelo
-      auto_fiubak = EntregarLlaves.new(repo_auto).entregar_llaves(patente)
+      auto_fiubak = EntregarLlaves.new(repo_auto, repo_usuario).entregar_llaves(patente)
 
       # output
       status 201

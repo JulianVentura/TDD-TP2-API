@@ -26,5 +26,13 @@ describe Auto do
       estado_esperado = EsperandoEntrega.new
       expect(nuevo_auto.estado).to eq estado_esperado
     end
+
+    it 'deberia tener propietario distinto al cambiar por un propietario diferente al anterior' do
+      nuevo_auto = described_class.crear('AA752OH', 'Fiat', 40_000, 1999, un_usuario)
+      otro_usuario = Usuario.new('otro', 12_535, 'juan@gmail.com')
+      nuevo_auto.cambiar_de_propietario(otro_usuario)
+
+      expect(nuevo_auto.usuario).to eq otro_usuario
+    end
   end
 end

@@ -23,6 +23,10 @@ class Auto
     @estado = EsperandoEntrega.new
   end
 
+  def cambiar_de_propietario(usuario)
+    @usuario = usuario
+  end
+
   private
 
   def initialize(patente, modelo, kilometros, anio, usuario, precio, estado) # rubocop:disable Metrics/ParameterLists

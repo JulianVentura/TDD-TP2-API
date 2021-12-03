@@ -13,6 +13,7 @@ describe EntregarLlaves do
     let(:propietario){creador_usuario.crear_usuario('Juan', 123, 'juan@email.com')}
 
     before :each do
+      repo_usuario.save(Fiubak.new)
       modelo = 'Fiat'
       anio = 1999
       kilometros = 4000
@@ -25,7 +26,7 @@ describe EntregarLlaves do
     end
 
     xit 'deberia cambiar de propietario a fiubak cuando se entregan las llaves' do
-      auto_fiubak = described_class.new(repo_auto).entregar_llaves(patente)
+      auto_fiubak = described_class.new(repo_auto, repo_usuario).entregar_llaves(patente)
       expect(auto_fiubak.usuario.id).not_to propietario.id
     end
   end
