@@ -44,6 +44,17 @@ describe PublicadorP2P do
       end.to raise_error(ErrorAutoNoExiste)
     end
 
-    # TODO: validar que el estado sea cotizar para poder publicar_p2p
+    it 'deberia fallar si el auto no esta cotizado' do
+      modelo = 'Fiat'
+      anio = 1999
+      kilometros = 4000
+      patente = 'COT123'
+      creador_auto.crear_auto(patente, modelo, anio, kilometros, propietario.id)
+      precio_p2p = 1000
+
+      expect do
+        described_class.new(repo_auto, repo_usuario).publicar_p2p(patente, propietario.id, precio_p2p)
+      end.to raise_error(ErrorAutoNoCotizado)
+    end
   end
 end
