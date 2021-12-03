@@ -44,6 +44,11 @@ def entregar_llaves_url_autos(patente)
   "#{BASE_URL}/autos/#{patente}/entregar_llaves"
 end
 
+
+def listar_autos_url
+  "#{BASE_URL}/autos"
+end
+
 def reset_url
   "#{BASE_URL}/reset"
 end
@@ -54,4 +59,32 @@ end
 
 After do |_scenario|
   Faraday.post(reset_url)
+end
+
+def registrar_auto(modelo, patente, kilometros, anio)
+  request_registro_auto = {
+    :patente => patente,
+    :modelo => modelo,
+    :kilometros => kilometros,
+    :anio => anio,
+    :id_prop => id_falso
+  }.to_json
+
+  Faraday.post(crear_url_autos, request_registro_auto, header)
+end
+
+def cotizar_auto(patente, precio)
+  body = {:precio => precio}.to_json
+  Faraday.patch(cotizar_url_autos(patente), body, header)
+end
+
+def vender_a_fiubak(patente)
+  body = {
+    :id_prop => id_falso,
+  }.to_json
+  Faraday.post(vender_url_autos(patente), body, header)
+end
+
+def entregar_llaves(patente)
+  Faraday.post(entregar_llaves_url_autos(patente), nil, header)
 end
