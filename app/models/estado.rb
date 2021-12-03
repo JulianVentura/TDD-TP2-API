@@ -15,6 +15,10 @@ class Estado
     @estado == other.estado
   end
 
+  def cotizado?
+    raise ErrorAutoNoCotizado
+  end
+
   attr_reader :estado
 end
 
@@ -31,6 +35,10 @@ end
 class Cotizado < Estado
   def initialize
     super(:cotizado)
+  end
+
+  def cotizado?
+    true
   end
 end
 

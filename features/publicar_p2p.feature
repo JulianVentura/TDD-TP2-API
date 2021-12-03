@@ -20,6 +20,6 @@ Característica: Publicar P2P
 
   @wip
   Escenario: P4 - Publicacion fallida por auto no cotizado
-    Dado que tiene un auto modelo "Ford Fiesta", patente "NOC435", kilometros 2000 y año 2004
-    Cuando ingreso el comando "/publicar_p2p NOC435"
+    Dado ingreso un auto modelo "Ford Fiesta", patente "NOC435", kilometros 2000 y año 2004
+    Cuando el usuario publica p2p el auto con patente "NOC435" con precio 240000"
     Entonces recibo mensaje de error por auto no cotizado

@@ -68,3 +68,10 @@ class ErrorAutoNoEsperaEntregaLlaves < ErrorEnLaAPI
     super(mensaje)
   end
 end
+
+class ErrorAutoNoCotizado < ErrorEnLaAPI
+  def initialize
+    mensaje = 'Error: Auto no cotizado'
+    super(mensaje)
+  end
+end

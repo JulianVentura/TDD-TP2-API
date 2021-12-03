@@ -22,3 +22,9 @@ Cuando('el usuario publica p2p el auto con patente {string}') do |patente|
   # TODO: POST o PATCH?
   @response = Faraday.post(publicar_p2p_url_autos(patente), @request_publicar_p2p, header)
 end
+
+Entonces('recibo mensaje de error por auto no cotizado') do
+  expect(@response.status).to eq(400)
+  respuesta = JSON.parse(@response.body)
+  expect(respuesta['error']).to eq 'Error: Auto no cotizado'
+end

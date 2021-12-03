@@ -15,4 +15,9 @@ describe 'Cotizado' do
 
     expect(cotizado).to eq cotizado2
   end
+
+  it 'deberia estar cotizado' do
+    cotizado = Cotizado.new
+    expect(cotizado.cotizado?).to eq true
+  end
 end
