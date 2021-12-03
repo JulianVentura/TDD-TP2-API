@@ -6,7 +6,7 @@ describe 'VendedorAuto' do
   let(:creador_auto) { CreadorAuto.new(repo_auto, repo_usuario) }
   let(:creador_usuario) { CreadorUsuario.new(repo_usuario) }
 
-  xit 'deberia vender un auto a fiubak' do
+  it 'deberia vender un auto a fiubak' do
     patente = 'AA752OH'
     modelo = 'Fiat'
     anio = 1999
