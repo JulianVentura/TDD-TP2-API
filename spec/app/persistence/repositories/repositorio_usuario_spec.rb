@@ -30,4 +30,17 @@ describe Persistence::Repositories::RepositorioUsuario do
       expect(repo_usuario.existe_email(email)).to eq true
     end
   end
+
+  context 'cuando se solicita por el usuario Fiubak' do
+    before :each do
+      @fiubak = Fiubak.new
+      @nuevo_usuario = repo_usuario.save(@fiubak)
+    end
+
+    it 'deberia recuperarselo correctamente' do
+      usuario_de_repo = repo_usuario.find(@fiubak.id)
+      expect(usuario_de_repo.id).to eq(@fiubak.id)
+      expect(usuario_de_repo.es_particular?).to eq(@fiubak.es_particular?)
+    end
+  end
 end

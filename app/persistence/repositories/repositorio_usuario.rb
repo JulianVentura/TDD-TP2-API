@@ -15,6 +15,10 @@ module Persistence
       protected
 
       def load_object(a_hash)
+        fiubak = Fiubak.new
+
+        return fiubak if a_hash[:id] == fiubak.id
+
         Usuario.new(a_hash[:nombre], a_hash[:id], a_hash[:email])
       end
 
