@@ -6,6 +6,7 @@ class VendedorAuto
   end
 
   def vender_a_fiubak(patente, id_usuario)
+    raise ErrorAutoNoExiste unless @repo_auto.existe_auto(patente)
     auto = @repo_auto.find(patente)
     prop_del_auto = @repo_usuario.find(auto.usuario.id)
     raise ErrorUsuarioNoEsElPropietario if id_usuario != prop_del_auto.id

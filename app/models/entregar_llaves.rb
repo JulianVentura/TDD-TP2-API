@@ -7,7 +7,6 @@ class EntregarLlaves
 
   def entregar_llaves(patente)
     auto = @repo_auto.find(patente)
-    @repo_auto.delete(auto)
     usuario_fiubak = Fiubak.new
     @repo_usuario.save(usuario_fiubak) unless @repo_usuario.existe_usuario(usuario_fiubak.id)
 
