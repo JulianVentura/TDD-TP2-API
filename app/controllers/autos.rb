@@ -110,4 +110,29 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
       {error: e.mensaje}.to_json
     end
   end
+
+  post :entregar_llaves, :map => '/autos/:patente/entregar_llaves' do
+    begin
+      # input
+      patente = params[:patente]
+
+      # modelo
+      auto_fiubak = EntregarLlaves.new(repo_auto).entregar_llaves(patente)
+
+      # output
+      status 201
+      {
+        :patente => auto_fiubak.patente,
+        :modelo => auto_fiubak.modelo,
+        :kilometros => auto_fiubak.kilometros,
+        :anio => auto_fiubak.anio,
+        :id_prop => auto_fiubak.usuario.id,
+        :precio => auto_fiubak.precio,
+        :estado => simbolo_estado_a_mensaje(auto_fiubak.estado.estado)
+      }.to_json
+    rescue ErrorEnLaAPI => e
+      status 400
+      {error: e.mensaje}.to_json
+    end
+  end
 end

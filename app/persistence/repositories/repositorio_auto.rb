@@ -8,7 +8,9 @@ module Persistence
         :en_revision => 'en_revision',
         'en_revision' => EnRevision,
         :cotizado => 'cotizado',
-        'cotizado' => Cotizado
+        'cotizado' => Cotizado,
+        :esperando_entrega => 'esperando_entrega',
+        'esperando_entrega' => EsperandoEntrega
       }.freeze
 
       def existe_auto(patente)

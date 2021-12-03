@@ -2,6 +2,7 @@ Cuando('el usuario vende al auto con patente {string} a Fiubak') do |patente|
   @request_venta_auto_a_fiubak = {
     :id_prop => id_falso,
   }.to_json
+  @patente = patente
   @response = Faraday.post(vender_url_autos(patente), @request_venta_auto_a_fiubak, header)
 end
 
@@ -14,5 +15,5 @@ Entonces('recibe mensaje de confirmacion de venta') do
 end
 
 Cuando('se realiza la entrega de llaves') do
-  pending # Write code here that turns the phrase above into concrete actions
+  @response = Faraday.post(entregar_llaves_url_autos(@patente), nil, header)
 end

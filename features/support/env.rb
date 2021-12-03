@@ -40,6 +40,10 @@ def vender_url_autos(patente)
   "#{BASE_URL}/autos/#{patente}/vender_a_fiubak"
 end
 
+def entregar_llaves_url_autos(patente)
+  "#{BASE_URL}/autos/#{patente}/entregar_llaves"
+end
+
 def reset_url
   "#{BASE_URL}/reset"
 end
