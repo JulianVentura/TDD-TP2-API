@@ -7,4 +7,8 @@ class Usuario
     @id = id
     @email = email
   end
+
+  def es_particular?
+    true
+  end
 end

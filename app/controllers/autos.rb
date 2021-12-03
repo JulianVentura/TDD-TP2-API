@@ -139,7 +139,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
     begin
     
       # base de datos
-      autos = ListadorAutos.new(repo_auto).en_venta
+      autos = ListadorAutos.new(repo_auto).listar_publicado
 
       # output
       status 200
@@ -151,12 +151,12 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
           :anio => auto.anio,
           :id_prop => auto.usuario.id,
           :precio => auto.precio,
-          :estado => simbolo_estado_a_mensaje(auto_fiubak.estado.estado)
+          :estado => simbolo_estado_a_mensaje(auto.estado.estado)
         }
       end
 
       respuesta.to_json
-      
+
     rescue ErrorEnLaAPI => e
       status 400
       {error: e.mensaje}.to_json
