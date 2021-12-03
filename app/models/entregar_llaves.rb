@@ -6,6 +6,7 @@ class EntregarLlaves
   end
 
   def entregar_llaves(patente)
+    raise ErrorAutoNoExiste unless @repo_auto.existe_auto(patente)
     auto = @repo_auto.find(patente)
     
     usuario_fiubak = Fiubak.new

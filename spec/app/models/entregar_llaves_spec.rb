@@ -30,6 +30,12 @@ describe EntregarLlaves do
       expect(auto_fiubak.usuario.id).to eq Fiubak.new.id
     end
 
+    it 'deberia fallar si el auto no existe' do
+      expect do
+        described_class.new(repo_auto, repo_usuario).entregar_llaves('ABC123')
+      end.to raise_error(ErrorAutoNoExiste)
+    end
+
     context 'ya se entregaron las llaves del auto' do
       before :each do
         described_class.new(repo_auto, repo_usuario).entregar_llaves(patente)
