@@ -18,8 +18,12 @@ Característica: Publicar P2P
     Cuando el usuario publica p2p el auto con patente "JKA142" con precio 240000"
     Entonces obtengo un mensaje de error por auto no existente
 
-  
   Escenario: P4 - Publicacion fallida por auto no cotizado
     Dado ingreso un auto modelo "Ford Fiesta", patente "NOC435", kilometros 2000 y año 2004
     Cuando el usuario publica p2p el auto con patente "NOC435" con precio 240000"
     Entonces recibo mensaje de error por auto no cotizado
+
+  Escenario: P5 - Publicacion fallida por usuario incorrecto
+    Dado que existe otro usuario con nombre "jorge" y mail "jorge@test.com"
+    Cuando el otro usuario publica p2p el auto con patente "ABC123" con precio 240000"
+    Entonces recibo mensaje de error por usuario incorrecto

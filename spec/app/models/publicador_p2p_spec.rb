@@ -56,5 +56,22 @@ describe PublicadorP2P do
         described_class.new(repo_auto, repo_usuario).publicar_p2p(patente, propietario.id, precio_p2p)
       end.to raise_error(ErrorAutoNoCotizado)
     end
+
+    it 'deberia fallar si otro usuario quiere publicar un auto' do
+      modelo = 'Fiat'
+      anio = 1999
+      kilometros = 4000
+      patente = 'COT123'
+      creador_auto.crear_auto(patente, modelo, anio, kilometros, propietario.id)
+      precio = 12_000
+      cotizador_auto.cotizar(patente, precio)
+      precio_p2p = 100000
+
+      otro_propietario = creador_usuario.crear_usuario('Jorge', 1234, 'jorge@email.com')
+
+      expect do
+        described_class.new(repo_auto, repo_usuario).publicar_p2p(patente, otro_propietario.id, precio_p2p)
+      end.to raise_error(ErrorUsuarioNoEsElPropietario)
+    end
   end
 end
