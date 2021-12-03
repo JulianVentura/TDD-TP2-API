@@ -28,6 +28,7 @@ class Auto
   end
 
   def publicar(tasa)
+    @estado.entregar_llave?
     @precio = precio * (100 + tasa) / 100
     @estado = Publicado.new
   end
