@@ -61,3 +61,10 @@ class ErrorUsuarioNoEsElPropietario < ErrorEnLaAPI
     super(mensaje)
   end
 end
+
+class ErrorAutoNoEsperaEntregaLlaves < ErrorEnLaAPI
+  def initialize
+    mensaje = 'Error: Auto no espera entrega de llaves'
+    super(mensaje)
+  end
+end

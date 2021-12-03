@@ -7,6 +7,10 @@ class Estado
     raise ErrorNoCotizable
   end
 
+  def entregar_llave?
+    raise ErrorAutoNoEsperaEntregaLlaves
+  end
+
   def ==(other)
     @estado == other.estado
   end
@@ -33,6 +37,10 @@ end
 class EsperandoEntrega < Estado
   def initialize
     super(:esperando_entrega)
+  end
+
+  def entregar_llave?
+    nil
   end
 end
 
