@@ -56,6 +56,16 @@ describe Auto do
           expect(un_auto.estado).to eq Publicado.new
         end
       end
+
+      context 'cuando se publica p2p' do
+        it 'deberia cambiar su estado a "Pendiente" y su precio segun lo pasado por parametro' do
+          precio_p2p = 5000
+          un_auto.publicar_p2p(precio_p2p)
+
+          expect(un_auto.precio).to eq precio_p2p
+          expect(un_auto.estado).to eq Publicado.new
+        end
+      end
     end
   end
 end

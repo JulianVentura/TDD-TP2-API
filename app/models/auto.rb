@@ -33,6 +33,12 @@ class Auto
     @estado = Publicado.new
   end
 
+  def publicar_p2p(precio)
+    #@estado.cotizado?
+    @precio = precio
+    @estado = Publicado.new
+  end
+
   private
 
   def initialize(patente, modelo, kilometros, anio, usuario, precio, estado) # rubocop:disable Metrics/ParameterLists

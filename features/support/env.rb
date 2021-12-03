@@ -44,6 +44,9 @@ def entregar_llaves_url_autos(patente)
   "#{BASE_URL}/autos/#{patente}/entregar_llaves"
 end
 
+def publicar_p2p_url_autos(patente)
+  "#{BASE_URL}/autos/#{patente}/publicar_p2p"
+end
 
 def listar_autos_url
   "#{BASE_URL}/autos"
