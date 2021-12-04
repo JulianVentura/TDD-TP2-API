@@ -3,8 +3,15 @@
 module WebTemplate
   class App
     module HelperAutos
-      ESTADOS = {:en_revision => 'En revision', :cotizado => 'Cotizado', :esperando_entrega => 'Esperando entrega', :publicado => 'Publicado'}.freeze
+      ESTADOS = {
+        :en_revision => 'En revision', 
+        :cotizado => 'Cotizado', 
+        :esperando_entrega => 'Esperando entrega', 
+        :publicado => 'Publicado',
+        :vendido => 'Vendido'
+      }.freeze
       # TODO: faltan steps que prueben que los estados cambian
+      # TODO: Pasar todo esto a una clase
       def repo_auto
         Persistence::Repositories::RepositorioAuto.new
       end
