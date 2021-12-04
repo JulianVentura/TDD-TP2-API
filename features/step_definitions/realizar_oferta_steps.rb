@@ -16,7 +16,7 @@ Cuando('realizo una oferta de {int} sobre el auto de patente {string}') do |prec
     :precio => precio
   }.to_json
 
-  @response = Faraday.post(realizar_oferta_url(patente), @request_publicar_p2p, header)
+  @response = Faraday.post(realizar_oferta_url(patente), @request_realizar_oferta, header)
 end
 
 Entonces('recibo mensaje de oferta exitosa') do

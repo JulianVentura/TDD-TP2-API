@@ -221,7 +221,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
       parametros = parametros_simbolizados
 
       # modelo
-      oferta = CreadorOferta.new(repo_oferta, repo_auto, repo_usuario).ofertar(
+      oferta = CreadorOferta.new(repo_oferta, repo_auto, repo_usuario).crear(
         patente,
         parametros[:id_ofertante],
         parametros[:precio]
@@ -230,9 +230,9 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
       # output
       status 200
       {
-        :id_oferta => oferta.id_oferta,
-        :patente => oferta.patente,
-        :id_ofertante => oferta.id_ofertante,
+        :id_oferta => oferta.id,
+        :patente => oferta.auto.patente,
+        :id_ofertante => oferta.ofertante.id,
         :precio => oferta.precio
       }.to_json
     rescue ErrorEnLaAPI => e

@@ -6,7 +6,6 @@ Característica: Realizar oferta
     Y tiene un auto modelo "Fiat Uno" patente "ABC123" publicado como p2p
     Y que existe un usuario con nombre "Jorge" y email "jorge@test.com"
   
-  @wip
   Escenario: RO1 - Realizacion de oferta exitosa
     Cuando realizo una oferta de 1000 sobre el auto de patente "ABC123"
     Entonces recibo mensaje de oferta exitosa
