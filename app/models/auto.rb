@@ -51,6 +51,10 @@ class Auto
     @estado.esta_publicado?
   end
 
+  def propietario_es_particular?
+    @usuario.es_particular?
+  end
+
   private
 
   def initialize(patente, modelo, kilometros, anio, usuario, precio, estado) # rubocop:disable Metrics/ParameterLists

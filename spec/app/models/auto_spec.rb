@@ -23,6 +23,7 @@ describe Auto do
   end
 
   context 'cuando ya esta creado' do
+    # TODO: meter aca nuevo_auto como un let
     it 'deberia actualizar su precio al cotizarse' do
       nuevo_auto = described_class.crear('AA752OH', 'Fiat', 40_000, 1999, un_usuario)
       nuevo_auto.cotizar(10_000)
@@ -57,6 +58,11 @@ describe Auto do
       expect do
         nuevo_auto.esta_publicado?
       end.to raise_error(ErrorAutoNoEstaPublicado)
+    end
+
+    it 'el usuario deberia ser particular' do
+      nuevo_auto = described_class.crear('AA752OH', 'Fiat', 40_000, 1999, un_usuario)
+      expect(nuevo_auto.propietario_es_particular?).to eq true
     end
 
     context 'cuando esta cotizado' do
@@ -95,6 +101,8 @@ describe Auto do
           before :each do
             un_auto.publicar(20)
           end
+
+
 
           context 'cuando se compra' do
             it 'deberia cambiar su estado a "Vendido"' do

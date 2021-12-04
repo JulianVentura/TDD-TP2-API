@@ -22,7 +22,6 @@ Característica: Realizar oferta
     Dado que existe un auto modelo "Fiat Uno", patente "FGH123", kilometros 100000 y año 1999
     Cuando realizo una oferta de 5000 sobre el auto de patente "FGH123"
     Entonces recibo mensaje de error por publicacion inexistente
-
   @wip
   Escenario: RO5 - Realizacion de oferta fallida por oferta a publicacion fiubak
     Dado que existe un auto publicado por Fiubak modelo "Fiat Uno", patente "HHH888", kilometros 100000, año 1999 y precio 15000
