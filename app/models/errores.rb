@@ -82,3 +82,10 @@ class ErrorPrecioMenorACotizado < ErrorEnLaAPI
     super(mensaje)
   end
 end
+
+class ErrorAutoNoEnVenta < ErrorEnLaAPI
+  def initialize
+    mensaje = 'Error: Auto no esta en venta'
+    super(mensaje)
+  end
+end

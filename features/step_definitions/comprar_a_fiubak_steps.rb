@@ -16,3 +16,10 @@ Entonces('recibo una confirmacion de compra') do
   expect(auto["patente"]).to eq @patente_compra
 end
     
+Entonces('obtengo un mensaje de error por auto no en venta') do
+  expect(@response.status).to eq(400)
+  respuesta = JSON.parse(@response.body)
+  expect(respuesta['error']).to eq 'Error: Auto no esta en venta'
+end
+    
+    

@@ -19,6 +19,10 @@ class Estado
     raise ErrorAutoNoCotizado
   end
 
+  def en_venta?
+    raise ErrorAutoNoEnVenta
+  end
+
   attr_reader :estado
 end
 
@@ -61,5 +65,9 @@ end
 class Vendido < Estado
   def initialize
     super(:vendido)
+  end
+
+  def en_venta?
+    true
   end
 end

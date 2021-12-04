@@ -8,4 +8,12 @@ describe 'Vendido' do
 
     expect(vendido).to eq vendido
   end
+
+  it 'deberia estar en venta' do
+    vendido = Vendido.new
+
+    expect(vendido.en_venta?).to eq true
+  end
+
+
 end
