@@ -187,4 +187,30 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
       {error: e.mensaje}.to_json
     end
   end
+
+  post :comprar_fiubak, :map => '/autos/:patente/comprar' do
+    begin
+      # input
+      patente = params[:patente]
+      parametros = parametros_simbolizados
+
+      # modelo
+      auto_fiubak = Comprador.new(repo_auto, repo_usuario).comprar(patente,parametros[:id_comprador])
+
+      # output
+      status 200
+      {
+        :patente => auto_fiubak.patente,
+        :modelo => auto_fiubak.modelo,
+        :kilometros => auto_fiubak.kilometros,
+        :anio => auto_fiubak.anio,
+        :id_prop => auto_fiubak.usuario.id,
+        :precio => auto_fiubak.precio,
+        :estado => simbolo_estado_a_mensaje(auto_fiubak.estado.estado)
+      }.to_json
+    rescue ErrorEnLaAPI => e
+      status 400
+      {error: e.mensaje}.to_json
+    end
+  end
 end
