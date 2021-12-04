@@ -7,11 +7,14 @@ module Persistence
       protected
 
       def load_object(a_hash)
-        # id_usuario = a_hash[:id_usuario]
-        # repo_usuario = RepositorioUsuario.new
-        # repo_auto = RepositorioAuto.new
-        # usuario = repo_usuario.find(id_usuario)
-        # Auto.crear_desde_repo(a_hash[:patente], a_hash[:modelo], a_hash[:kilometros], a_hash[:anio], usuario, a_hash[:precio], estado)
+        id_ofertante = a_hash[:id_ofertante]
+        precio = a_hash[:precio]
+        patente = a_hash[:patente]
+        id = a_hash[:id]
+        ofertante = RepositorioUsuario.new.find(id_ofertante)
+        auto = RepositorioAuto.new.find(patente)
+
+        Oferta.crear_desde_repo(auto, ofertante, precio, id)
       end
 
       def changeset(oferta)

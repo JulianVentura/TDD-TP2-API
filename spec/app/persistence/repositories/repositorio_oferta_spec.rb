@@ -16,4 +16,12 @@ describe Persistence::Repositories::RepositorioOferta do
     repo_oferta.save(una_oferta)
     expect(repo_oferta.all.count).to eq(1)
   end
+
+  it 'deberia tener los mismos atributos con los que se almaceno' do
+    oferta = repo_oferta.save(una_oferta)
+    oferta_recuperada = repo_oferta.find(oferta.id)
+    expect(oferta_recuperada.auto.patente).to eq una_oferta.auto.patente
+    expect(oferta_recuperada.ofertante.id).to eq ofertante.id
+    expect(oferta_recuperada.precio).to eq 15_000
+  end
 end
