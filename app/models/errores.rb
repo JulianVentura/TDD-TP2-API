@@ -89,3 +89,12 @@ class ErrorAutoNoEstaPublicado < ErrorEnLaAPI
     super(mensaje)
   end
 end
+
+class ErrorOfertaInvalida < ErrorEnLaAPI
+  def initialize
+    mensaje = 'Error: Oferta invalida'
+    super(mensaje)
+  end
+end
+
+

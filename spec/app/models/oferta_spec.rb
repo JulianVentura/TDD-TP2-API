@@ -39,5 +39,12 @@ describe Oferta do
         described_class.crear(auto_no_publicado, ofertante, precio)
       end.to raise_error(ErrorAutoNoEstaPublicado)
     end
+
+    it 'deberia lanzar error si el precio no es positivo' do
+      precio = -100
+      expect do
+        described_class.crear(auto, ofertante, precio)
+      end.to raise_error(ErrorOfertaInvalida)
+    end
   end
 end
