@@ -12,7 +12,9 @@ module Persistence
         :esperando_entrega => 'esperando_entrega',
         'esperando_entrega' => EsperandoEntrega,
         :publicado => 'publicado',
-        'publicado' => Publicado
+        'publicado' => Publicado,
+        :vendido => 'vendido',
+        'vendido' => Vendido
       }.freeze
       # TODO: faltan test unitarios que prueben los estados
 

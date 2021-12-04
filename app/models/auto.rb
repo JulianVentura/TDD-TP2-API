@@ -42,6 +42,10 @@ class Auto
     @estado = Publicado.new
   end
 
+  def comprar
+    @estado = Vendido.new
+  end
+
   private
 
   def initialize(patente, modelo, kilometros, anio, usuario, precio, estado) # rubocop:disable Metrics/ParameterLists

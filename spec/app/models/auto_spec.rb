@@ -79,6 +79,14 @@ describe Auto do
           expect(un_auto.precio).to eq precio * (100 + tasa) / 100
           expect(un_auto.estado).to eq Publicado.new
         end
+
+        context 'cuando se compra' do
+          it 'deberia cambiar su estado a "Vendido"' do
+            un_auto.comprar
+
+            expect(un_auto.estado).to eq Vendido.new
+          end
+        end
       end
 
       context 'cuando se publica p2p' do
