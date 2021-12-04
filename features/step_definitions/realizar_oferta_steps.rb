@@ -43,3 +43,17 @@ Cuando('realizo una oferta sin indicar precio sobre el auto de patente {string}'
 
   @response = Faraday.post(realizar_oferta_url(patente), @request_publicar_p2p, header)
 end
+
+Entonces('recibo mensaje de error por publicacion inexistente') do
+  expect(@response.status).to eq(400)
+  respuesta = JSON.parse(@response.body)
+
+  expect(respuesta['error']).to eq 'Error: Auto no esta en venta'
+end
+
+Entonces('recibo mensaje de error por publicacion de fiubak') do
+  expect(@response.status).to eq(400)
+  respuesta = JSON.parse(@response.body)
+
+  expect(respuesta['error']).to eq 'Error: No se puede ofertar a un auto fiubak'
+end

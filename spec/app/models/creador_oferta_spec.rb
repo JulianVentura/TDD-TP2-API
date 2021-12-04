@@ -10,6 +10,7 @@ describe CreadorOferta do
   let(:publicador) { PublicadorP2P.new(repo_auto, repo_usuario) }
   let(:ofertante) { creador_usuario.crear_usuario('Jorge', 124, 'jorge@email.com') }
 
+
   context 'ya existe un auto publicado p2p' do
     let(:patente) { 'AA752OH' }
     let(:propietario) { creador_usuario.crear_usuario('Juan', 123, 'juan@email.com') }
@@ -28,7 +29,15 @@ describe CreadorOferta do
       expect(oferta.precio).to eq precio_ofertante
       expect(oferta.ofertante.id).to eq ofertante.id
     end
+
+    it 'deberia fallar si no existe el usuario' do
+      expect do
+        described_class.new(repo_oferta, repo_auto, repo_usuario).crear(patente, 5678, 400)
+      end.to raise_error(ErrorUsuarioInexistente)
+    end
   end
+
+
 
   it('deberia lanzar error si no existe el auto a ofertar') do
     precio_ofertante = 13_000

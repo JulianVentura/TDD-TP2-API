@@ -13,8 +13,19 @@ Característica: Realizar oferta
   Escenario: RO2 - Realizacion de oferta fallida por auto inexistente
     Cuando realizo una oferta de 5000 sobre el auto de patente "GHJ456"
     Entonces recibo mensaje de error por auto inexistente
-  
   @wip
   Escenario: RO3 -  Realizacion de oferta fallida por falta de argumentos
     Cuando realizo una oferta sin indicar precio sobre el auto de patente "ABC123"
     Entonces recibo mensaje de error por falta de argumentos
+
+  @wip
+  Escenario: RO4 - Realizacion de oferta fallida por publicacion inexistente
+    Dado que existe un auto modelo "Fiat Uno", patente "FGH123", kilometros 100000 y año 1999
+    Cuando realizo una oferta de 5000 sobre el auto de patente "FGH123"
+    Entonces recibo mensaje de error por publicacion inexistente
+
+  @wip
+  Escenario: RO5 - Realizacion de oferta fallida por oferta a publicacion fiubak
+    Dado que existe un auto publicado por Fiubak modelo "Fiat Uno", patente "HHH888", kilometros 100000, año 1999 y precio 15000
+    Cuando realizo una oferta de 5000 sobre el auto de patente "HHH888"
+    Entonces recibo mensaje de error por publicacion de fiubak
