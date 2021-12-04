@@ -6,7 +6,6 @@ class CreadorAuto
   end
 
   def crear_auto(patente, modelo, anio, kilometros, id_prop)
-    raise ErrorFaltanArgumentos if [patente, modelo, anio, kilometros, id_prop].any? nil
     raise ErrorUsuarioInexistente unless @repo_usuario.existe_usuario(id_prop)
     raise ErrorPatenteRepetida if @repo_auto.existe_auto(patente)
 

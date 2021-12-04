@@ -10,6 +10,16 @@ describe Auto do
       expect(nuevo_auto.modelo).to eq 'Fiat'
       expect(nuevo_auto.kilometros).to eq 40_000
     end
+
+    it 'deberia fallar si faltan argumentos' do
+      patente = 'AA752OH'
+      anio = 1999
+      kilometros = 4000
+
+      expect do
+        described_class.crear(patente, nil, anio, kilometros, un_usuario.id)
+      end.to raise_error(ErrorFaltanArgumentos)
+    end
   end
 
   context 'cuando ya esta creado' do

@@ -26,15 +26,6 @@ describe 'CreadorAuto' do
       CreadorAuto.new(repo_auto, repo_usuario).crear_auto(patente, modelo, anio, kilometros, un_usuario.id)
     end
 
-    it 'deberia fallar si faltan argumentos' do
-      patente = 'AA752OH'
-      anio = 1999
-      kilometros = 4000
-
-      expect do
-        creador_auto.crear_auto(patente, nil, anio, kilometros, un_usuario.id)
-      end.to raise_error(ErrorFaltanArgumentos)
-    end
   end
 
   context 'cuando no existe un usuario' do
