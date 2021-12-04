@@ -24,5 +24,12 @@ describe Comprador do
       expect(auto.estado).to eq Vendido.new
     end
 
+    it 'deberia fallar si no existe el auto' do
+        usuario_comprador = creador_usuario.crear_usuario("Jorge",124,'jorge@email.com')
+        expect{
+            comprador.comprar("NOE123",124)
+        }.to raise_error(ErrorAutoNoExiste)
+      end
+
   end
 end
