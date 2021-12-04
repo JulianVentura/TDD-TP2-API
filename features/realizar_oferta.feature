@@ -27,3 +27,8 @@ Característica: Realizar oferta
     Dado que existe un auto publicado por Fiubak modelo "Fiat Uno", patente "HHH888", kilometros 100000, año 1999 y precio 15000
     Cuando realizo una oferta de 5000 sobre el auto de patente "HHH888"
     Entonces recibo mensaje de error por publicacion de fiubak
+
+  Escenario: RO6 - Realizacion de oferta fallida por oferta duplicada
+    Cuando realizo una oferta de 1000 sobre el auto de patente "ABC123"
+    Y realizo una oferta de 5000 sobre el auto de patente "ABC123"
+    Entonces recibo mensaje de error por ofertar mas de una vez

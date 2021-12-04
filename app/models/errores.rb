@@ -104,5 +104,11 @@ class ErrorOfertaEnAutoNoParticular < ErrorEnLaAPI
   end
 end
 
+class ErrorYaSeRealizoOferta < ErrorEnLaAPI
+  def initialize
+    mensaje = 'Error: No se puede realizar una oferta mas de una vez'
+    super(mensaje)
+  end
+end
 
 

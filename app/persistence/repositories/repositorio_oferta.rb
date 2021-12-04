@@ -4,6 +4,10 @@ module Persistence
       self.table_name = :oferta
       self.model_class = 'Oferta'
 
+      def existe_oferta_usuario_auto(id_ofertante, patente)
+        !dataset.first(id_ofertante:id_ofertante, patente: patente).nil?
+      end
+
       protected
 
       def load_object(a_hash)

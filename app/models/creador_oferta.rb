@@ -11,6 +11,7 @@ class CreadorOferta
     raise ErrorUsuarioInexistente unless @repo_usuario.existe_usuario(id_ofertante)
     ofertante = @repo_usuario.find(id_ofertante)
     auto = @repo_auto.find(patente)
+    raise ErrorYaSeRealizoOferta if @repo_oferta.existe_oferta_usuario_auto(id_ofertante, patente)
     raise ErrorOfertaEnAutoNoParticular unless auto.propietario_es_particular?
     oferta = Oferta.crear(auto, ofertante, precio)
 

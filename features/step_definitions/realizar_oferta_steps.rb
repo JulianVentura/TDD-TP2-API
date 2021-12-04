@@ -64,3 +64,10 @@ Entonces('recibo mensaje de error por oferta invalida') do
 
   expect(respuesta['error']).to eq 'Error: Oferta invalida'
 end
+
+Entonces('recibo mensaje de error por ofertar mas de una vez') do
+  expect(@response.status).to eq(400)
+  respuesta = JSON.parse(@response.body)
+
+  expect(respuesta['error']).to eq 'Error: No se puede realizar una oferta mas de una vez'
+end

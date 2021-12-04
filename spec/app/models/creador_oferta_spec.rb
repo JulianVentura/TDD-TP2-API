@@ -35,6 +35,14 @@ describe CreadorOferta do
         described_class.new(repo_oferta, repo_auto, repo_usuario).crear(patente, 5678, 400)
       end.to raise_error(ErrorUsuarioInexistente)
     end
+
+    it('deberia fallar si se realiza una segunda oferta') do
+      precio_ofertante = 13_000
+      described_class.new(repo_oferta, repo_auto, repo_usuario).crear(patente, ofertante.id, precio_ofertante)
+      expect do
+        described_class.new(repo_oferta, repo_auto, repo_usuario).crear(patente, ofertante.id, precio_ofertante)
+      end.to raise_error(ErrorYaSeRealizoOferta)
+    end
   end
 
   it('deberia lanzar error si no existe el auto a ofertar') do
@@ -68,6 +76,8 @@ describe CreadorOferta do
     end
 
   end
+
+
 
 
 end
