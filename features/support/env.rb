@@ -52,6 +52,10 @@ def listar_autos_url
   "#{BASE_URL}/autos"
 end
 
+def comprar_auto_url(patente)
+  "#{BASE_URL}/autos/#{patente}/comprar"
+end
+
 def reset_url
   "#{BASE_URL}/reset"
 end
@@ -94,4 +98,11 @@ end
 
 def entregar_llaves(patente)
   Faraday.post(entregar_llaves_url_autos(patente), nil, header)
+end
+
+def comprar_auto(patente)
+  request_comprar_auto = {
+    :id_comprador => id_falso
+  }.to_json
+  Faraday.post(comprar_auto_url(patente),request_comprar_auto,header)
 end
