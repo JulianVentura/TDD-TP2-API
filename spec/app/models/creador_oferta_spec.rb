@@ -8,11 +8,11 @@ describe CreadorOferta do
   let(:creador_usuario) { CreadorUsuario.new(repo_usuario) }
   let(:cotizador_auto) { CotizadorAuto.new(repo_auto) }
   let(:publicador) { PublicadorP2P.new(repo_auto, repo_usuario) }
+  let(:ofertante) { creador_usuario.crear_usuario('Jorge', 124, 'jorge@email.com') }
 
   context 'ya existe un auto publicado p2p' do
     let(:patente) { 'AA752OH' }
     let(:propietario) { creador_usuario.crear_usuario('Juan', 123, 'juan@email.com') }
-    let(:ofertante) { creador_usuario.crear_usuario('Jorge', 124, 'jorge@email.com') }
 
     before :each do
       creador_auto.crear_auto(patente, 'Fiat', 1990, 1000, propietario.id)
@@ -28,5 +28,14 @@ describe CreadorOferta do
       expect(oferta.precio).to eq precio_ofertante
       expect(oferta.ofertante.id).to eq ofertante.id
     end
+  end
+
+  it('deberia lanzar error si no existe el auto a ofertar') do
+    precio_ofertante = 13_000
+    patente = "ZZX123"
+    
+    expect do
+      CreadorOferta.new(repo_oferta, repo_auto, repo_usuario).crear(patente, ofertante.id, precio_ofertante)
+    end.to raise_error(ErrorAutoNoExiste)
   end
 end

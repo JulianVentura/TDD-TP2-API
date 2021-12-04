@@ -29,11 +29,11 @@ Entonces('recibo mensaje de oferta exitosa') do
   expect(respuesta['precio']).to eq(@precio)
 end
 
-Entonces('recibo mensaje de error por publicacion inexistente') do
+Entonces('recibo mensaje de error por auto inexistente') do
   expect(@response.status).to eq(400)
   respuesta = JSON.parse(@response.body)
 
-  expect(respuesta['error']).to eq 'Error: Auto no esta en venta'
+  expect(respuesta['error']).to eq 'Error: Auto no existe'
 end
 
 Cuando('realizo una oferta sin indicar precio sobre el auto de patente {string}') do |patente|

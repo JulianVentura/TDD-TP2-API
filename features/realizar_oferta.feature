@@ -9,10 +9,11 @@ Característica: Realizar oferta
   Escenario: RO1 - Realizacion de oferta exitosa
     Cuando realizo una oferta de 1000 sobre el auto de patente "ABC123"
     Entonces recibo mensaje de oferta exitosa
-  @wip
-  Escenario: RO2 - Realizacion de oferta fallida por publicacion inexistente
+  
+  Escenario: RO2 - Realizacion de oferta fallida por auto inexistente
     Cuando realizo una oferta de 5000 sobre el auto de patente "GHJ456"
-    Entonces recibo mensaje de error por publicacion inexistente
+    Entonces recibo mensaje de error por auto inexistente
+  
   @wip
   Escenario: RO3 -  Realizacion de oferta fallida por falta de argumentos
     Cuando realizo una oferta sin indicar precio sobre el auto de patente "ABC123"
