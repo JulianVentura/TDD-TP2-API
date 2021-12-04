@@ -41,7 +41,7 @@ describe VendedorAuto do
       end.to raise_error(ErrorAutoNoExiste)
     end
 
-    xit 'deberia dar error si el auto no esta cotizado' do
+    it 'deberia dar error si el auto no esta cotizado' do
       patente = 'NOC123'
       modelo = 'No Cotizado'
       anio = 1999
