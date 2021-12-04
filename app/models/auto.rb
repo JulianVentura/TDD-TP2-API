@@ -43,6 +43,7 @@ class Auto
   end
 
   def comprar
+    @estado.esta_publicado?
     @estado = Vendido.new
   end
 

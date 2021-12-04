@@ -12,7 +12,7 @@ Entonces recibo una confirmacion de compra
 Escenario: RF2 - Compra fallida auto inexistente
 Cuando compro el auto de patente "NOE123"
 Entonces obtengo un mensaje de error por auto no existente
-@wip
+
 Escenario: RF2 - Compra fallida auto no en venta
 Dado que existe un auto modelo "Fiat Uno", patente "ZXC123", kilometros 100000 y año 1999
 Cuando compro el auto de patente "ZXC123"

@@ -83,7 +83,7 @@ class ErrorPrecioMenorACotizado < ErrorEnLaAPI
   end
 end
 
-class ErrorAutoNoEnVenta < ErrorEnLaAPI
+class ErrorAutoNoEstaPublicado < ErrorEnLaAPI
   def initialize
     mensaje = 'Error: Auto no esta en venta'
     super(mensaje)
