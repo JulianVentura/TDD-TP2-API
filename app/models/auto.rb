@@ -43,8 +43,12 @@ class Auto
   end
 
   def comprar
-    @estado.esta_publicado?
+    @estado.esta_publicado? # TODO: El auto deberia hacer el raise?
     @estado = Vendido.new
+  end
+
+  def esta_publicado?
+    @estado.esta_publicado?
   end
 
   private

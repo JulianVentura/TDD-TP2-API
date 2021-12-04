@@ -52,6 +52,13 @@ describe Auto do
       end.to raise_error(ErrorAutoNoCotizado)
     end
 
+    it 'deberia lanzar un error al llamar a esta_publicado? cuando no se encuentra publicado' do
+      nuevo_auto = described_class.crear('AA752OH', 'Fiat', 40_000, 1999, un_usuario)
+      expect do
+        nuevo_auto.esta_publicado?
+      end.to raise_error(ErrorAutoNoEstaPublicado)
+    end
+
     context 'cuando esta cotizado' do
       let(:un_auto) { described_class.crear('AA752OH', 'Fiat', 40_000, 1999, un_usuario) }
       let(:precio) { 10_000 }

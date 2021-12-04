@@ -2,6 +2,7 @@ class Oferta
   
   # Crear oferta
   def self.crear(auto, ofertante, precio)
+    raise ErrorAutoNoEstaPublicado unless auto.esta_publicado?
     Oferta.new(auto, ofertante, precio, nil) #TODO: Chequear el valor inicial de id
   end
 
