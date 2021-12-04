@@ -58,3 +58,5 @@ RPesc/Metrics/ParameterLists:
   Max: 6
 RSpec/MultipleMemoizedHelpers:
   Max: 10
+RSpec/MultipleExpectations:
+  Max: 5
