@@ -45,4 +45,29 @@ describe CreadorOferta do
       CreadorOferta.new(repo_oferta, repo_auto, repo_usuario).crear(patente, ofertante.id, precio_ofertante)
     end.to raise_error(ErrorAutoNoExiste)
   end
+
+  context 'ya existe un auto publicado por fiubak' do
+    let(:patente_fiubak) { 'AB333BH' }
+    let(:ex_propietario) { creador_usuario.crear_usuario('Pedro', 455, 'pedro@email.com') }
+    let(:vendedor_auto) {VendedorAuto.new(repo_auto, repo_usuario)}
+    let(:entregar_llaves) {EntregarLlaves.new(repo_auto, repo_usuario)}
+
+    before :each do
+      creador_auto.crear_auto(patente_fiubak, 'Fiat', 1990, 1000, ex_propietario.id)
+      cotizador_auto.cotizar(patente_fiubak, 15_000)
+      vendedor_auto.vender_a_fiubak(patente_fiubak, ex_propietario.id)
+      entregar_llaves.entregar_llaves(patente_fiubak)
+    end
+
+    it('deberia lanzar error si le realizan una oferta') do
+      precio_ofertante = 13_000
+
+      expect do
+        described_class.new(repo_oferta, repo_auto, repo_usuario).crear(patente_fiubak, ofertante.id, precio_ofertante)
+      end.to raise_error(ErrorOfertaEnAutoNoParticular)
+    end
+
+  end
+
+
 end

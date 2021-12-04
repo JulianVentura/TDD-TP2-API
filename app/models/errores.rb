@@ -97,4 +97,12 @@ class ErrorOfertaInvalida < ErrorEnLaAPI
   end
 end
 
+class ErrorOfertaEnAutoNoParticular < ErrorEnLaAPI
+  def initialize
+    mensaje = 'Error: No se puede ofertar a un auto fiubak'
+    super(mensaje)
+  end
+end
+
+
 
