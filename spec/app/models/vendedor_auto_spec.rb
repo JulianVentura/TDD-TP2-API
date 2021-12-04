@@ -40,5 +40,16 @@ describe VendedorAuto do
         described_class.new(repo_auto, repo_usuario).vender_a_fiubak(patente_no_existente, propietario.id)
       end.to raise_error(ErrorAutoNoExiste)
     end
+
+    xit 'deberia dar error si el auto no esta cotizado' do
+      patente = 'NOC123'
+      modelo = 'No Cotizado'
+      anio = 1999
+      kilometros = 4000
+      creador_auto.crear_auto(patente, modelo, anio, kilometros, propietario.id)
+      expect do
+        described_class.new(repo_auto, repo_usuario).vender_a_fiubak(patente, propietario.id)
+      end.to raise_error(ErrorAutoNoCotizado)
+    end
   end
 end

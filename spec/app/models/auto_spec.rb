@@ -29,15 +29,6 @@ describe Auto do
       expect(nuevo_auto.precio).to eq 10_000
     end
 
-    it 'deberia actualizar su estado al venderse a fiubak' do
-      # TODO: validar que este cotizado
-      nuevo_auto = described_class.crear('AA752OH', 'Fiat', 40_000, 1999, un_usuario)
-      nuevo_auto.vender_a_fiubak
-
-      estado_esperado = EsperandoEntrega.new
-      expect(nuevo_auto.estado).to eq estado_esperado
-    end
-
     it 'deberia tener propietario distinto al cambiar por un propietario diferente al anterior' do
       nuevo_auto = described_class.crear('AA752OH', 'Fiat', 40_000, 1999, un_usuario)
       otro_usuario = Usuario.new('otro', 12_535, 'juan@gmail.com')
@@ -60,6 +51,13 @@ describe Auto do
 
       before :each do
         un_auto.cotizar(precio)
+      end
+
+      it 'deberia actualizar su estado al venderse a fiubak' do
+        un_auto.vender_a_fiubak
+
+        estado_esperado = EsperandoEntrega.new
+        expect(un_auto.estado).to eq estado_esperado
       end
 
       context 'cuando se vende a fiubak' do
