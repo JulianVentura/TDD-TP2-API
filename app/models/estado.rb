@@ -57,3 +57,9 @@ class Publicado < Estado
     super(:publicado)
   end
 end
+
+class Vendido < Estado
+  def initialize
+    super(:vendido)
+  end
+end
