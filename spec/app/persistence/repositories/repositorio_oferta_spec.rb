@@ -24,4 +24,15 @@ describe Persistence::Repositories::RepositorioOferta do
     expect(oferta_recuperada.ofertante.id).to eq ofertante.id
     expect(oferta_recuperada.precio).to eq 15_000
   end
+
+  context 'ya existe una oferta' do
+    before :each do
+      repo_oferta.save(una_oferta)
+    end
+
+    it 'existe_oferta_usuario_auto deberia devolver true si existe la oferta' do
+      expect(repo_oferta.existe_oferta_usuario_auto(ofertante.id, auto.patente)).to eq true
+    end
+  end
+
 end
