@@ -20,6 +20,7 @@ class Auto
   end
 
   def vender_a_fiubak
+    @estado.cotizado?
     @estado = EsperandoEntrega.new
   end
 
