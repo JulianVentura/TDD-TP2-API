@@ -35,6 +35,7 @@ class Auto
 
   def publicar_p2p(precio)
     @estado.cotizado?
+    raise ErrorPrecioMenorACotizado if precio <= @precio
     @precio = precio
     @estado = Publicado.new
   end

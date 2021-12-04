@@ -49,3 +49,10 @@ Entonces('recibo mensaje de error por usuario incorrecto') do
   respuesta = JSON.parse(@response.body)
   expect(respuesta['error']).to eq 'Error: Usuario no es el propietario del auto'
 end
+
+Entonces('recibo mensaje de error por precio menor al cotizado por Fiubak') do
+  expect(@response.status).to eq(400)
+  respuesta = JSON.parse(@response.body)
+  expect(respuesta['error']).to eq 'Error: El precio es menor al cotizado'
+end
+

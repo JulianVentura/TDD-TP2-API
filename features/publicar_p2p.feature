@@ -27,3 +27,8 @@ Característica: Publicar P2P
     Dado que existe otro usuario con nombre "jorge" y mail "jorge@test.com"
     Cuando el otro usuario publica p2p el auto con patente "ABC123" con precio 240000"
     Entonces recibo mensaje de error por usuario incorrecto
+
+  Escenario: P6 - Publicacion P2P fallida por cotizacion menor a precio Fiubak
+    Cuando el usuario publica p2p el auto con patente "ABC123" con precio 100"
+    Entonces recibo mensaje de error por precio menor al cotizado por Fiubak
+

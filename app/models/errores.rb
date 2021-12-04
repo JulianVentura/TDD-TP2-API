@@ -75,3 +75,10 @@ class ErrorAutoNoCotizado < ErrorEnLaAPI
     super(mensaje)
   end
 end
+
+class ErrorPrecioMenorACotizado < ErrorEnLaAPI
+  def initialize
+    mensaje = 'Error: El precio es menor al cotizado'
+    super(mensaje)
+  end
+end
