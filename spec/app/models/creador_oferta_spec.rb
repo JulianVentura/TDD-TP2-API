@@ -37,8 +37,6 @@ describe CreadorOferta do
     end
   end
 
-
-
   it('deberia lanzar error si no existe el auto a ofertar') do
     precio_ofertante = 13_000
     patente = "ZZX123"

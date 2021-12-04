@@ -18,7 +18,6 @@ Característica: Realizar oferta
     Cuando realizo una oferta sin indicar precio sobre el auto de patente "ABC123"
     Entonces recibo mensaje de error por oferta invalida
 
-  @wip
   Escenario: RO4 - Realizacion de oferta fallida por publicacion inexistente
     Dado que existe un auto modelo "Fiat Uno", patente "FGH123", kilometros 100000 y año 1999
     Cuando realizo una oferta de 5000 sobre el auto de patente "FGH123"
