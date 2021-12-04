@@ -19,8 +19,8 @@ class Estado
     raise ErrorAutoNoCotizado
   end
 
-  def en_venta?
-    raise ErrorAutoNoEnVenta
+  def esta_publicado?
+    raise ErrorAutoNoEstaPublicado
   end
 
   attr_reader :estado
@@ -60,14 +60,14 @@ class Publicado < Estado
   def initialize
     super(:publicado)
   end
+
+  def esta_publicado?
+    true
+  end
 end
 
 class Vendido < Estado
   def initialize
     super(:vendido)
-  end
-
-  def en_venta?
-    true
   end
 end
