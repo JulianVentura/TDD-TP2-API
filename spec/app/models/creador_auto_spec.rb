@@ -25,7 +25,6 @@ describe 'CreadorAuto' do
 
       CreadorAuto.new(repo_auto, repo_usuario).crear_auto(patente, modelo, anio, kilometros, un_usuario.id)
     end
-
   end
 
   context 'cuando no existe un usuario' do

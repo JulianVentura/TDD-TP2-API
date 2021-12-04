@@ -30,14 +30,14 @@ describe VendedorAuto do
     it 'deberia dar error si el usuario no es el propietario del auto' do
       no_propietario = creador_usuario.crear_usuario('NoJuan', 555, 'nojuan@email.com')
       expect do
-        auto_vendido = described_class.new(repo_auto, repo_usuario).vender_a_fiubak(patente, no_propietario.id)
+        described_class.new(repo_auto, repo_usuario).vender_a_fiubak(patente, no_propietario.id)
       end.to raise_error(ErrorUsuarioNoEsElPropietario)
     end
 
     it 'deberia dar error si el auto no existe' do
       patente_no_existente = 'ABC123'
       expect do
-        auto_vendido = described_class.new(repo_auto, repo_usuario).vender_a_fiubak(patente_no_existente, propietario.id)
+        described_class.new(repo_auto, repo_usuario).vender_a_fiubak(patente_no_existente, propietario.id)
       end.to raise_error(ErrorAutoNoExiste)
     end
   end

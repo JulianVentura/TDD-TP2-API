@@ -29,7 +29,6 @@ Entonces('recibo mensaje de error por auto no cotizado') do
   expect(respuesta['error']).to eq 'Error: Auto no cotizado'
 end
 
-
 Dado('que existe otro usuario con nombre {string} y mail {string}') do |nombre_usuario, email|
   request_registro_usuario = {:id => id_falso2, :nombre => nombre_usuario, :email => email}.to_json
   Faraday.post(crear_url_usuarios, request_registro_usuario, header)
@@ -55,4 +54,3 @@ Entonces('recibo mensaje de error por precio menor al cotizado por Fiubak') do
   respuesta = JSON.parse(@response.body)
   expect(respuesta['error']).to eq 'Error: El precio es menor al cotizado'
 end
-

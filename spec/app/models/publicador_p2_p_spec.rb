@@ -65,7 +65,7 @@ describe PublicadorP2P do
       creador_auto.crear_auto(patente, modelo, anio, kilometros, propietario.id)
       precio = 12_000
       cotizador_auto.cotizar(patente, precio)
-      precio_p2p = 100000
+      precio_p2p = 100_000
 
       otro_propietario = creador_usuario.crear_usuario('Jorge', 1234, 'jorge@email.com')
 

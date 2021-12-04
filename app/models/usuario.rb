@@ -4,6 +4,7 @@ class Usuario
 
   def initialize(nombre, id, email)
     raise ErrorFaltanArgumentos if nombre.nil? || id.nil? || email.nil?
+
     @nombre = nombre
     @id = id
     @email = email

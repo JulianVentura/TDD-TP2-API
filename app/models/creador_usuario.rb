@@ -5,7 +5,6 @@ class CreadorUsuario
   end
 
   def crear_usuario(nombre, id, email)
-
     usuario = Usuario.new(nombre, id, email)
     raise ErrorIdRepetido if @repo_usuario.existe_usuario(id)
     raise ErrorEmailRepetido if @repo_usuario.existe_email(email)

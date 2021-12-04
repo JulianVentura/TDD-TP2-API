@@ -36,6 +36,7 @@ class Auto
   def publicar_p2p(precio)
     @estado.cotizado?
     raise ErrorPrecioMenorACotizado if precio <= @precio
+
     @precio = precio
     @estado = Publicado.new
   end
@@ -43,7 +44,8 @@ class Auto
   private
 
   def initialize(patente, modelo, kilometros, anio, usuario, precio, estado) # rubocop:disable Metrics/ParameterLists
-    raise ErrorFaltanArgumentos if [patente, modelo, anio, kilometros, usuario,precio,estado].any? nil
+    raise ErrorFaltanArgumentos if [patente, modelo, anio, kilometros, usuario, precio, estado].any? nil
+
     @patente = patente
     @modelo = modelo
     @kilometros = kilometros
