@@ -75,7 +75,7 @@ describe Auto do
       end
 
       it 'deberia fallar si el auto no esta en estado publicado' do
-        expect{un_auto.comprar}.to raise_error(ErrorAutoNoEstaPublicado)
+        expect { un_auto.comprar }.to raise_error(ErrorAutoNoEstaPublicado)
       end
 
       context 'cuando se vende a fiubak' do
@@ -95,7 +95,7 @@ describe Auto do
           before :each do
             un_auto.publicar(20)
           end
-        
+
           context 'cuando se compra' do
             it 'deberia cambiar su estado a "Vendido"' do
               un_auto.comprar

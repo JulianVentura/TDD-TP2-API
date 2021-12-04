@@ -4,7 +4,7 @@ describe Oferta do
   let(:ofertante) { Usuario.new('Juan', 34_535, 'juan@gmail.com') }
   let(:propietario) { Usuario.new('Jorge', 34_536, 'jorge@gmail.com') }
   let(:auto) { Auto.crear('AA752OH', 'Fiat', 40_000, 1999, propietario) }
-  
+
   before :each do
     auto.cotizar 4000
     auto.publicar_p2p 5000
@@ -24,9 +24,9 @@ describe Oferta do
       precio = 5000
       auto_no_publicado = Auto.crear('AA752OH', 'Fiat', 40_000, 1999, propietario)
 
-      expect {
+      expect do
         described_class.crear(auto_no_publicado, ofertante, precio)
-      }.to raise_error(ErrorAutoNoEstaPublicado)
+      end.to raise_error(ErrorAutoNoEstaPublicado)
     end
   end
 end

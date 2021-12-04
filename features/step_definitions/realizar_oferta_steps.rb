@@ -6,7 +6,7 @@ Dado('tiene un auto modelo {string} patente {string} publicado como p2p') do |mo
   @patente_oferta = patente
   registrar_auto(modelo, patente, 5000, 2004)
   cotizar_auto(patente, 5000)
-  publicar_p2p(patente, 10000) #El propietario rechaza la oferta de Fiubak
+  publicar_p2p(patente, 10_000) # El propietario rechaza la oferta de Fiubak
 end
 
 Cuando('realizo una oferta de {int} sobre el auto de patente {string}') do |precio, patente|

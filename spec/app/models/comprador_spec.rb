@@ -7,8 +7,8 @@ describe Comprador do
   let(:creador_usuario) { CreadorUsuario.new(repo_usuario) }
   let(:cotizador_auto) { CotizadorAuto.new(repo_auto) }
   let(:vendedor_auto) { VendedorAuto.new(repo_auto, repo_usuario) }
-  let(:entrega) {EntregarLlaves.new(repo_auto,repo_usuario)}
-  let(:comprador) {described_class.new(repo_auto,repo_usuario)}
+  let(:entrega) { EntregarLlaves.new(repo_auto, repo_usuario) }
+  let(:comprador) { described_class.new(repo_auto, repo_usuario) }
 
   context 'ya existe un auto publicado' do
     let(:patente) { 'AA752OH' }
@@ -19,17 +19,16 @@ describe Comprador do
     end
 
     it 'deberia cambiar estado a vendido' do
-      usuario_comprador = creador_usuario.crear_usuario("Jorge",124,'jorge@email.com')
-      auto = comprador.comprar(patente,124)
+      usuario_comprador = creador_usuario.crear_usuario('Jorge', 124, 'jorge@email.com')
+      auto = comprador.comprar(patente, usuario_comprador.id)
       expect(auto.estado).to eq Vendido.new
     end
 
     it 'deberia fallar si no existe el auto' do
-        usuario_comprador = creador_usuario.crear_usuario("Jorge",124,'jorge@email.com')
-        expect{
-            comprador.comprar("NOE123",124)
-        }.to raise_error(ErrorAutoNoExiste)
-      end
-
+      usuario_comprador = creador_usuario.crear_usuario('Jorge', 124, 'jorge@email.com')
+      expect  do
+        comprador.comprar('NOE123', usuario_comprador.id)
+      end.to raise_error(ErrorAutoNoExiste)
+    end
   end
 end

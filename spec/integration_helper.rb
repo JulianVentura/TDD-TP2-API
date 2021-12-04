@@ -4,7 +4,7 @@ require 'spec_helper'
 RSpec.configure do |config|
   # config.include UserFactory
   config.after :each do
-    # Persistence::Repositories::TaskRepository.new.delete_all
+    Persistence::Repositories::RepositorioOferta.new.delete_all
     Persistence::Repositories::RepositorioAuto.new.delete_all
     Persistence::Repositories::RepositorioUsuario.new.delete_all
   end
@@ -28,4 +28,14 @@ def crear_auto_cotizado(patente, propietario, creador_auto, cotizador_auto)
   cotizacion = 15_000
   creador_auto.crear_auto(patente, modelo, precio, anio, propietario.id)
   cotizador_auto.cotizar(patente, cotizacion)
+end
+
+def crear_auto_publicado_p2p(patente, propietario, creador_auto, cotizador_auto, publicador)
+  modelo = 'Fiat'
+  precio = 30_000
+  anio = 2004
+  cotizacion = 15_000
+  creador_auto.crear_auto(patente, modelo, precio, anio, propietario.id)
+  cotizador_auto.cotizar(patente, cotizacion)
+  publicador.publicar_p2p(patente, propietario.id, precio)
 end

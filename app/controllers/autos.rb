@@ -195,7 +195,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
       parametros = parametros_simbolizados
 
       # modelo
-      auto_fiubak = Comprador.new(repo_auto, repo_usuario).comprar(patente,parametros[:id_comprador])
+      auto_fiubak = Comprador.new(repo_auto, repo_usuario).comprar(patente, parametros[:id_comprador])
 
       # output
       status 200
@@ -223,9 +223,10 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
       # modelo
       oferta = CreadorOferta.new(repo_oferta, repo_auto, repo_usuario).ofertar(
         patente,
-        parametros[:id_ofertante], 
-        parametros[:precio])
-      
+        parametros[:id_ofertante],
+        parametros[:precio]
+      )
+
       # output
       status 200
       {
@@ -234,12 +235,9 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
         :id_ofertante => oferta.id_ofertante,
         :precio => oferta.precio
       }.to_json
-
     rescue ErrorEnLaAPI => e
       status 400
       {error: e.mensaje}.to_json
     end
   end
-
-
 end

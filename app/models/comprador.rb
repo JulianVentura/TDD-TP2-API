@@ -5,8 +5,9 @@ class Comprador
     @repo_usuario = repo_usuario
   end
 
-  def comprar(patente, id_comprador)
+  def comprar(patente, _id_comprador)
     raise ErrorAutoNoExiste unless @repo_auto.existe_auto(patente)
+
     auto = @repo_auto.find(patente)
     auto.comprar
     @repo_auto.save(auto)
