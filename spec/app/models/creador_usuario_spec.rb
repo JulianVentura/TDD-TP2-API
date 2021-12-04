@@ -19,12 +19,6 @@ describe 'CreadorUsuario' do
     CreadorUsuario.new(repo_usuario).crear_usuario('juan', 123, 'juan@gmail.com')
   end
 
-  it 'deberia fallar si faltan argumentos' do
-    expect do
-      creador_usuario.crear_usuario('juan', 123, nil)
-    end.to raise_error(ErrorFaltanArgumentos)
-  end
-
   context 'ya existe un usuario' do
     let(:repo_usuario) { Persistence::Repositories::RepositorioUsuario.new }
     let(:creador_usuario) { CreadorUsuario.new(repo_usuario) }

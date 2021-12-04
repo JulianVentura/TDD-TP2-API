@@ -13,5 +13,11 @@ describe Usuario do
       nuevo_usuario = described_class.new('juan', 1234, 'juan@gmail.com')
       expect(nuevo_usuario.es_particular?).to eq true
     end
+
+    it 'deberia fallar si faltan argumentos' do
+      expect do
+        described_class.new('juan', 123, nil)
+      end.to raise_error(ErrorFaltanArgumentos)
+    end
   end
 end

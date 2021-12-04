@@ -5,8 +5,6 @@ class CreadorUsuario
   end
 
   def crear_usuario(nombre, id, email)
-    # TODO: Este chequeo deberia hacerse en la clase Usuario
-    raise ErrorFaltanArgumentos if nombre.nil? || id.nil? || email.nil?
 
     usuario = Usuario.new(nombre, id, email)
     raise ErrorIdRepetido if @repo_usuario.existe_usuario(id)
