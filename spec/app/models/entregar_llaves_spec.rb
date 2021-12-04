@@ -13,11 +13,7 @@ describe EntregarLlaves do
     let(:propietario) { creador_usuario.crear_usuario('Juan', 123, 'juan@email.com') }
 
     before :each do
-      repo_usuario.save(Fiubak.new)
-      modelo = 'Fiat'
-      anio = 1999
-      kilometros = 4000
-      creador_auto.crear_auto(patente, modelo, anio, kilometros, propietario.id)
+      creador_auto.crear_auto(patente, 'Fiat', 1999, 4000, propietario.id)
 
       precio = 12_000
       cotizador_auto.cotizar(patente, precio)

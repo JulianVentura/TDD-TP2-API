@@ -6,19 +6,27 @@ describe PublicadorP2P do
   let(:creador_auto) { CreadorAuto.new(repo_auto, repo_usuario) }
   let(:creador_usuario) { CreadorUsuario.new(repo_usuario) }
   let(:cotizador_auto) { CotizadorAuto.new(repo_auto) }
-  let(:vendedor_auto) { VendedorAuto.new(repo_auto, repo_usuario) }
+  let(:propietario) { creador_usuario.crear_usuario('Juan', 123, 'juan@email.com') }
 
-  context 'ya existe un auto vendido a fiubak' do
+  it 'deberia fallar si el auto no esta cotizado' do
+    modelo = 'Fiat'
+    anio = 1999
+    kilometros = 4000
+    patente = 'COT123'
+    creador_auto.crear_auto(patente, modelo, anio, kilometros, propietario.id)
+    precio_p2p = 1000
+
+    expect do
+      described_class.new(repo_auto, repo_usuario).publicar_p2p(patente, propietario.id, precio_p2p)
+    end.to raise_error(ErrorAutoNoCotizado)
+  end
+
+  context 'ya existe un auto cotizado por fiubak' do
     let(:patente) { 'AA752OH' }
-    let(:propietario) { creador_usuario.crear_usuario('Juan', 123, 'juan@email.com') }
 
     before :each do
-      modelo = 'Fiat'
-      anio = 1999
-      kilometros = 4000
-      creador_auto.crear_auto(patente, modelo, anio, kilometros, propietario.id)
-
       precio = 12_000
+      creador_auto.crear_auto(patente, 'Fiat', 1999, 4000, propietario.id)
       cotizador_auto.cotizar(patente, precio)
     end
 
@@ -44,33 +52,12 @@ describe PublicadorP2P do
       end.to raise_error(ErrorAutoNoExiste)
     end
 
-    it 'deberia fallar si el auto no esta cotizado' do
-      modelo = 'Fiat'
-      anio = 1999
-      kilometros = 4000
-      patente = 'COT123'
-      creador_auto.crear_auto(patente, modelo, anio, kilometros, propietario.id)
-      precio_p2p = 1000
-
-      expect do
-        described_class.new(repo_auto, repo_usuario).publicar_p2p(patente, propietario.id, precio_p2p)
-      end.to raise_error(ErrorAutoNoCotizado)
-    end
-
     it 'deberia fallar si otro usuario quiere publicar un auto' do
-      modelo = 'Fiat'
-      anio = 1999
-      kilometros = 4000
-      patente = 'COT123'
-      creador_auto.crear_auto(patente, modelo, anio, kilometros, propietario.id)
-      precio = 12_000
-      cotizador_auto.cotizar(patente, precio)
       precio_p2p = 100_000
-
-      otro_propietario = creador_usuario.crear_usuario('Jorge', 1234, 'jorge@email.com')
+      usuario_no_propietario = creador_usuario.crear_usuario('Jorge', 1234, 'jorge@email.com')
 
       expect do
-        described_class.new(repo_auto, repo_usuario).publicar_p2p(patente, otro_propietario.id, precio_p2p)
+        described_class.new(repo_auto, repo_usuario).publicar_p2p(patente, usuario_no_propietario.id, precio_p2p)
       end.to raise_error(ErrorUsuarioNoEsElPropietario)
     end
   end
