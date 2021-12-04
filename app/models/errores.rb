@@ -110,5 +110,3 @@ class ErrorYaSeRealizoOferta < ErrorEnLaAPI
     super(mensaje)
   end
 end
-
-

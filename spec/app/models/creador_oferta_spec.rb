@@ -10,7 +10,6 @@ describe CreadorOferta do
   let(:publicador) { PublicadorP2P.new(repo_auto, repo_usuario) }
   let(:ofertante) { creador_usuario.crear_usuario('Jorge', 124, 'jorge@email.com') }
 
-
   context 'ya existe un auto publicado p2p' do
     let(:patente) { 'AA752OH' }
     let(:propietario) { creador_usuario.crear_usuario('Juan', 123, 'juan@email.com') }
@@ -47,8 +46,8 @@ describe CreadorOferta do
 
   it('deberia lanzar error si no existe el auto a ofertar') do
     precio_ofertante = 13_000
-    patente = "ZZX123"
-    
+    patente = 'ZZX123'
+
     expect do
       CreadorOferta.new(repo_oferta, repo_auto, repo_usuario).crear(patente, ofertante.id, precio_ofertante)
     end.to raise_error(ErrorAutoNoExiste)
@@ -57,8 +56,8 @@ describe CreadorOferta do
   context 'ya existe un auto publicado por fiubak' do
     let(:patente_fiubak) { 'AB333BH' }
     let(:ex_propietario) { creador_usuario.crear_usuario('Pedro', 455, 'pedro@email.com') }
-    let(:vendedor_auto) {VendedorAuto.new(repo_auto, repo_usuario)}
-    let(:entregar_llaves) {EntregarLlaves.new(repo_auto, repo_usuario)}
+    let(:vendedor_auto) { VendedorAuto.new(repo_auto, repo_usuario) }
+    let(:entregar_llaves) { EntregarLlaves.new(repo_auto, repo_usuario) }
 
     before :each do
       creador_auto.crear_auto(patente_fiubak, 'Fiat', 1990, 1000, ex_propietario.id)
@@ -74,10 +73,5 @@ describe CreadorOferta do
         described_class.new(repo_oferta, repo_auto, repo_usuario).crear(patente_fiubak, ofertante.id, precio_ofertante)
       end.to raise_error(ErrorOfertaEnAutoNoParticular)
     end
-
   end
-
-
-
-
 end

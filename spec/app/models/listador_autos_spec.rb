@@ -21,7 +21,7 @@ describe ListadorAutos do
       crear_auto_publicado('JHK123', otro_usuario, creador_auto, cotizador_auto, vendedor_auto, entrega_llaves)
     end
 
-    it 'listar_publicados deberia listar autos de patente "ABC123", "ABC124", "ABC125"' do # rubocop:disable RSpec/MultipleExpectations
+    it 'listar_publicados deberia listar autos de patente "ABC123", "ABC124", "ABC125"' do
       patentes = %w[ABC123 ABC124 JHK123]
       autos = ListadorAutos.new(repo_auto).listar_publicado
 

@@ -34,5 +34,4 @@ describe Persistence::Repositories::RepositorioOferta do
       expect(repo_oferta.existe_oferta_usuario_auto(ofertante.id, auto.patente)).to eq true
     end
   end
-
 end
