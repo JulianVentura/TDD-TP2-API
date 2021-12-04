@@ -24,14 +24,12 @@ class Auto
     @estado = EsperandoEntrega.new
   end
 
-  def cambiar_de_propietario(usuario)
-    @usuario = usuario
-  end
 
-  def publicar(tasa)
+  def publicar(tasa, usuario_fiubak)
     @estado.entregar_llave?
     @precio = precio * (100 + tasa) / 100
     @estado = Publicado.new
+    cambiar_de_propietario(usuario_fiubak)
   end
 
   def publicar_p2p(precio)
@@ -67,5 +65,9 @@ class Auto
     @usuario = usuario
     @precio = precio
     @estado = estado
+  end
+
+  def cambiar_de_propietario(usuario)
+    @usuario = usuario
   end
 end

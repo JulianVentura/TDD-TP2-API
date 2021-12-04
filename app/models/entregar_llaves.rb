@@ -12,10 +12,10 @@ class EntregarLlaves
 
     usuario_fiubak = Fiubak.new
     @repo_usuario.save(usuario_fiubak) unless @repo_usuario.existe_usuario(usuario_fiubak.id)
-    auto.cambiar_de_propietario(usuario_fiubak)
+
     # precio publicacion fiubak - 20% mas
     tasa = 20
-    auto.publicar(tasa)
+    auto.publicar(tasa, usuario_fiubak)
     @repo_auto.save(auto)
   end
 end

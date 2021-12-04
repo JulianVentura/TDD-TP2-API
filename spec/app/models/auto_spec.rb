@@ -30,14 +30,6 @@ describe Auto do
       expect(nuevo_auto.precio).to eq 10_000
     end
 
-    it 'deberia tener propietario distinto al cambiar por un propietario diferente al anterior' do
-      nuevo_auto = described_class.crear('AA752OH', 'Fiat', 40_000, 1999, un_usuario)
-      otro_usuario = Usuario.new('otro', 12_535, 'juan@gmail.com')
-      nuevo_auto.cambiar_de_propietario(otro_usuario)
-
-      expect(nuevo_auto.usuario).to eq otro_usuario
-    end
-
     it 'deberia fallar al llamar publicarp2p si el auto no esta cotizado' do
       nuevo_auto = described_class.crear('AA752OH', 'Fiat', 40_000, 1999, un_usuario)
       precio_p2p = 5000
@@ -89,20 +81,20 @@ describe Auto do
           un_auto.vender_a_fiubak
         end
 
-        it 'deberia multiplicar su precio por la tasa y el estado cambiar a "Publicado" al publicarse' do
-          tasa = 20
-          un_auto.publicar(tasa)
-
-          expect(un_auto.precio).to eq precio * (100 + tasa) / 100
-          expect(un_auto.estado).to eq Publicado.new
-        end
-
         context 'cuando se publica' do
           before :each do
-            un_auto.publicar(20)
+            @tasa = 20
+            un_auto.publicar(@tasa, Fiubak.new)
           end
 
+          it 'deberia multiplicar su precio por la tasa y el estado cambiar a "Publicado"' do
+            expect(un_auto.precio).to eq precio * (100 + @tasa) / 100
+            expect(un_auto.estado).to eq Publicado.new
+          end
 
+          it 'deberia tener como propietario a Fiubak' do
+            expect(un_auto.propietario_es_particular?).to eq false
+          end
 
           context 'cuando se compra' do
             it 'deberia cambiar su estado a "Vendido"' do
