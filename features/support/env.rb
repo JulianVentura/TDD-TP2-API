@@ -56,6 +56,10 @@ def comprar_auto_url(patente)
   "#{BASE_URL}/autos/#{patente}/comprar"
 end
 
+def realizar_oferta_url(patente)
+  "#{BASE_URL}/autos/#{patente}/ofertar"
+end
+
 def reset_url
   "#{BASE_URL}/reset"
 end
@@ -105,4 +109,21 @@ def comprar_auto(patente)
     :id_comprador => id_falso
   }.to_json
   Faraday.post(comprar_auto_url(patente),request_comprar_auto,header)
+end
+
+def publicar_p2p(patente, precio)
+  request_publicar_p2p = {
+    :id_prop => id_falso,
+    :precio => precio
+  }.to_json
+  Faraday.post(publicar_p2p_url_autos(patente), request_publicar_p2p, header)
+end
+
+def registrar_usuario(nombre, email, id)
+  request_registro_usuario = {
+    :id => id, 
+    :nombre => nombre, 
+    :email => email
+  }.to_json
+  Faraday.post(crear_url_usuarios, request_registro_usuario, header)
 end
