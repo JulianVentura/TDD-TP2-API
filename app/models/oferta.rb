@@ -6,6 +6,10 @@ class Oferta
     Oferta.new(auto, ofertante, precio, nil) # TODO: Chequear el valor inicial de id
   end
 
+  def self.crear_desde_repo(auto, ofertante, precio, id)
+    Oferta.new(auto, ofertante, precio, id)
+  end
+
   attr_reader :auto, :ofertante, :precio, :updated_on, :created_on
   attr_accessor :id
 

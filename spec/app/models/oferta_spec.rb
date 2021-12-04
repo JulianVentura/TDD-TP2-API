@@ -20,6 +20,17 @@ describe Oferta do
       expect(nueva_oferta.ofertante.id).to eq ofertante.id
     end
 
+    it 'desde el repo, deberia tener un id' do
+      precio = 3000
+      id = 123
+      nueva_oferta = described_class.crear_desde_repo(auto, ofertante, precio, id)
+
+      expect(nueva_oferta.auto.patente).to eq auto.patente
+      expect(nueva_oferta.precio).to eq precio
+      expect(nueva_oferta.ofertante.id).to eq ofertante.id
+      expect(nueva_oferta.id).to eq id
+    end
+
     it 'deberia lanzar error si el auto no esta "Publicado"' do
       precio = 5000
       auto_no_publicado = Auto.crear('AA752OH', 'Fiat', 40_000, 1999, propietario)
