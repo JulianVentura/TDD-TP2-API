@@ -19,7 +19,7 @@ module Persistence
       # TODO: faltan test unitarios que prueben los estados
 
       def existe_auto(patente)
-        !dataset.first(patente: patente).nil?
+        !dataset.first(Sequel.ilike(:patente, patente)).nil?
       end
 
       def por_propietario(id_prop)
@@ -28,6 +28,13 @@ module Persistence
 
       def por_estado(estado)
         load_collection dataset.where(estado: ESTADOS[estado.estado])
+      end
+
+      def find(patente)
+        found_record = dataset.first(Sequel.ilike(:patente, patente))
+        raise ObjectNotFound.new(self.class.model_class, patente) if found_record.nil?
+
+        load_object dataset.first(found_record)
       end
 
       protected
