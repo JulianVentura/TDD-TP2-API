@@ -57,7 +57,7 @@ def comprar_auto_url(patente)
 end
 
 def realizar_oferta_url(patente)
-  "#{BASE_URL}/autos/#{patente}/ofertar"
+  "#{BASE_URL}/autos/#{patente}/realizar_oferta"
 end
 
 def reset_url

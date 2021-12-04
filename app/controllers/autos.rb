@@ -213,4 +213,33 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
       {error: e.mensaje}.to_json
     end
   end
+
+  post :realizar_oferta, :map => '/autos/:patente/realizar_oferta' do
+    begin
+      # input
+      patente = params[:patente]
+      parametros = parametros_simbolizados
+
+      # modelo
+      oferta = CreadorOferta.new(repo_oferta, repo_auto, repo_usuario).ofertar(
+        patente,
+        parametros[:id_ofertante], 
+        parametros[:precio])
+      
+      # output
+      status 200
+      {
+        :id_oferta => oferta.id_oferta,
+        :patente => oferta.patente,
+        :id_ofertante => oferta.id_ofertante,
+        :precio => oferta.precio
+      }.to_json
+
+    rescue ErrorEnLaAPI => e
+      status 400
+      {error: e.mensaje}.to_json
+    end
+  end
+
+
 end
