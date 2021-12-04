@@ -24,7 +24,6 @@ class Auto
     @estado = EsperandoEntrega.new
   end
 
-
   def publicar(tasa, usuario_fiubak)
     @estado.entregar_llave?
     @precio = precio * (100 + tasa) / 100
@@ -58,7 +57,7 @@ class Auto
   def initialize(patente, modelo, kilometros, anio, usuario, precio, estado) # rubocop:disable Metrics/ParameterLists
     raise ErrorFaltanArgumentos if [patente, modelo, anio, kilometros, usuario, precio, estado].any? nil
 
-    @patente = patente
+    @patente = patente.upcase
     @modelo = modelo
     @kilometros = kilometros
     @anio = anio

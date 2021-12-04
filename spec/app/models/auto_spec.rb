@@ -11,6 +11,13 @@ describe Auto do
       expect(nuevo_auto.kilometros).to eq 40_000
     end
 
+    it 'deberia pasar a upcase la patente' do
+      nuevo_auto = described_class.crear('aa752Oh', 'Fiat', 40_000, 1999, un_usuario)
+      expect(nuevo_auto.patente).to eq 'AA752OH'
+      expect(nuevo_auto.modelo).to eq 'Fiat'
+      expect(nuevo_auto.kilometros).to eq 40_000
+    end
+
     it 'deberia fallar si faltan argumentos' do
       patente = 'AA752OH'
       anio = 1999
