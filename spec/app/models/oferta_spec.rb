@@ -46,5 +46,12 @@ describe Oferta do
         described_class.crear(auto, ofertante, precio)
       end.to raise_error(ErrorOfertaInvalida)
     end
+
+    it 'deberia lanzar error si el precio es nil' do
+      precio = nil
+      expect do
+        described_class.crear(auto, ofertante, precio)
+      end.to raise_error(ErrorOfertaInvalida)
+    end
   end
 end

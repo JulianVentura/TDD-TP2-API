@@ -16,7 +16,7 @@ class Oferta
   private
 
   def initialize(auto, ofertante, precio, id_oferta)
-    raise ErrorOfertaInvalida if precio < 0
+    raise ErrorOfertaInvalida if (precio.nil? || precio < 0)
     @auto = auto
     @ofertante = ofertante
     @precio = precio
