@@ -30,11 +30,11 @@ describe RechazadorOferta do
     end
 
     it 'deberia levantar error por oferta inexistente' do
-      id_inexistente = 546789132
+      id_inexistente = 546_789_132
 
-      expect{
+      expect do
         RechazadorOferta.new(repo_oferta).rechazar(id_inexistente, propietario.id)
-      }.to raise_error(ErrorOfertaNoExiste)
+      end.to raise_error(ErrorOfertaNoExiste)
     end
   end
 end

@@ -8,4 +8,3 @@ describe 'Pendiente' do
     expect(pendiente).to eq pendiente2
   end
 end
-

@@ -45,8 +45,6 @@ describe Persistence::Repositories::RepositorioAuto do
       auto_de_repo = repo_auto.find(patente)
       expect(auto_de_repo.usuario.id).to eq(34_535)
     end
-
-
   end
 
   context 'cuando existe un auto' do

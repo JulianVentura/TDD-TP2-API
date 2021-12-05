@@ -7,14 +7,14 @@ module Persistence
       ESTADOS = {
         :pendiente => 'pendiente',
         'pendiente' => Pendiente
-      }
+      }.freeze
 
       def existe_oferta_id(id_oferta)
         !dataset.first(id: id_oferta).nil?
       end
 
       def existe_oferta_usuario_auto(id_ofertante, patente)
-        dataset.where(Sequel.lit("patente ILIKE ?", patente) & Sequel.lit("id_ofertante = ?", id_ofertante)).map.count >= 1
+        dataset.where(Sequel.lit('patente ILIKE ?', patente) & Sequel.lit('id_ofertante = ?', id_ofertante)).map.count >= 1
       end
 
       protected
@@ -36,7 +36,7 @@ module Persistence
           patente: oferta.auto.patente,
           id_ofertante: oferta.ofertante.id,
           precio: oferta.precio,
-          estado: ESTADOS[oferta.estado.estado],
+          estado: ESTADOS[oferta.estado.estado]
         }
       end
     end
