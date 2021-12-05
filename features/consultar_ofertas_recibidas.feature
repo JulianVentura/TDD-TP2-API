@@ -20,3 +20,7 @@ Característica: Consultar ofertas recibidas
     Dado ingreso un auto modelo "Fiat Uno", patente "DHG456", kilometros 100000 y año 1999
     Cuando consulto las ofertas recibidas sobre el auto de patente "TGF657"
     Entonces recibo mensaje de error por auto inexistente
+
+  Escenario: CORV4 - Consulta de ofertas fallida por vendedor incorrecto
+    Cuando el usuario ofertador consulta las ofertas recibidas sobre el auto de patente "ABC123"
+    Entonces recibo mensaje de error por usuario incorrecto

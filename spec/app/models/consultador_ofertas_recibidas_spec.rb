@@ -38,10 +38,15 @@ describe ConsultadorOfertasRecibidas do
     end
 
     it 'deberia fallar si no existe el auto' do
-        ids = [usuario1.id, usuario2.id, usuario3.id]
-        expect{
-            ConsultadorOfertasRecibidas.new(repo_oferta, repo_auto).consultar('NOE123', propietario.id)
-        }.to raise_error(ErrorAutoNoExiste)
-      end
+      expect  do
+        ConsultadorOfertasRecibidas.new(repo_oferta, repo_auto).consultar('NOE123', propietario.id)
+      end.to raise_error(ErrorAutoNoExiste)
+    end
+
+    it 'deberia fallar si el usuario no es el vendedor' do
+      expect do
+        ConsultadorOfertasRecibidas.new(repo_oferta, repo_auto).consultar('ABC123', usuario1.id)
+      end.to raise_error(ErrorUsuarioNoEsElPropietario)
+    end
   end
 end

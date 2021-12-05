@@ -246,7 +246,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
     begin
       # input
       patente = params[:patente]
-      id_prop = params[:id_prop]
+      id_prop = params[:id_prop].to_i
 
       # modelo
       ofertas = ConsultadorOfertasRecibidas.new(repo_oferta, repo_auto).consultar(

@@ -31,3 +31,7 @@ Entonces('recibo mensaje de no haber ofertas') do
   respuesta_parseada = JSON.parse(@response.body)
   expect(respuesta_parseada.empty?).to eq true
 end
+
+Cuando('el usuario ofertador consulta las ofertas recibidas sobre el auto de patente {string}') do |patente|
+  @response = Faraday.get(consultar_ofertas_recibidas_url(patente, @id_ofertador), header)
+end
