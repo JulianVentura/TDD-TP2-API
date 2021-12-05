@@ -63,6 +63,13 @@ describe Oferta do
         described_class.crear(auto, ofertante, precio)
       end.to raise_error(ErrorOfertaInvalida)
     end
+
+    it 'deberia devolver id propietario' do
+      precio = 3000
+      nueva_oferta = described_class.crear(auto, ofertante, precio)
+
+      expect(nueva_oferta.obtener_id_propietario).to eq propietario.id
+    end
   end
 
   context 'cuando es rechazada' do

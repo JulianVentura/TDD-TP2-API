@@ -14,6 +14,10 @@ class Oferta
     @estado = Rechazado.new
   end
 
+  def obtener_id_propietario
+    @auto.usuario.id
+  end
+
   attr_reader :auto, :ofertante, :precio, :updated_on, :created_on, :estado
   attr_accessor :id
 
