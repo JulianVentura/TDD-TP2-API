@@ -48,5 +48,16 @@ describe Persistence::Repositories::RepositorioOferta do
     it 'deberia existir esa oferta por id' do
       expect(repo_oferta.existe_oferta_id(una_oferta.id)).to eq true
     end
+
+    it 'deberia buscar ofertas por patentes' do
+      otro_oferante = CreadorUsuario.new(repo_usuario).crear_usuario('Jose', 34_537, 'jose@gmail.com')
+      otra_oferta = Oferta.crear(auto, otro_oferante, 14_000)
+      repo_oferta.save(otra_oferta)
+      ids = [ofertante.id, otro_oferante.id]
+      ofertas = repo_oferta.buscar_por_patente(una_oferta.auto.patente)
+      expect(ofertas.size).to eq 2
+      expect(ids).to include ofertas[0].ofertante.id
+      expect(ids).to include ofertas[1].ofertante.id
+    end
   end
 end

@@ -19,6 +19,10 @@ module Persistence
         dataset.where(Sequel.lit('patente ILIKE ?', patente) & Sequel.lit('id_ofertante = ?', id_ofertante)).map.count >= 1
       end
 
+      def buscar_por_patente(patente)
+        load_collection dataset.where(Sequel.lit('patente ILIKE ?', patente))
+      end
+
       protected
 
       def load_object(a_hash)
