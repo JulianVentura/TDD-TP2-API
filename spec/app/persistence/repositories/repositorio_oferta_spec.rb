@@ -25,7 +25,6 @@ describe Persistence::Repositories::RepositorioOferta do
     expect(oferta_recuperada.precio).to eq 15_000
   end
 
-
   it 'deberia tener el mismo estado con el que se almaceno' do
     oferta = repo_oferta.save(una_oferta)
     oferta_recuperada = repo_oferta.find(oferta.id)
@@ -44,6 +43,10 @@ describe Persistence::Repositories::RepositorioOferta do
     it 'existe_oferta_usuario_auto deberia ser case insensitive para la patente' do
       patente_downcase = auto.patente.downcase
       expect(repo_oferta.existe_oferta_usuario_auto(ofertante.id, patente_downcase)).to eq true
+    end
+
+    it 'deberia existir esa oferta por id' do
+      expect(repo_oferta.existe_oferta_id(una_oferta.id)).to eq true
     end
   end
 end

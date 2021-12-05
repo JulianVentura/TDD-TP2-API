@@ -9,6 +9,10 @@ module Persistence
         'pendiente' => Pendiente
       }
 
+      def existe_oferta_id(id_oferta)
+        !dataset.first(id: id_oferta).nil?
+      end
+
       def existe_oferta_usuario_auto(id_ofertante, patente)
         dataset.where(Sequel.lit("patente ILIKE ?", patente) & Sequel.lit("id_ofertante = ?", id_ofertante)).map.count >= 1
       end
