@@ -28,5 +28,6 @@ Entonces('recibo mensaje de ofertas recibidas exitosas') do
 end
 
 Entonces('recibo mensaje de no haber ofertas') do
-  pending # Write code here that turns the phrase above into concrete actions
+  respuesta_parseada = JSON.parse(@response.body)
+  expect(respuesta_parseada.empty?).to eq true
 end

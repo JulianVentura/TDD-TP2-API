@@ -10,7 +10,7 @@ Característica: Consultar ofertas recibidas
     Dado el usuario ofertador realizo una oferta a mi auto de patente "ABC123" con precio 50000
     Cuando consulto las ofertas recibidas sobre el auto de patente "ABC123"
     Entonces recibo mensaje de ofertas recibidas exitosas
-  @wip
+  
   Escenario: CORV2 - Consulta de ofertas recibidas sin ofertas
     Dado ingreso un auto modelo "Fiat Uno", patente "DHG456", kilometros 100000 y año 1999
     Cuando consulto las ofertas recibidas sobre el auto de patente "DHG456"
