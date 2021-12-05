@@ -15,7 +15,7 @@ Característica: Consultar ofertas recibidas
     Dado ingreso un auto modelo "Fiat Uno", patente "DHG456", kilometros 100000 y año 1999
     Cuando consulto las ofertas recibidas sobre el auto de patente "DHG456"
     Entonces recibo mensaje de no haber ofertas
-  @wip
+  
   Escenario: CORV3 - Consulta de ofertas fallida por auto inexistente
     Dado ingreso un auto modelo "Fiat Uno", patente "DHG456", kilometros 100000 y año 1999
     Cuando consulto las ofertas recibidas sobre el auto de patente "TGF657"

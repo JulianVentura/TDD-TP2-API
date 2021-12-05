@@ -36,5 +36,12 @@ describe ConsultadorOfertasRecibidas do
       expect(ids).to include ofertas[1].ofertante.id
       expect(ids).to include ofertas[2].ofertante.id
     end
+
+    it 'deberia fallar si no existe el auto' do
+        ids = [usuario1.id, usuario2.id, usuario3.id]
+        expect{
+            ConsultadorOfertasRecibidas.new(repo_oferta, repo_auto).consultar('NOE123', propietario.id)
+        }.to raise_error(ErrorAutoNoExiste)
+      end
   end
 end
