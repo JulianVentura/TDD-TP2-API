@@ -1,4 +1,4 @@
-Y('que existe un usuario con nombre {string} y email {string}') do |nombre, email|
+Y('que existe otro usuario con nombre {string} y email {string}') do |nombre, email|
   registrar_usuario(nombre, email, id_falso2)
 end
 

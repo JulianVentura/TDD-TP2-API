@@ -4,7 +4,7 @@ Característica: Realizar oferta
   Antecedentes:
     Dado que existe un usuario con nombre "juan" y mail "juan@test.com"
     Y tiene un auto modelo "Fiat Uno" patente "ABC123" publicado como p2p
-    Y que existe un usuario con nombre "Jorge" y email "jorge@test.com"
+    Y que existe otro usuario con nombre "Jorge" y email "jorge@test.com"
   
   Escenario: RO1 - Realizacion de oferta exitosa
     Cuando realizo una oferta de 1000 sobre el auto de patente "ABC123"

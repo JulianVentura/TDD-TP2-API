@@ -60,6 +60,10 @@ def realizar_oferta_url(patente)
   "#{BASE_URL}/autos/#{patente}/realizar_oferta"
 end
 
+def rechazar_oferta_url(id_oferta)
+  "#{BASE_URL}/ofertas/#{id_oferta}/rechazar"
+end
+
 def reset_url
   "#{BASE_URL}/reset"
 end
