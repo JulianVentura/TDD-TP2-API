@@ -6,8 +6,8 @@ class Oferta
     Oferta.new(auto, ofertante, precio, nil, Pendiente.new) # TODO: Chequear el valor inicial de id
   end
 
-  def self.crear_desde_repo(auto, ofertante, precio, id)
-    Oferta.new(auto, ofertante, precio, id, Pendiente.new) # TODO: cambiar el estado
+  def self.crear_desde_repo(auto, ofertante, precio, id, estado)
+    Oferta.new(auto, ofertante, precio, id, estado)
   end
 
   attr_reader :auto, :ofertante, :precio, :updated_on, :created_on, :estado

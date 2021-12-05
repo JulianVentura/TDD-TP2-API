@@ -25,6 +25,13 @@ describe Persistence::Repositories::RepositorioOferta do
     expect(oferta_recuperada.precio).to eq 15_000
   end
 
+
+  it 'deberia tener el mismo estado con el que se almaceno' do
+    oferta = repo_oferta.save(una_oferta)
+    oferta_recuperada = repo_oferta.find(oferta.id)
+    expect(oferta_recuperada.estado).to eq Pendiente.new
+  end
+
   context 'ya existe una oferta' do
     before :each do
       repo_oferta.save(una_oferta)

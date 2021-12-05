@@ -4,6 +4,11 @@ module Persistence
       self.table_name = :oferta
       self.model_class = 'Oferta'
 
+      ESTADOS = {
+        :pendiente => 'pendiente',
+        'pendiente' => Pendiente
+      }
+
       def existe_oferta_usuario_auto(id_ofertante, patente)
         dataset.where(Sequel.lit("patente ILIKE ?", patente) & Sequel.lit("id_ofertante = ?", id_ofertante)).map.count >= 1
       end
@@ -17,15 +22,17 @@ module Persistence
         id = a_hash[:id]
         ofertante = RepositorioUsuario.new.find(id_ofertante)
         auto = RepositorioAuto.new.find(patente)
+        estado = ESTADOS[a_hash[:estado]].new
 
-        Oferta.crear_desde_repo(auto, ofertante, precio, id)
+        Oferta.crear_desde_repo(auto, ofertante, precio, id, estado)
       end
 
       def changeset(oferta)
         {
           patente: oferta.auto.patente,
           id_ofertante: oferta.ofertante.id,
-          precio: oferta.precio
+          precio: oferta.precio,
+          estado: ESTADOS[oferta.estado.estado],
         }
       end
     end

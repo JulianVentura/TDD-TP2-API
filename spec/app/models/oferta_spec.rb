@@ -31,12 +31,14 @@ describe Oferta do
     it 'desde el repo, deberia tener un id' do
       precio = 3000
       id = 123
-      nueva_oferta = described_class.crear_desde_repo(auto, ofertante, precio, id)
+      estado = Pendiente.new
+      nueva_oferta = described_class.crear_desde_repo(auto, ofertante, precio, id, estado)
 
       expect(nueva_oferta.auto.patente).to eq auto.patente
       expect(nueva_oferta.precio).to eq precio
       expect(nueva_oferta.ofertante.id).to eq ofertante.id
       expect(nueva_oferta.id).to eq id
+      expect(nueva_oferta.estado).to eq estado
     end
 
     it 'deberia lanzar error si el auto no esta "Publicado"' do
