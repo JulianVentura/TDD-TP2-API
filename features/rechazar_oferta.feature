@@ -17,7 +17,6 @@ Característica: Rechazar oferta
     Cuando rechazo una oferta inexistente
     Entonces recibo mensaje de error por oferta inexistente
 
-  @wip
-  Escenario: RO3 -  Rechazo de oferta fallida por falta de datos
-    Cuando rechazo una oferta sin indicar su id
-    Entonces recibo mensaje de error por falta de argumentos
+  Escenario: RO3 -  Rechazo de oferta fallida por id no coincidente
+    Cuando rechazo una oferta cuando el id del propietario no coincide
+    Entonces recibo mensaje de error por id no coincidente

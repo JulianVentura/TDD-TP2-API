@@ -117,3 +117,10 @@ class ErrorOfertaNoExiste < ErrorEnLaAPI
     super(mensaje)
   end
 end
+
+class ErrorOfertaUsuarioNoCoincide < ErrorEnLaAPI
+  def initialize
+    mensaje = 'Error: Usuario no es el propietario de la oferta'
+    super(mensaje)
+  end
+end

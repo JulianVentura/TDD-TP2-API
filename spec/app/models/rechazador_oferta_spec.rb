@@ -36,5 +36,13 @@ describe RechazadorOferta do
         RechazadorOferta.new(repo_oferta).rechazar(id_inexistente, propietario.id)
       end.to raise_error(ErrorOfertaNoExiste)
     end
+
+    it 'deberia levantar error por usuario no coincidente' do
+      id_usuario_invalido = 9576
+
+      expect do
+        RechazadorOferta.new(repo_oferta).rechazar(@oferta.id, id_usuario_invalido)
+      end.to raise_error(ErrorOfertaUsuarioNoCoincide)
+    end
   end
 end
