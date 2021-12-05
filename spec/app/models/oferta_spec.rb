@@ -20,6 +20,14 @@ describe Oferta do
       expect(nueva_oferta.ofertante.id).to eq ofertante.id
     end
 
+    it 'deberia tener estado pendiente' do
+      precio = 3000
+      nueva_oferta = described_class.crear(auto, ofertante, precio)
+      estado_pendiente = Pendiente.new
+
+      expect(nueva_oferta.estado).to eq estado_pendiente
+    end
+
     it 'desde el repo, deberia tener un id' do
       precio = 3000
       id = 123
