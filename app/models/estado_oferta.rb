@@ -15,3 +15,9 @@ class Pendiente < EstadoOferta
     super(:pendiente)
   end
 end
+
+class Rechazado < EstadoOferta
+  def initialize
+    super(:rechazado)
+  end
+end
