@@ -7,4 +7,10 @@ describe 'Rechazado' do
 
     expect(rechazado).to eq rechazado2
   end
+
+  it 'deberia no estar pendiente' do
+    rechazado = Rechazado.new
+
+    expect(rechazado.pendiente?).to eq false
+  end
 end

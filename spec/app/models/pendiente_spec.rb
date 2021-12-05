@@ -7,4 +7,10 @@ describe 'Pendiente' do
 
     expect(pendiente).to eq pendiente2
   end
+
+  it 'deberia estar pendiente' do
+    pendiente = Pendiente.new
+
+    expect(pendiente.pendiente?).to eq true
+  end
 end
