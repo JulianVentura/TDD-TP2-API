@@ -6,7 +6,9 @@ module Persistence
 
       ESTADOS = {
         :pendiente => 'pendiente',
-        'pendiente' => Pendiente
+        'pendiente' => Pendiente,
+        :rechazado => 'rechazado',
+        'rechazado' => Rechazado
       }.freeze
 
       def existe_oferta_id(id_oferta)

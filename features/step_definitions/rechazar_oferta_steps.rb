@@ -37,7 +37,7 @@ Cuando('rechazo una oferta cuando el id del propietario no coincide') do
     :id_prop => id_falso2
   }.to_json
 
-  @id_oferta = JSON.parse(@response.body)['id_oferta']
+  @id_oferta = @id_oferta || JSON.parse(@response.body)['id_oferta']
   @response = Faraday.post(rechazar_oferta_url(@id_oferta), @request_rechazar_oferta, header)
 end
 
@@ -46,4 +46,11 @@ Entonces('recibo mensaje de error por id no coincidente') do
   respuesta = JSON.parse(@response.body)
 
   expect(respuesta['error']).to eq 'Error: Usuario no es el propietario de la oferta'
+end
+
+Entonces('recibo mensaje de error por oferta no pendiente') do
+  expect(@response.status).to eq(400)
+  respuesta = JSON.parse(@response.body)
+
+  expect(respuesta['error']).to eq 'Error: Oferta no se encuentra en estado pendiente'
 end

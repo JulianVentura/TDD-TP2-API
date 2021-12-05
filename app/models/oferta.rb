@@ -11,6 +11,8 @@ class Oferta
   end
 
   def rechazar
+    raise ErrorOfertaNoPendiente unless @estado.pendiente?
+
     @estado = Rechazado.new
   end
 

@@ -20,3 +20,8 @@ Característica: Rechazar oferta
   Escenario: RO3 -  Rechazo de oferta fallida por id no coincidente
     Cuando rechazo una oferta cuando el id del propietario no coincide
     Entonces recibo mensaje de error por id no coincidente
+
+  Escenario: RO4 -  Rechazo de oferta fallida por rechazar multiples veces
+    Dado rechazo la oferta sobre el auto de patente "ABC123"
+    Cuando rechazo la oferta sobre el auto de patente "ABC123"
+    Entonces recibo mensaje de error por oferta no pendiente

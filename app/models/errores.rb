@@ -124,3 +124,10 @@ class ErrorOfertaUsuarioNoCoincide < ErrorEnLaAPI
     super(mensaje)
   end
 end
+
+class ErrorOfertaNoPendiente < ErrorEnLaAPI
+  def initialize
+    mensaje = 'Error: Oferta no se encuentra en estado pendiente'
+    super(mensaje)
+  end
+end
