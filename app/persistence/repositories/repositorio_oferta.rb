@@ -5,7 +5,7 @@ module Persistence
       self.model_class = 'Oferta'
 
       def existe_oferta_usuario_auto(id_ofertante, patente)
-        !dataset.first(id_ofertante: id_ofertante, patente: patente).nil?
+        dataset.where(Sequel.lit("patente ILIKE ?", patente) & Sequel.lit("id_ofertante = ?", id_ofertante)).map.count >= 1
       end
 
       protected

@@ -45,6 +45,8 @@ describe Persistence::Repositories::RepositorioAuto do
       auto_de_repo = repo_auto.find(patente)
       expect(auto_de_repo.usuario.id).to eq(34_535)
     end
+
+
   end
 
   context 'cuando existe un auto' do
@@ -56,6 +58,17 @@ describe Persistence::Repositories::RepositorioAuto do
 
     it 'deberia existir esa patente' do
       expect(repo_auto.existe_auto(@patente_utilizada)).to eq true
+    end
+
+    it 'find por patente deberia ser case insensitive' do
+      patente_downcase = @patente_utilizada.downcase
+      auto_de_repo = repo_auto.find(patente_downcase)
+      expect(auto_de_repo.patente).to eq(patente)
+    end
+
+    it 'existe_auto por patente deberia ser case insensitive' do
+      patente_downcase = @patente_utilizada.downcase
+      expect(repo_auto.existe_auto(patente_downcase)).to eq true
     end
   end
 
