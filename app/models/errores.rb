@@ -110,3 +110,10 @@ class ErrorYaSeRealizoOferta < ErrorEnLaAPI
     super(mensaje)
   end
 end
+
+class ErrorOfertaNoExiste < ErrorEnLaAPI
+  def initialize
+    mensaje = 'Error: Oferta no existe'
+    super(mensaje)
+  end
+end

@@ -28,5 +28,13 @@ describe RechazadorOferta do
 
       expect(oferta_rechazada.estado).to eq estado_rechazado
     end
+
+    it 'deberia levantar error por oferta inexistente' do
+      id_inexistente = 546789132
+
+      expect{
+        RechazadorOferta.new(repo_oferta).rechazar(id_inexistente, propietario.id)
+      }.to raise_error(ErrorOfertaNoExiste)
+    end
   end
 end

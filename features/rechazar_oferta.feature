@@ -15,7 +15,7 @@ Característica: Rechazar oferta
 
   @wip
   Escenario: RO2 - Rechazo de oferta fallida por oferta inexistente
-      Cuando rechazo una oferta inexistente
+    Cuando rechazo una oferta inexistente
     Entonces recibo mensaje de error por oferta inexistente
 
   @wip
