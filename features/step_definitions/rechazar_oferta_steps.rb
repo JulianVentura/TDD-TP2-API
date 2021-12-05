@@ -37,7 +37,7 @@ Cuando('rechazo una oferta cuando el id del propietario no coincide') do
     :id_prop => id_falso2
   }.to_json
 
-  @id_oferta = @id_oferta || JSON.parse(@response.body)['id_oferta']
+  @id_oferta ||= JSON.parse(@response.body)['id_oferta']
   @response = Faraday.post(rechazar_oferta_url(@id_oferta), @request_rechazar_oferta, header)
 end
 
