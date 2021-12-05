@@ -13,12 +13,18 @@ Dado('el usuario ofertador realizo una oferta a mi auto de patente {string} con 
   Faraday.post(realizar_oferta_url(patente), @request_realizar_oferta, header)
 end
 
-Cuando('consulto las ofertas recibidas sobre el auto de patente {string}') do |_string|
-  pending # Write code here that turns the phrase above into concrete actions
+Cuando('consulto las ofertas recibidas sobre el auto de patente {string}') do |patente|
+  @response = Faraday.get(consultar_ofertas_recibidas_url(patente, id_falso), header)
 end
 
 Entonces('recibo mensaje de ofertas recibidas exitosas') do
-  pending # Write code here that turns the phrase above into concrete actions
+  respuesta_parseada = JSON.parse(@response.body)
+  match = false
+  respuesta_parseada.each do |oferta|
+    match |= oferta['id_ofertante'] == @id_ofertador
+  end
+
+  expect(match).to eq true
 end
 
 Entonces('recibo mensaje de no haber ofertas') do

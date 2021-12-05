@@ -233,8 +233,39 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
         :id_oferta => oferta.id,
         :patente => oferta.auto.patente,
         :id_ofertante => oferta.ofertante.id,
-        :precio => oferta.precio
+        :precio => oferta.precio,
+        :estado => oferta.estado.estado
       }.to_json
+    rescue ErrorEnLaAPI => e
+      status 400
+      {error: e.mensaje}.to_json
+    end
+  end
+
+  get :consultar_ofertas_recibidas, :map => '/autos/:patente/ofertas' do
+    begin
+      # input
+      patente = params[:patente]
+      id_prop = params[:id_prop]
+
+      # modelo
+      ofertas = ConsultadorOfertasRecibidas.new(repo_oferta, repo_auto).consultar(
+        patente,
+        id_prop
+      )
+
+      # output
+      status 200
+      respuesta = ofertas.map do |oferta|
+        {
+          :id_oferta => oferta.id,
+          :patente => oferta.auto.patente,
+          :id_ofertante => oferta.ofertante.id,
+          :precio => oferta.precio,
+          :estado => oferta.estado.estado
+        }
+      end
+      respuesta.to_json
     rescue ErrorEnLaAPI => e
       status 400
       {error: e.mensaje}.to_json

@@ -5,7 +5,7 @@ Característica: Consultar ofertas recibidas
     Dado que existe un usuario con nombre "juan" y mail "juan@test.com"
     Y tiene un auto modelo "Fiat Uno" patente "ABC123" publicado como p2p
     Y que existe un usuario ofertador con nombre "jorge" y mail "jorge@test.com"
-  @wip
+  
   Escenario: CORV1 - Consulta de ofertas recibidas con una oferta
     Dado el usuario ofertador realizo una oferta a mi auto de patente "ABC123" con precio 50000
     Cuando consulto las ofertas recibidas sobre el auto de patente "ABC123"
