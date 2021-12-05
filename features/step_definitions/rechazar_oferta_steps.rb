@@ -16,7 +16,7 @@ Entonces('recibo mensaje de oferta rechazada') do
   expect(respuesta['id_ofertante']).to eq(id_falso2)
 end
 
-Cuando('rechazo una oferta inexistente') do |_patente|
+Cuando('rechazo una oferta inexistente') do
   @request_rechazar_oferta = {
     :id_prop => id_falso
   }.to_json
@@ -32,7 +32,7 @@ Entonces('recibo mensaje de error por oferta inexistente') do
   expect(respuesta['error']).to eq 'Error: Oferta no existe'
 end
 
-Cuando('rechazo una oferta sin indicar su id') do |_patente|
+Cuando('rechazo una oferta sin indicar su id') do
   @request_rechazar_oferta = {
     :id_prop => id_falso
   }.to_json

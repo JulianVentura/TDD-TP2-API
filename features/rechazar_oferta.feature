@@ -13,7 +13,6 @@ Característica: Rechazar oferta
     Cuando rechazo la oferta sobre el auto de patente "ABC123"
     Entonces recibo mensaje de oferta rechazada
 
-  @wip
   Escenario: RO2 - Rechazo de oferta fallida por oferta inexistente
     Cuando rechazo una oferta inexistente
     Entonces recibo mensaje de error por oferta inexistente
