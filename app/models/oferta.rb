@@ -10,6 +10,10 @@ class Oferta
     Oferta.new(auto, ofertante, precio, id, estado)
   end
 
+  def rechazar
+    @estado = Rechazado.new
+  end
+
   attr_reader :auto, :ofertante, :precio, :updated_on, :created_on, :estado
   attr_accessor :id
 

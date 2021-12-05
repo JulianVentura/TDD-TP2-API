@@ -64,4 +64,15 @@ describe Oferta do
       end.to raise_error(ErrorOfertaInvalida)
     end
   end
+
+  context 'cuando es rechazada' do
+    it 'deberia cambiar estado pendiente a rechazada' do
+      precio = 3000
+      oferta = described_class.crear(auto, ofertante, precio)
+      oferta.rechazar
+      estado_rechazado = Rechazado.new
+
+      expect(oferta.estado).to eq estado_rechazado
+    end
+  end
 end
