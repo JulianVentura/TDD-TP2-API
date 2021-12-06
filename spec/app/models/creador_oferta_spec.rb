@@ -42,6 +42,13 @@ describe CreadorOferta do
         described_class.new(repo_oferta, repo_auto, repo_usuario).crear(patente, ofertante.id, precio_ofertante)
       end.to raise_error(ErrorYaSeRealizoOferta)
     end
+
+    it('deberia lanzar error si el propietario intenta ofertar el auto') do
+      precio_ofertante = 13_000
+      expect do
+        CreadorOferta.new(repo_oferta, repo_auto, repo_usuario).crear(patente, propietario.id, precio_ofertante)
+      end.to raise_error(ErrorPropietarioRealizaOferta)
+    end
   end
 
   it('deberia lanzar error si no existe el auto a ofertar') do

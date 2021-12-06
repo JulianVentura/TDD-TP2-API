@@ -131,3 +131,10 @@ class ErrorOfertaNoPendiente < ErrorEnLaAPI
     super(mensaje)
   end
 end
+
+class ErrorPropietarioRealizaOferta < ErrorEnLaAPI
+  def initialize
+    mensaje = 'Error: No se puede ofertar sobre un auto propio'
+    super(mensaje)
+  end
+end
