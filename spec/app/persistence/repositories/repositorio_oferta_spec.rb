@@ -59,5 +59,16 @@ describe Persistence::Repositories::RepositorioOferta do
       expect(ids).to include ofertas[0].ofertante.id
       expect(ids).to include ofertas[1].ofertante.id
     end
+
+    it 'deberia buscar ofertas por usuario' do
+      otro_auto = crear_auto_publicado_p2p('ZXC123', propietario, creador_auto, cotizador_auto, publicador)
+      otra_oferta = Oferta.crear(otro_auto, ofertante, 15_000)
+      repo_oferta.save(otra_oferta)
+      patentes = %w[ZXC123 ABC123]
+      ofertas = repo_oferta.buscar_por_ofertante(ofertante.id)
+      expect(ofertas.size).to eq 2
+      expect(patentes).to include ofertas[0].auto.patente
+      expect(patentes).to include ofertas[1].auto.patente
+    end
   end
 end
