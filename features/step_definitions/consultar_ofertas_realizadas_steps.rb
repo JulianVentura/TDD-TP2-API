@@ -11,11 +11,11 @@ Cuando('consulto mis ofertas realizadas') do
   @response = Faraday.get(consultar_ofertas_realizadas_url(@id_ofertador), header)
 end
 
-Entonces('obtengo la oferta de patente {string} con precio {int}') do |_patente, precio|
+Entonces('obtengo la oferta de patente {string} con precio {int}') do |patente, precio|
   respuesta_parseada = JSON.parse(@response.body)
   match = false
   respuesta_parseada.each do |oferta|
-    match |= (oferta['patente'] == pantente && oferta['precio'] == precio)
+    match |= (oferta['patente'] == patente && oferta['precio'] == precio)
   end
 
   expect(match).to eq true
