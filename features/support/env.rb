@@ -68,6 +68,10 @@ def consultar_ofertas_recibidas_url(patente,id_prop)
   "#{BASE_URL}/autos/#{patente}/ofertas?id_prop=#{id_prop}"
 end
 
+def consultar_ofertas_realizadas_url(id_usuario)
+  "#{BASE_URL}/usuarios/#{id_usuario}/ofertas"
+end
+
 def reset_url
   "#{BASE_URL}/reset"
 end
