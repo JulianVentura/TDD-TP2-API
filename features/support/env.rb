@@ -64,6 +64,10 @@ def rechazar_oferta_url(id_oferta)
   "#{BASE_URL}/ofertas/#{id_oferta}/rechazar"
 end
 
+def aceptar_oferta_url(id_oferta)
+  "#{BASE_URL}/ofertas/#{id_oferta}/rechazar"
+end
+
 def consultar_ofertas_recibidas_url(patente,id_prop)
   "#{BASE_URL}/autos/#{patente}/ofertas?id_prop=#{id_prop}"
 end
