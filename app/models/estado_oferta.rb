@@ -29,3 +29,9 @@ class Rechazado < EstadoOferta
     super(:rechazado)
   end
 end
+
+class Aceptado < EstadoOferta
+  def initialize
+    super(:aceptado)
+  end
+end
