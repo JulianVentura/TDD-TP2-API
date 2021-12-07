@@ -33,7 +33,7 @@ WebTemplate::App.controllers :ofertas, :provides => [:json] do
       parametros = parametros_simbolizados
 
       # modelo
-      oferta_aceptada = AceptadorOferta.new(repo_oferta).aceptar(
+      oferta_aceptada = AceptadorOferta.new(repo_oferta, repo_auto).aceptar(
         id_oferta,
         parametros[:id_prop]
       )

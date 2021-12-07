@@ -128,14 +128,6 @@ describe Auto do
             un_auto.publicar_p2p(precio_p2p)
           end.to raise_error(ErrorPrecioMenorACotizado)
         end
-
-        it 'deberia cambiar su estado a "Vendido" al llamar a vender_p2p' do
-          precio_p2p = 20_000
-          un_auto.publicar_p2p(precio_p2p)
-          un_auto.vender_p2p
-
-          expect(un_auto.estado).to eq Vendido.new
-        end
       end
     end
   end

@@ -24,10 +24,6 @@ class Auto
     @estado = EsperandoEntrega.new
   end
 
-  def vender_p2p
-    @estado = Vendido.new
-  end
-
   def publicar(tasa, usuario_fiubak)
     @estado.entregar_llave?
     @precio = precio * (100 + tasa) / 100

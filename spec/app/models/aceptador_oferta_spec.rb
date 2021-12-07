@@ -13,6 +13,7 @@ describe AceptadorOferta do
   context 'ya existe una oferta creada' do
     let(:patente) { 'AA752OH' }
     let(:propietario) { creador_usuario.crear_usuario('Juan', 123, 'juan@email.com') }
+    let(:aceptador) { AceptadorOferta.new(repo_oferta, repo_auto) }
 
     before :each do
       creador_auto.crear_auto(patente, 'Fiat', 1990, 1000, propietario.id)
@@ -23,17 +24,25 @@ describe AceptadorOferta do
     end
 
     it 'deberia aceptar una oferta correctamente' do
-      oferta_aceptada = AceptadorOferta.new(repo_oferta).aceptar(@oferta.id, propietario.id)
+      oferta_aceptada = aceptador.aceptar(@oferta.id, propietario.id)
       estado_aceptado = Aceptado.new
 
       expect(oferta_aceptada.estado).to eq estado_aceptado
+    end
+
+    it 'deberia cambiar el estado del auto a vendido' do
+      oferta_aceptada = aceptador.aceptar(@oferta.id, propietario.id)
+
+      auto = repo_auto.find(patente)
+
+      expect(auto.estado).to eq Vendido.new
     end
 
     it 'deberia levantar error por oferta inexistente' do
       id_inexistente = 546_789_132
 
       expect do
-        AceptadorOferta.new(repo_oferta).aceptar(id_inexistente, propietario.id)
+        aceptador.aceptar(id_inexistente, propietario.id)
       end.to raise_error(ErrorOfertaNoExiste)
     end
 
@@ -41,7 +50,7 @@ describe AceptadorOferta do
       id_usuario_invalido = 9576
 
       expect do
-        AceptadorOferta.new(repo_oferta).aceptar(@oferta.id, id_usuario_invalido)
+        aceptador.aceptar(@oferta.id, id_usuario_invalido)
       end.to raise_error(ErrorOfertaUsuarioNoCoincide)
     end
   end
