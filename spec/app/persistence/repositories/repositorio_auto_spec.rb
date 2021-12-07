@@ -119,4 +119,19 @@ describe Persistence::Repositories::RepositorioAuto do
       expect(patentes).to include autos[1].patente
     end
   end
+
+  context 'cuando existe un usuario con un id muy grande' do
+    let(:otro_usuario) { Usuario.new('idgrande', 1_234_567_890_123, 'idgrande@gmail.com') }
+    let(:otro_auto) { Auto.crear(patente, 'Fiat', 40_000, 1999, otro_usuario) }
+
+    before :each do
+      repo_usuario.save(otro_usuario)
+    end
+
+    it 'deberia tener al mismo usuario con el que se almaceno' do
+      repo_auto.save(otro_auto)
+      auto_de_repo = repo_auto.find(patente)
+      expect(auto_de_repo.usuario.id).to eq(1_234_567_890_123)
+    end
+  end
 end
