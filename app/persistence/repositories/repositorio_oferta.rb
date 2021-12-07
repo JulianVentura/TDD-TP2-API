@@ -29,6 +29,10 @@ module Persistence
         load_collection dataset.where(Sequel.lit('id_ofertante = ?', id_ofertante))
       end
 
+      def buscar_por_patente_y_estado(patente, estado)
+        load_collection dataset.where(Sequel.lit('patente ILIKE ?', patente) & Sequel.lit('estado ILIKE ?', ESTADOS[estado.estado]))
+      end
+
       protected
 
       def load_object(a_hash)
