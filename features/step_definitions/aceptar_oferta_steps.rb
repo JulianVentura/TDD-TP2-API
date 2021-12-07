@@ -1,4 +1,4 @@
-git Cuando('acepto la oferta sobre el auto de patente {string}') do |_patente|
+Cuando('acepto la oferta sobre el auto de patente {string}') do |_patente|
   @request_aceptar_oferta = {
     :id_prop => id_falso
   }.to_json
