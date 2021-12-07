@@ -6,9 +6,10 @@ class AceptadorOferta
 
   def aceptar(id_oferta, id_prop)
     raise ErrorOfertaNoExiste unless @repo_oferta.existe_oferta_id(id_oferta)
-    
+
     oferta = @repo_oferta.find(id_oferta)
     raise ErrorOfertaUsuarioNoCoincide unless id_prop == oferta.obtener_id_propietario
+
     auto = oferta.auto
     oferta.aceptar
     auto.comprar

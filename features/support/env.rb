@@ -88,6 +88,10 @@ def id_falso2
   1234
 end
 
+def id_falso3
+  9876
+end
+
 After do |_scenario|
   Faraday.post(reset_url)
 end

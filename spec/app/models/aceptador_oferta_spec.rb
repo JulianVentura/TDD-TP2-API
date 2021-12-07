@@ -31,7 +31,7 @@ describe AceptadorOferta do
     end
 
     it 'deberia cambiar el estado del auto a vendido' do
-      oferta_aceptada = aceptador.aceptar(@oferta.id, propietario.id)
+      aceptador.aceptar(@oferta.id, propietario.id)
 
       auto = repo_auto.find(patente)
 

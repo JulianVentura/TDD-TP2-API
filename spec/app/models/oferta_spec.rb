@@ -86,7 +86,7 @@ describe Oferta do
       precio = 3000
       oferta = described_class.crear(auto, ofertante, precio)
       oferta.rechazar
-      
+
       expect do
         oferta.rechazar
       end.to raise_error(ErrorOfertaNoPendiente)

@@ -30,3 +30,10 @@ Antecedentes:
     Cuando acepto la oferta sobre el auto de patente "ABC123"
     Y se listan los autos en venta
     Entonces el auto de patente "ABC123" no se encuentra
+  @wip
+  Escenario: AO6 - Aceptacion de oferta rechaza el resto de ofertas pendientes
+    Dado que existe un tercer usuario con nombre "jose" y mail "jose@test.com"
+    Y el tercer usuario realiza una oferta de 2000 sobre el auto "ABC123"
+    Cuando acepto la oferta sobre el auto de patente "ABC123"
+    Y consulto el tercer usuario consulta sus ofertas realizadas
+    Entonces la oferta del auto "ABC123" del tercer usuario esta rechazada

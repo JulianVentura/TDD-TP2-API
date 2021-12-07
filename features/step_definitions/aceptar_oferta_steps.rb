@@ -34,7 +34,6 @@ Cuando('acepto una oferta cuando el id del propietario no coincide') do
   @response = Faraday.post(aceptar_oferta_url(@id_oferta), @request_aceptar_oferta, header)
 end
 
-
 Entonces('el auto de patente {string} no se encuentra') do |patente|
   match = false
   @parse_response.each do |auto|
@@ -42,4 +41,31 @@ Entonces('el auto de patente {string} no se encuentra') do |patente|
   end
 
   expect(match).to eq false
+end
+
+Dado('que existe un tercer usuario con nombre {string} y mail {string}') do |nombre, email|
+  registrar_usuario(nombre, email, id_falso3)
+end
+
+Dado('el tercer usuario realiza una oferta de {int} sobre el auto {string}') do |precio, patente|
+  @request_realizar_oferta = {
+    :id_ofertante => id_falso3,
+    :precio => precio
+  }.to_json
+
+  Faraday.post(realizar_oferta_url(patente), @request_realizar_oferta, header)
+end
+
+Cuando('consulto el tercer usuario consulta sus ofertas realizadas') do
+  @response = Faraday.get(consultar_ofertas_realizadas_url(id_falso3), header)
+end
+
+Entonces('la oferta del auto {string} del tercer usuario esta rechazada') do |patente|
+  respuesta_parseada = JSON.parse(@response.body)
+  match = false
+  respuesta_parseada.each do |oferta|
+    match |= (oferta['patente'] == patente && oferta['estado'] == 'Rechazado')
+  end
+
+  expect(match).to eq true
 end
