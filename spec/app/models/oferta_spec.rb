@@ -82,4 +82,15 @@ describe Oferta do
       expect(oferta.estado).to eq estado_rechazado
     end
   end
+
+  context 'cuando es aceptada' do
+    it 'deberia cambiar estado pendiente a aceptado' do
+      precio = 3000
+      oferta = described_class.crear(auto, ofertante, precio)
+      oferta.aceptar
+      estado_aceptado = Aceptado.new
+
+      expect(oferta.estado).to eq estado_aceptado
+    end
+  end
 end

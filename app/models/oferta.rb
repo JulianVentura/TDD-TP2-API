@@ -10,6 +10,10 @@ class Oferta
     Oferta.new(auto, ofertante, precio, id, estado)
   end
 
+  def aceptar
+    @estado = Aceptado.new
+  end
+
   def rechazar
     raise ErrorOfertaNoPendiente unless @estado.pendiente?
 
