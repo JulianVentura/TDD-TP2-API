@@ -8,7 +8,9 @@ module Persistence
         :pendiente => 'pendiente',
         'pendiente' => Pendiente,
         :rechazado => 'rechazado',
-        'rechazado' => Rechazado
+        'rechazado' => Rechazado,
+        :aceptado => 'aceptado',
+        'aceptado' => Aceptado
       }.freeze
 
       def existe_oferta_id(id_oferta)

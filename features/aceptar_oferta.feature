@@ -21,7 +21,6 @@ Antecedentes:
     Cuando acepto una oferta cuando el id del propietario no coincide
     Entonces recibo mensaje de error por id no coincidente
 
-  @wip
   Escenario: AO4 -  Aceptacion de oferta fallida por estado de oferta no pendiente
     Dado acepto la oferta sobre el auto de patente "ABC123"
     Cuando acepto la oferta sobre el auto de patente "ABC123"
