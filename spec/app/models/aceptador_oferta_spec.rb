@@ -36,5 +36,13 @@ describe AceptadorOferta do
         AceptadorOferta.new(repo_oferta).aceptar(id_inexistente, propietario.id)
       end.to raise_error(ErrorOfertaNoExiste)
     end
+
+    it 'deberia levantar error por usuario no coincidente' do
+      id_usuario_invalido = 9576
+
+      expect do
+        AceptadorOferta.new(repo_oferta).aceptar(@oferta.id, id_usuario_invalido)
+      end.to raise_error(ErrorOfertaUsuarioNoCoincide)
+    end
   end
 end

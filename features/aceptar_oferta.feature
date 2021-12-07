@@ -17,7 +17,6 @@ Antecedentes:
     Cuando acepto una oferta inexistente
     Entonces recibo mensaje de error por oferta inexistente
 
-  @wip
   Escenario: AO3 -  Aceptacion de oferta fallida por id no coincidente
     Cuando acepto una oferta cuando el id del propietario no coincide
     Entonces recibo mensaje de error por id no coincidente
