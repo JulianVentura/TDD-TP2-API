@@ -81,6 +81,16 @@ describe Oferta do
 
       expect(oferta.estado).to eq estado_rechazado
     end
+
+    it 'deberia lanzar error si el estado no es pendiente al aceptar' do
+      precio = 3000
+      oferta = described_class.crear(auto, ofertante, precio)
+      oferta.rechazar
+      
+      expect do
+        oferta.rechazar
+      end.to raise_error(ErrorOfertaNoPendiente)
+    end
   end
 
   context 'cuando es aceptada' do
@@ -97,7 +107,7 @@ describe Oferta do
       precio = 3000
       oferta = described_class.crear(auto, ofertante, precio)
       oferta.aceptar
-      
+
       expect do
         oferta.aceptar
       end.to raise_error(ErrorOfertaNoPendiente)
