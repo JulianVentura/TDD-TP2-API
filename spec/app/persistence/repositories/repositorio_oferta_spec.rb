@@ -82,4 +82,21 @@ describe Persistence::Repositories::RepositorioOferta do
       expect(ids).to include ofertas[0].ofertante.id
     end
   end
+
+  context 'cuando existen usuarios con un id muy grande' do
+    before :each do
+      @otro_ofertante = CreadorUsuario.new(repo_usuario).crear_usuario('Jorge', 1_234_567_890_123, 'jorge@gmail.com')
+      @otro_propietario =  CreadorUsuario.new(repo_usuario).crear_usuario('Juan', 1_234_567_890_456, 'juan@gmail.com')
+      @otro_auto = crear_auto_publicado_p2p('ABC123', @otro_propietario, creador_auto, cotizador_auto, publicador)
+      @otra_oferta = Oferta.crear(@otro_auto, @otro_ofertante, 15_000)
+    end
+
+    it 'deberia tener los mismos atributos con los que se almaceno' do
+      oferta = repo_oferta.save(@otra_oferta)
+      oferta_recuperada = repo_oferta.find(oferta.id)
+      expect(oferta_recuperada.auto.patente).to eq @otra_oferta.auto.patente
+      expect(oferta_recuperada.ofertante.id).to eq @otro_ofertante.id
+      expect(oferta_recuperada.precio).to eq 15_000
+    end
+  end
 end
