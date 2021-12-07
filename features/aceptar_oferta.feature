@@ -25,3 +25,9 @@ Antecedentes:
     Dado acepto la oferta sobre el auto de patente "ABC123"
     Cuando acepto la oferta sobre el auto de patente "ABC123"
     Entonces recibo mensaje de error por oferta no pendiente
+
+  @wip
+  Escenario: AO5 - Aceptacion de oferta deja al auto como vendido
+    Cuando acepto la oferta sobre el auto de patente "ABC123"
+    Y se listan los autos en venta
+    Entonces el auto de patente "ABC123" no se encuentra

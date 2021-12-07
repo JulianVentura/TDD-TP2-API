@@ -33,3 +33,13 @@ Cuando('acepto una oferta cuando el id del propietario no coincide') do
   @id_oferta ||= JSON.parse(@response.body)['id_oferta']
   @response = Faraday.post(aceptar_oferta_url(@id_oferta), @request_aceptar_oferta, header)
 end
+
+
+Entonces('el auto de patente {string} no se encuentra') do |patente|
+  match = false
+  @parse_response.each do |auto|
+    match |= (auto['patente'] == patente)
+  end
+
+  expect(match).to eq false
+end
