@@ -18,7 +18,7 @@ WebTemplate::App.controllers :ofertas, :provides => [:json] do
         :patente => oferta_rechazada.auto.patente,
         :id_ofertante => oferta_rechazada.ofertante.id,
         :precio => oferta_rechazada.precio,
-        :estado => oferta_rechazada.estado.estado
+        :estado => simbolo_estado_a_mensaje_oferta(oferta_rechazada.estado.estado)
       }.to_json
     rescue ErrorEnLaAPI => e
       status 400
@@ -45,7 +45,7 @@ WebTemplate::App.controllers :ofertas, :provides => [:json] do
         :patente => oferta_aceptada.auto.patente,
         :id_ofertante => oferta_aceptada.ofertante.id,
         :precio => oferta_aceptada.precio,
-        :estado => oferta_aceptada.estado.estado
+        :estado => simbolo_estado_a_mensaje_oferta(oferta_aceptada.estado.estado)
       }.to_json
     rescue ErrorEnLaAPI => e
       status 400

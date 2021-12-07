@@ -234,7 +234,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
         :patente => oferta.auto.patente,
         :id_ofertante => oferta.ofertante.id,
         :precio => oferta.precio,
-        :estado => oferta.estado.estado
+        :estado => simbolo_estado_a_mensaje_oferta(oferta.estado.estado)
       }.to_json
     rescue ErrorEnLaAPI => e
       status 400

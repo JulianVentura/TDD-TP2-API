@@ -3,7 +3,8 @@ module WebTemplate
     module HelperOferta
       ESTADOS = {
         :pendiente => 'Pendiente',
-        :rechazado => 'Rechazado'
+        :rechazado => 'Rechazado',
+        :aceptado => 'Aceptado'
       }.freeze
       def repo_oferta
         Persistence::Repositories::RepositorioOferta.new
