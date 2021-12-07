@@ -76,7 +76,7 @@ describe Persistence::Repositories::RepositorioOferta do
       otra_oferta = Oferta.crear(auto, otro_oferante, 15_000)
       otra_oferta.rechazar
       repo_oferta.save(otra_oferta)
-      ids = [ofertante.id, otro_oferante.id]
+      ids = [ofertante.id]
       ofertas = repo_oferta.buscar_por_patente_y_estado(auto.patente, Pendiente.new)
       expect(ofertas.size).to eq 1
       expect(ids).to include ofertas[0].ofertante.id

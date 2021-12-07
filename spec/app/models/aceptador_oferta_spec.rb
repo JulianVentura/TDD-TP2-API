@@ -53,5 +53,25 @@ describe AceptadorOferta do
         aceptador.aceptar(@oferta.id, id_usuario_invalido)
       end.to raise_error(ErrorOfertaUsuarioNoCoincide)
     end
+
+    context 'cuando hay otras ofertas creadas' do
+      let(:ofertante2) { creador_usuario.crear_usuario('Jose', 125, 'jose@email.com') }
+      let(:ofertante3) { creador_usuario.crear_usuario('Juana', 126, 'juana@email.com') }
+
+      before :each do
+        precio_ofertante = 2000
+        CreadorOferta.new(repo_oferta, repo_auto, repo_usuario).crear(patente, ofertante2.id, precio_ofertante)
+        CreadorOferta.new(repo_oferta, repo_auto, repo_usuario).crear(patente, ofertante3.id, precio_ofertante)
+      end
+
+      it 'deberia rechazar las ofertas no aceptadas' do
+        aceptador.aceptar(@oferta.id, propietario.id)
+
+        oferta2 = repo_oferta.buscar_por_ofertante(ofertante2.id)[0]
+        oferta3 = repo_oferta.buscar_por_ofertante(ofertante3.id)[0]
+        expect(oferta2.estado).to eq Rechazado.new
+        expect(oferta3.estado).to eq Rechazado.new
+      end
+    end
   end
 end

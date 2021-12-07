@@ -14,6 +14,11 @@ class AceptadorOferta
     oferta.aceptar
     auto.comprar
 
+    ofertas_pendientes = @repo_oferta.buscar_por_patente_y_estado(oferta.auto.patente, Pendiente.new)
+    rechazador = RechazadorOferta.new(@repo_oferta)
+    ofertas_pendientes.each do |oferta_pendiente|
+      rechazador.rechazar(oferta_pendiente.id, oferta_pendiente.obtener_id_propietario)
+    end
     @repo_auto.save(auto)
     @repo_oferta.save(oferta)
   end
