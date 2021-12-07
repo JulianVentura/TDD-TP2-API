@@ -13,7 +13,6 @@ Antecedentes:
     Cuando acepto la oferta sobre el auto de patente "ABC123"
     Entonces recibo mensaje de oferta aceptada
 
-  @wip
   Escenario: AO2 - Aceptacion de oferta fallida por oferta inexistente
     Cuando acepto una oferta inexistente
     Entonces recibo mensaje de error por oferta inexistente

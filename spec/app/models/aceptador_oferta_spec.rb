@@ -28,5 +28,13 @@ describe AceptadorOferta do
 
       expect(oferta_aceptada.estado).to eq estado_aceptado
     end
+
+    it 'deberia levantar error por oferta inexistente' do
+      id_inexistente = 546_789_132
+
+      expect do
+        AceptadorOferta.new(repo_oferta).aceptar(id_inexistente, propietario.id)
+      end.to raise_error(ErrorOfertaNoExiste)
+    end
   end
 end
