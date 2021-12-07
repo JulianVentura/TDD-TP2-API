@@ -9,7 +9,6 @@ Antecedentes:
   Y el usuario publica p2p el auto con patente "ABC123" con precio 240000"
   Y realizo una oferta de 200000 sobre el auto de patente "ABC123"
 
-  @wip
   Escenario: AO1 - Aceptacion de oferta exitosa
     Cuando acepto la oferta sobre el auto de patente "ABC123"
     Entonces recibo mensaje de oferta aceptada
