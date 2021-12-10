@@ -40,7 +40,7 @@ paths:
               email: juan@test.com
       responses:
         '201':
-          description: POST /usuarios
+          description: registro exitoso
           content:
             application/json:
               schema:
@@ -57,7 +57,148 @@ paths:
                 id: 123
                 email: juan@test.com
         '400':
-          description: POST /usuarios
+          description: Error en la API
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: "Error: Hubo un error en la API"
+  "/usuarios/{id_usuario}/ofertas":
+    get:
+      summary: GET /usuarios/{id_usuario}/ofertas
+      responses:
+        '200':
+          description: Consulta de ofertas exitosa
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  type: object
+                  properties:
+                    id_oferta:
+                      type: integer
+                    patente:
+                      type: string
+                    id_ofertante:
+                      type: integer
+                    precio:
+                      type: integer
+                    estado:
+                      type: string
+                example:
+                  - id_oferta: 23
+                    patente: ABC123
+                    id_ofertante: 123
+                    precio: 8000
+                    estado: Pendiente
+                  - id_oferta: 24
+                    patente: ABC123
+                    id_ofertante: 124
+                    precio: 9000
+                    estado: Aceptado
+        '400':
+          description: Error en la API
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: "Error: Hubo un error en la API"
+  "/ofertas/{id_oferta}/rechazar":
+    post:
+      summary: POST /ofertas/{id_oferta}/rechazar
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id_prop:
+                  type: integer
+            example:
+              id_prop: 123
+      responses:
+        '200':
+          description: Rechazo exitoso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id_oferta:
+                    type: integer
+                  patente:
+                    type: string
+                  id_ofertante:
+                    type: integer
+                  precio:
+                    type: integer
+                  estado:
+                    type: string
+              example:
+                id_oferta: 23
+                patente: ABC123
+                id_ofertante: 123
+                precio: 8000
+                estado: Rechazado
+        '400':
+          description: Error en la API
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: "Error: Hubo un error en la API"
+  "/ofertas/{id_oferta}/aceptar":
+    post:
+      summary: POST /ofertas/{id_oferta}/aceptar
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id_prop:
+                  type: integer
+            example:
+              id_prop: 123
+      responses:
+        '200':
+          description: Aceptacion exitosa
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id_oferta:
+                    type: integer
+                  patente:
+                    type: string
+                  id_ofertante:
+                    type: integer
+                  precio:
+                    type: integer
+                  estado:
+                    type: string
+              example:
+                id_oferta: 23
+                patente: ABC123
+                id_ofertante: 123
+                precio: 8000
+                estado: Aceptado
+        '400':
+          description: Error en la API
           content:
             application/json:
               schema:
