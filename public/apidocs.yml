@@ -72,7 +72,7 @@ paths:
       summary: GET /usuarios/{id_usuario}/ofertas
       responses:
         '200':
-          description: Consulta de ofertas exitosa
+          description: Consulta de ofertas realizadas exitosa
           content:
             application/json:
               schema:
@@ -112,6 +112,60 @@ paths:
                     type: string
               example:
                 error: "Error: Hubo un error en la API"
+  "/usuarios/{id_usuario}/autos":
+    get:
+      summary: GET /usuarios/{id_usuario}/autos
+      responses:
+        '200':
+          description: Consulta de autos del usuario exitosa
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    patente:
+                      type: string
+                    modelo:
+                      type: string
+                    kilometros:
+                      type: integer
+                    anio:
+                      type: integer
+                    id_prop:
+                      type: integer
+                    precio:
+                      type: integer
+                    estado:
+                      type: string
+                example:
+                  - patente: "ABC123"
+                    modelo: "Fiat Uno"
+                    kilometros: 5000
+                    anio: 2000
+                    id_prop: 1
+                    precio: 50000
+                    estado: 'Publicado'
+                  - patente: "ABC124"
+                    modelo: "Ford Focus"
+                    kilometros: 14000
+                    anio: 1994
+                    id_prop: 1
+                    precio: 60000
+                    estado: 'Publicado'
+        '400':
+          description: Error en la API
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: "Error: Hubo un error en la API"
+
   "/ofertas/{id_oferta}/rechazar":
     post:
       summary: POST /ofertas/{id_oferta}/rechazar
@@ -235,7 +289,7 @@ paths:
               id_prop: 1
       responses:
         '201':
-          description: registro exitoso
+          description: Registro exitoso
           content:
             application/json:
               schema:
@@ -256,13 +310,13 @@ paths:
                   estado:
                     type: string
               example:
-                patente: "ABC123"
-                modelo: "Fiat Uno"
+                patente: ABC123
+                modelo: Fiat Uno
                 kilometros: 10000
                 anio: 1995
                 id_prop: 1
                 precio: 0
-                estado: 'En revision'
+                estado: En revision
         '400':
           description: Error en la API
           content:
@@ -310,13 +364,13 @@ paths:
                   estado:
                     type: string
               example:
-                patente: "ABC123"
-                modelo: "Fiat Uno"
+                patente: ABC123
+                modelo: Fiat Uno
                 kilometros: 10000
                 anio: 1995
                 id_prop: 1
                 precio: 50000
-                estado: 'Cotizado'
+                estado: Cotizado
         '400':
           description: Error en la API
           content:
@@ -364,13 +418,13 @@ paths:
                   estado:
                     type: string
               example:
-                patente: "ABC123"
-                modelo: "Fiat Uno"
+                patente: ABC123
+                modelo: Fiat Uno
                 kilometros: 10000
                 anio: 1995
                 id_prop: 1
                 precio: 50000
-                estado: 'Esperando entrega'
+                estado: Esperando entrega
         '400':
           description: Error en la API
           content:
@@ -408,13 +462,13 @@ paths:
                   estado:
                     type: string
               example:
-                patente: "ABC123"
-                modelo: "Fiat Uno"
+                patente: ABC123
+                modelo: Fiat Uno
                 kilometros: 10000
                 anio: 1995
                 id_prop: 1
                 precio: 50000
-                estado: 'Publicado'
+                estado: Publicado
         '400':
           description: Error en la API
           content:
@@ -428,43 +482,51 @@ paths:
                 error: "Error: Hubo un error en la API"
   "./autos":
     # TODO: no me permite usar /autos por el POST
-    # TODO: como se muestra una lista de OpenAPI?
     get:
       summary: GET /autos
       responses:
         '200':
-          description: Listado de autos exitoso
+          description: Consulta de autos en venta exitosa
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  autos:
-                    type: object
-                    properties:
-                      patente:
-                        type: string
-                      modelo:
-                        type: string
-                      kilometros:
-                        type: integer
-                      anio:
-                        type: integer
-                      id_prop:
-                        type: integer
-                      precio:
-                        type: integer
-                      estado:
-                        type: string
-              example:
-                autos:
-                  patente: "ABC123"
-                  modelo: "Fiat Uno"
-                  kilometros: 10000
-                  anio: 1995
-                  id_prop: 1
-                  precio: 50000
-                  estado: 'Publicado'
+                type: array
+                items:
+                  type: object
+                  properties:
+                    patente:
+                      type: string
+                    modelo:
+                      type: string
+                    kilometros:
+                      type: integer
+                    anio:
+                      type: integer
+                    id_prop:
+                      type: integer
+                    precio:
+                      type: integer
+                    es_fiubak:
+                      type: bool
+                    estado:
+                      type: string
+                example:
+                  - patente: ABC123
+                    modelo: Fiat Uno
+                    kilometros: 5000
+                    anio: 2000
+                    id_prop: 1
+                    precio: 50000
+                    es_fiubak: false
+                    estado: Publicado
+                  - patente: ABC124
+                    modelo: Ford Focus
+                    kilometros: 14000
+                    anio: 1994
+                    id_prop: 2
+                    precio: 60000
+                    es_fiubak: false
+                    estado: Publicado
         '400':
           description: Error en la API
           content:
@@ -515,13 +577,13 @@ paths:
                   estado:
                     type: string
               example:
-                patente: "ABC123"
-                modelo: "Fiat Uno"
+                patente: ABC123
+                modelo: Fiat Uno
                 kilometros: 10000
                 anio: 1995
                 id_prop: 1
                 precio: 80000
-                estado: 'Publicado'
+                estado: Publicado
         '400':
           description: Error en la API
           content:
@@ -571,13 +633,13 @@ paths:
                   estado:
                     type: string
               example:
-                patente: "ABC123"
-                modelo: "Fiat Uno"
+                patente: ABC123
+                modelo: Fiat Uno
                 kilometros: 10000
                 anio: 1995
                 id_prop: 1
                 precio: 50000
-                estado: 'Vendido'
+                estado: Vendido
         '400':
           description: Error en la API
           content:
@@ -625,10 +687,10 @@ paths:
                     type: string
               example:
                 id_oferta: 1
-                patente: "ABC123"
+                patente: ABC123
                 id_ofertante: 30
                 precio: 90000
-                estado: 'Publicado'
+                estado: Publicado
         '400':
           description: Error en la API
           content:
@@ -641,37 +703,39 @@ paths:
               example:
                 error: "Error: Hubo un error en la API"
   "/autos/{patente}/ofertas":
-    # TODO: como se muestra una lista de OpenAPI?
     get:
       summary: GET /autos/{patente}/ofertas
       responses:
         '200':
-          description: Consulta de ofertas recibidas exitoso
+          description: Consulta de ofertas recibidas exitosa
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  ofertas:
-                    type: object
-                    properties:
-                      id_oferta:
-                        type: string
-                      patente:
-                        type: string
-                      id_ofertante:
-                        type: integer
-                      precio:
-                        type: integer
-                      estado:
-                        type: integer
-              example:
-                ofertas:
-                  id_oferta: 1
-                  patente: "ABC123"
-                  id_ofertante: 30
-                  precio: 90000
-                  estado: 'Publicado'
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id_oferta:
+                      type: integer
+                    patente:
+                      type: string
+                    id_ofertante:
+                      type: integer
+                    precio:
+                      type: integer
+                    estado:
+                      type: string
+                example:
+                  - id_oferta: 14
+                    patente: ABC123
+                    id_ofertante: 350
+                    precio: 80000
+                    estado: Pendiente
+                  - id_oferta: 23
+                    patente: ABC123
+                    id_ofertante: 450
+                    precio: 90000
+                    estado: Aceptado
         '400':
           description: Error en la API
           content:
