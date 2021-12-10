@@ -13,6 +13,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
                                 parametros[:id_prop]
                               )
       # output
+      logger.info("[Ingresar auto]: Se creo un auto de patente #{nuevo_auto.patente}")
       status 201
       {
         :patente => nuevo_auto.patente,
@@ -24,6 +25,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
         :estado => simbolo_estado_a_mensaje(nuevo_auto.estado.estado)
       }.to_json
     rescue ErrorEnLaAPI => e
+      logger.error("[Ingresar auto]: #{e.mensaje}")
       status 400
       {error: e.mensaje}.to_json
     end
@@ -38,6 +40,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
       autos = repo_auto.por_propietario(id_prop)
 
       # output
+      logger.info("[Listar autos]: Se listan los autos del usuario #{id_prop}")
       status 200
       respuesta = autos.map do |auto|
         {
@@ -53,6 +56,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
 
       respuesta.to_json
     rescue ErrorEnLaAPI => e
+      logger.error("[Listar autos]: #{e.mensaje}")
       status 400
       {error: e.mensaje}.to_json
     end
@@ -68,6 +72,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
       auto_cotizado = CotizadorAuto.new(repo_auto).cotizar(patente, parametros[:precio])
 
       # output
+      logger.info("[Cotizar]: Se cotiza el auto de patente #{auto_cotizado.patente} a #{auto_cotizado.precio}")
       status 200
       {
         :patente => auto_cotizado.patente,
@@ -79,6 +84,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
         :estado => simbolo_estado_a_mensaje(auto_cotizado.estado.estado)
       }.to_json
     rescue ErrorEnLaAPI => e
+      logger.error("[Cotizar]: #{e.mensaje}")
       status 400
       {error: e.mensaje}.to_json
     end
@@ -94,6 +100,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
       auto_vendido = VendedorAuto.new(repo_auto, repo_usuario).vender_a_fiubak(patente, parametros[:id_prop])
 
       # output
+      logger.info("[Vender a Fiubak]: Se vende el auto de patente #{auto_vendido.patente} a Fiubak")
       status 200
       {
         :patente => auto_vendido.patente,
@@ -105,6 +112,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
         :estado => simbolo_estado_a_mensaje(auto_vendido.estado.estado)
       }.to_json
     rescue ErrorEnLaAPI => e
+      logger.error("[Vender a Fiubak]: #{e.mensaje}")
       status 400
       {error: e.mensaje}.to_json
     end
@@ -119,7 +127,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
       auto_fiubak = EntregarLlaves.new(repo_auto, repo_usuario).entregar_llaves(patente)
 
       # output
-      # TODO: 201 ? o 200
+      logger.info("[Entregar Llaves]: Se entregan las llaves del auto de patente #{auto_fiubak.patente}")
       status 201
       {
         :patente => auto_fiubak.patente,
@@ -131,6 +139,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
         :estado => simbolo_estado_a_mensaje(auto_fiubak.estado.estado)
       }.to_json
     rescue ErrorEnLaAPI => e
+      logger.error("[Entregar Llaves]: #{e.mensaje}")
       status 400
       {error: e.mensaje}.to_json
     end
@@ -141,6 +150,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
       # base de datos
       autos = ListadorAutos.new(repo_auto).listar_publicado
       # output
+      logger.info("[Listar en venta]: Se listan los autos en venta")
       status 200
       respuesta = autos.map do |auto|
         {
@@ -157,6 +167,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
 
       respuesta.to_json
     rescue ErrorEnLaAPI => e
+      logger.error("[Listar en venta]: #{e.mensaje}")
       status 400
       {error: e.mensaje}.to_json
     end
@@ -172,6 +183,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
       auto_fiubak = PublicadorP2P.new(repo_auto, repo_usuario).publicar_p2p(patente, parametros[:id_prop], parametros[:precio])
 
       # output
+      logger.info("[Publicar P2P]: Se publica en P2P el auto de patente #{auto_fiubak.patente} a $#{auto_fiubak.precio}")
       status 200
       {
         :patente => auto_fiubak.patente,
@@ -183,6 +195,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
         :estado => simbolo_estado_a_mensaje(auto_fiubak.estado.estado)
       }.to_json
     rescue ErrorEnLaAPI => e
+      logger.error("[Publicar P2P]: #{e.mensaje}")
       status 400
       {error: e.mensaje}.to_json
     end
@@ -198,6 +211,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
       auto_fiubak = Comprador.new(repo_auto, repo_usuario).comprar(patente, parametros[:id_comprador])
 
       # output
+      logger.info("[Comprar a Fiubak]: Se compra a Fiubak el auto de patente #{auto_fiubak.patente}")
       status 200
       {
         :patente => auto_fiubak.patente,
@@ -209,6 +223,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
         :estado => simbolo_estado_a_mensaje(auto_fiubak.estado.estado)
       }.to_json
     rescue ErrorEnLaAPI => e
+      logger.error("[Comprar a Fiubak]: #{e.mensaje}")
       status 400
       {error: e.mensaje}.to_json
     end
@@ -228,6 +243,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
       )
 
       # output
+      logger.info("[Realizar oferta]: Se realiza una oferta de $#{oferta.precio} sobre el auto de patente #{oferta.auto.patente}")
       status 200
       {
         :id_oferta => oferta.id,
@@ -237,6 +253,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
         :estado => simbolo_estado_a_mensaje_oferta(oferta.estado.estado)
       }.to_json
     rescue ErrorEnLaAPI => e
+      logger.error("[Realizar oferta]: #{e.mensaje}")
       status 400
       {error: e.mensaje}.to_json
     end
@@ -255,6 +272,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
       )
 
       # output
+      logger.info("[Consultar ofertas recibidas]: Se consultan las ofertas recibidas del auto de patente #{patente}")
       status 200
       respuesta = ofertas.map do |oferta|
         {
@@ -267,6 +285,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
       end
       respuesta.to_json
     rescue ErrorEnLaAPI => e
+      logger.error("[Consultar ofertas recibidas]: #{e.mensaje}")
       status 400
       {error: e.mensaje}.to_json
     end

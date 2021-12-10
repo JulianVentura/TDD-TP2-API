@@ -12,6 +12,7 @@ WebTemplate::App.controllers :ofertas, :provides => [:json] do
       )
 
       # output
+      logger.info("[Rechazar oferta]: Se rechaza la oferta de id #{id_oferta}")
       status 200
       {
         :id_oferta => oferta_rechazada.id,
@@ -21,6 +22,7 @@ WebTemplate::App.controllers :ofertas, :provides => [:json] do
         :estado => simbolo_estado_a_mensaje_oferta(oferta_rechazada.estado.estado)
       }.to_json
     rescue ErrorEnLaAPI => e
+      logger.error("[Rechazar oferta]: #{e.mensaje}")
       status 400
       {error: e.mensaje}.to_json
     end
@@ -39,6 +41,7 @@ WebTemplate::App.controllers :ofertas, :provides => [:json] do
       )
 
       # output
+      logger.info("[Aceptar oferta]: Se acepta la oferta de id #{id_oferta}")
       status 200
       {
         :id_oferta => oferta_aceptada.id,
@@ -48,6 +51,7 @@ WebTemplate::App.controllers :ofertas, :provides => [:json] do
         :estado => simbolo_estado_a_mensaje_oferta(oferta_aceptada.estado.estado)
       }.to_json
     rescue ErrorEnLaAPI => e
+      logger.error("[Aceptar oferta]: #{e.mensaje}")
       status 400
       {error: e.mensaje}.to_json
     end
