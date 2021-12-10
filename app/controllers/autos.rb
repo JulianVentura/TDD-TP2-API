@@ -31,39 +31,6 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
     end
   end
 
-  get :listar, :map => '/usuarios/:id_prop/autos' do
-    begin
-      # TODO: mover a usuarios.rb
-
-      # input
-      id_prop = params[:id_prop].to_i
-
-      # base de datos
-      autos = repo_auto.por_propietario(id_prop)
-
-      # output
-      logger.info("[Listar autos]: Se listan los autos del usuario #{id_prop}")
-      status 200
-      respuesta = autos.map do |auto|
-        {
-          :patente => auto.patente,
-          :modelo => auto.modelo,
-          :kilometros => auto.kilometros,
-          :anio => auto.anio,
-          :id_prop => auto.usuario.id,
-          :precio => auto.precio,
-          :estado => simbolo_estado_a_mensaje(auto.estado.estado)
-        }
-      end
-
-      respuesta.to_json
-    rescue ErrorEnLaAPI => e
-      logger.error("[Listar autos]: #{e.mensaje}")
-      status 400
-      {error: e.mensaje}.to_json
-    end
-  end
-
   patch :cotizar, :map => '/autos/:patente/cotizar' do
     begin
       # input
