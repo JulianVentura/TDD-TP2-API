@@ -208,3 +208,384 @@ paths:
                     type: string
               example:
                 error: "Error: Hubo un error en la API"
+  "/autos":
+    post:
+      summary: POST /autos
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                patente:
+                  type: string
+                modelo:
+                  type: string
+                kilometros:
+                  type: integer
+                anio:
+                  type: integer
+                id_prop:
+                  type: integer
+            example:
+              patente: "ABC123"
+              modelo: "Fiat Uno"
+              kilometros: 10000
+              anio: 1995
+              id_prop: 1
+      responses:
+        '201':
+          description: registro exitoso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  patente:
+                    type: string
+                  modelo:
+                    type: string
+                  kilometros:
+                    type: integer
+                  anio:
+                    type: integer
+                  id_prop:
+                    type: integer
+                  precio:
+                    type: integer
+                  estado:
+                    type: string
+              example:
+                patente: "ABC123"
+                modelo: "Fiat Uno"
+                kilometros: 10000
+                anio: 1995
+                id_prop: 1
+                precio: 0
+                estado: 'En revision'
+        '400':
+          description: Error en la API
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: "Error: Hubo un error en la API"
+  "/autos/{patente}/cotizar":
+    patch:
+      summary: PATCH /autos/{patente}/cotizar
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                precio:
+                  type: integer
+            example:
+              precio: 50000
+      responses:
+        '200':
+          description: Cotizacion exitosa
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  patente:
+                    type: string
+                  modelo:
+                    type: string
+                  kilometros:
+                    type: integer
+                  anio:
+                    type: integer
+                  id_prop:
+                    type: integer
+                  precio:
+                    type: integer
+                  estado:
+                    type: string
+              example:
+                patente: "ABC123"
+                modelo: "Fiat Uno"
+                kilometros: 10000
+                anio: 1995
+                id_prop: 1
+                precio: 50000
+                estado: 'Cotizado'
+        '400':
+          description: Error en la API
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: "Error: Hubo un error en la API"
+  "/autos/{patente}/vender_a_fiubak":
+    post:
+      summary: POST /autos/{patente}/vender_a_fiubak
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id_prop:
+                  type: integer
+            example:
+              id_prop: 1
+      responses:
+        '200':
+          description: Venta a Fiubak exitosa
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  patente:
+                    type: string
+                  modelo:
+                    type: string
+                  kilometros:
+                    type: integer
+                  anio:
+                    type: integer
+                  id_prop:
+                    type: integer
+                  precio:
+                    type: integer
+                  estado:
+                    type: string
+              example:
+                patente: "ABC123"
+                modelo: "Fiat Uno"
+                kilometros: 10000
+                anio: 1995
+                id_prop: 1
+                precio: 50000
+                estado: 'Esperando entrega'
+        '400':
+          description: Error en la API
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: "Error: Hubo un error en la API"
+  "/autos/{patente}/entregar_llaves":
+    post:
+      summary: POST /autos/{patente}/entregar_llaves
+      responses:
+        '200':
+          description: Entrega de llaves exitosa
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  patente:
+                    type: string
+                  modelo:
+                    type: string
+                  kilometros:
+                    type: integer
+                  anio:
+                    type: integer
+                  id_prop:
+                    type: integer
+                  precio:
+                    type: integer
+                  estado:
+                    type: string
+              example:
+                patente: "ABC123"
+                modelo: "Fiat Uno"
+                kilometros: 10000
+                anio: 1995
+                id_prop: 1
+                precio: 50000
+                estado: 'Publicado'
+        '400':
+          description: Error en la API
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: "Error: Hubo un error en la API"
+  "./autos":
+    # TODO: no me permite usar /autos por el POST
+    # TODO: como se muestra una lista de OpenAPI?
+    get:
+      summary: GET /autos
+      responses:
+        '200':
+          description: Listado de autos exitoso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  autos:
+                    type: object
+                    properties:
+                      patente:
+                        type: string
+                      modelo:
+                        type: string
+                      kilometros:
+                        type: integer
+                      anio:
+                        type: integer
+                      id_prop:
+                        type: integer
+                      precio:
+                        type: integer
+                      estado:
+                        type: string
+              example:
+                autos:
+                  patente: "ABC123"
+                  modelo: "Fiat Uno"
+                  kilometros: 10000
+                  anio: 1995
+                  id_prop: 1
+                  precio: 50000
+                  estado: 'Publicado'
+        '400':
+          description: Error en la API
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: "Error: Hubo un error en la API"
+  "/autos/{patente}/publicar_p2p":
+    post:
+      summary: POST /autos/{patente}/publicar_p2p
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id_prop:
+                  type: integer
+                precio:
+                  type: integer
+            example:
+              id_prop: 1
+              precio: 80000
+      responses:
+        '200':
+          description: Publicacion p2p exitosa
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  patente:
+                    type: string
+                  modelo:
+                    type: string
+                  kilometros:
+                    type: integer
+                  anio:
+                    type: integer
+                  id_prop:
+                    type: integer
+                  precio:
+                    type: integer
+                  estado:
+                    type: string
+              example:
+                patente: "ABC123"
+                modelo: "Fiat Uno"
+                kilometros: 10000
+                anio: 1995
+                id_prop: 1
+                precio: 80000
+                estado: 'Publicado'
+        '400':
+          description: Error en la API
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: "Error: Hubo un error en la API"
+  "/autos/{patente}/comprar":
+    post:
+      summary: POST /autos/{patente}/comprar
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id_comprador:
+                  type: integer
+                precio:
+                  type: integer
+            example:
+              id_comprador: 24
+      responses:
+        '200':
+          description: Compra a Fiubak exitosa
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  patente:
+                    type: string
+                  modelo:
+                    type: string
+                  kilometros:
+                    type: integer
+                  anio:
+                    type: integer
+                  id_prop:
+                    type: integer
+                  precio:
+                    type: integer
+                  estado:
+                    type: string
+              example:
+                patente: "ABC123"
+                modelo: "Fiat Uno"
+                kilometros: 10000
+                anio: 1995
+                id_prop: 1
+                precio: 50000
+                estado: 'Vendido'
+        '400':
+          description: Error en la API
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: "Error: Hubo un error en la API"

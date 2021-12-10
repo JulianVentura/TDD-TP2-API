@@ -33,6 +33,8 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
 
   get :listar, :map => '/usuarios/:id_prop/autos' do
     begin
+      # TODO: mover a usuarios.rb
+
       # input
       id_prop = params[:id_prop].to_i
 
