@@ -589,3 +589,97 @@ paths:
                     type: string
               example:
                 error: "Error: Hubo un error en la API"
+  "/autos/{patente}/realizar_oferta":
+    post:
+      summary: POST /autos/{patente}/realizar_oferta
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id_ofertante:
+                  type: integer
+                precio:
+                  type: integer
+            example:
+              id_ofertante: 30
+              precio: 90000
+      responses:
+        '200':
+          description: Realizacion de oferta exitosa
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id_oferta:
+                    type: string
+                  patente:
+                    type: string
+                  id_ofertante:
+                    type: integer
+                  precio:
+                    type: integer
+                  estado:
+                    type: string
+              example:
+                id_oferta: 1
+                patente: "ABC123"
+                id_ofertante: 30
+                precio: 90000
+                estado: 'Publicado'
+        '400':
+          description: Error en la API
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: "Error: Hubo un error en la API"
+  "/autos/{patente}/ofertas":
+    # TODO: como se muestra una lista de OpenAPI?
+    get:
+      summary: GET /autos/{patente}/ofertas
+      responses:
+        '200':
+          description: Consulta de ofertas recibidas exitoso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ofertas:
+                    type: object
+                    properties:
+                      id_oferta:
+                        type: string
+                      patente:
+                        type: string
+                      id_ofertante:
+                        type: integer
+                      precio:
+                        type: integer
+                      estado:
+                        type: integer
+              example:
+                ofertas:
+                  id_oferta: 1
+                  patente: "ABC123"
+                  id_ofertante: 30
+                  precio: 90000
+                  estado: 'Publicado'
+        '400':
+          description: Error en la API
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: "Error: Hubo un error en la API"
