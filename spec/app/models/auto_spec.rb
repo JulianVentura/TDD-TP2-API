@@ -30,42 +30,36 @@ describe Auto do
   end
 
   context 'cuando ya esta creado' do
-    # TODO: meter aca nuevo_auto como un let
+    let(:un_auto){described_class.crear('AA752OH', 'Fiat', 40_000, 1999, un_usuario)}
     it 'deberia actualizar su precio al cotizarse' do
-      nuevo_auto = described_class.crear('AA752OH', 'Fiat', 40_000, 1999, un_usuario)
-      nuevo_auto.cotizar(10_000)
-      expect(nuevo_auto.precio).to eq 10_000
+      un_auto.cotizar(10_000)
+      expect(un_auto.precio).to eq 10_000
     end
 
     it 'deberia fallar al llamar publicarp2p si el auto no esta cotizado' do
-      nuevo_auto = described_class.crear('AA752OH', 'Fiat', 40_000, 1999, un_usuario)
       precio_p2p = 5000
       expect do
-        nuevo_auto.publicar_p2p(precio_p2p)
+        un_auto.publicar_p2p(precio_p2p)
       end.to raise_error(ErrorAutoNoCotizado)
     end
 
     it 'deberia fallar al llamar vender_a_fiubak si el auto no esta cotizado' do
-      nuevo_auto = described_class.crear('AA752OH', 'Fiat', 40_000, 1999, un_usuario)
       expect do
-        nuevo_auto.vender_a_fiubak
+        un_auto.vender_a_fiubak
       end.to raise_error(ErrorAutoNoCotizado)
     end
 
     it 'deberia lanzar un error al llamar a esta_publicado? cuando no se encuentra publicado' do
-      nuevo_auto = described_class.crear('AA752OH', 'Fiat', 40_000, 1999, un_usuario)
       expect do
-        nuevo_auto.esta_publicado?
+        un_auto.esta_publicado?
       end.to raise_error(ErrorAutoNoEstaPublicado)
     end
 
     it 'el usuario deberia ser particular' do
-      nuevo_auto = described_class.crear('AA752OH', 'Fiat', 40_000, 1999, un_usuario)
-      expect(nuevo_auto.propietario_es_particular?).to eq true
+      expect(un_auto.propietario_es_particular?).to eq true
     end
 
     context 'cuando esta cotizado' do
-      let(:un_auto) { described_class.crear('AA752OH', 'Fiat', 40_000, 1999, un_usuario) }
       let(:precio) { 10_000 }
 
       before :each do
