@@ -71,3 +71,13 @@ Entonces('recibo mensaje de error por ofertar mas de una vez') do
 
   expect(respuesta['error']).to eq 'Error: No se puede realizar una oferta mas de una vez'
 end
+
+Dado('el vendedor me rechaza la oferta') do
+  
+  body_rechazo = {
+    :id_prop => id_falso
+  }.to_json
+
+  id_oferta = JSON.parse(@response.body)['id_oferta']
+  Faraday.post(rechazar_oferta_url(id_oferta), body_rechazo, header)
+end

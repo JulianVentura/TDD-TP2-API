@@ -32,3 +32,9 @@ Característica: Realizar oferta
     Cuando realizo una oferta de 1000 sobre el auto de patente "ABC123"
     Y realizo una oferta de 5000 sobre el auto de patente "ABC123"
     Entonces recibo mensaje de error por ofertar mas de una vez
+
+  Escenario: RO7 - Realizacion de oferta exitosa despues de rechazada la anterior
+    Dado realizo una oferta de 1000 sobre el auto de patente "ABC123"
+    Y el vendedor me rechaza la oferta
+    Cuando realizo una oferta de 2000 sobre el auto de patente "ABC123"
+    Entonces recibo mensaje de oferta exitosa
