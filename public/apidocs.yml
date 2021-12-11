@@ -19,6 +19,39 @@ paths:
                     type: string
               example:
                 message: reset ok
+  "/health":
+    post:
+      summary: GET /health
+      responses:
+        '200':
+          description: Version y status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  version:
+                    type: string
+              example:
+                status: ok
+                version: 0.12.0
+  "/health/version":
+    post:
+      summary: GET /health/version
+      responses:
+        '200':
+          description: Version
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  version:
+                    type: string
+              example:
+                version: 0.12.0
   "/usuarios":
     post:
       summary: POST /usuarios
@@ -328,6 +361,62 @@ paths:
                     type: string
               example:
                 error: "Error: Hubo un error en la API"
+    get:
+      summary: GET /autos
+      responses:
+        '200':
+          description: Consulta de autos en venta exitosa
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    patente:
+                      type: string
+                    modelo:
+                      type: string
+                    kilometros:
+                      type: integer
+                    anio:
+                      type: integer
+                    id_prop:
+                      type: integer
+                    precio:
+                      type: integer
+                    es_fiubak:
+                      type: bool
+                    estado:
+                      type: string
+                example:
+                  - patente: ABC123
+                    modelo: Fiat Uno
+                    kilometros: 5000
+                    anio: 2000
+                    id_prop: 1
+                    precio: 50000
+                    es_fiubak: false
+                    estado: Publicado
+                  - patente: ABC124
+                    modelo: Ford Focus
+                    kilometros: 14000
+                    anio: 1994
+                    id_prop: 2
+                    precio: 60000
+                    es_fiubak: false
+                    estado: Publicado
+        '400':
+          description: Error en la API
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: "Error: Hubo un error en la API"
   "/autos/{patente}/cotizar":
     patch:
       summary: PATCH /autos/{patente}/cotizar
@@ -469,64 +558,6 @@ paths:
                 id_prop: 1
                 precio: 50000
                 estado: Publicado
-        '400':
-          description: Error en la API
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-              example:
-                error: "Error: Hubo un error en la API"
-  "./autos":
-    # TODO: no me permite usar /autos por el POST
-    get:
-      summary: GET /autos
-      responses:
-        '200':
-          description: Consulta de autos en venta exitosa
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    patente:
-                      type: string
-                    modelo:
-                      type: string
-                    kilometros:
-                      type: integer
-                    anio:
-                      type: integer
-                    id_prop:
-                      type: integer
-                    precio:
-                      type: integer
-                    es_fiubak:
-                      type: bool
-                    estado:
-                      type: string
-                example:
-                  - patente: ABC123
-                    modelo: Fiat Uno
-                    kilometros: 5000
-                    anio: 2000
-                    id_prop: 1
-                    precio: 50000
-                    es_fiubak: false
-                    estado: Publicado
-                  - patente: ABC124
-                    modelo: Ford Focus
-                    kilometros: 14000
-                    anio: 1994
-                    id_prop: 2
-                    precio: 60000
-                    es_fiubak: false
-                    estado: Publicado
         '400':
           description: Error en la API
           content:
