@@ -81,3 +81,12 @@ Dado('el vendedor me rechaza la oferta') do
   id_oferta = JSON.parse(@response.body)['id_oferta']
   Faraday.post(rechazar_oferta_url(id_oferta), body_rechazo, header)
 end
+
+Dado('el vendedor me la acepta') do
+  body_acepto = {
+    :id_prop => id_falso
+  }.to_json
+
+  id_oferta = JSON.parse(@response.body)['id_oferta']
+  Faraday.post(aceptar_oferta_url(id_oferta), body_acepto, header)
+end

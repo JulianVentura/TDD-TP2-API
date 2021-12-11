@@ -38,3 +38,9 @@ Característica: Realizar oferta
     Y el vendedor me rechaza la oferta
     Cuando realizo una oferta de 2000 sobre el auto de patente "ABC123"
     Entonces recibo mensaje de oferta exitosa
+
+  Escenario: RO8 - Realizacion de oferta fallida por oferta aceptada
+    Dado realizo una oferta de 1000 sobre el auto de patente "ABC123"
+    Y el vendedor me la acepta
+    Cuando realizo una oferta de 2000 sobre el auto de patente "ABC123"
+    Entonces recibo mensaje de error por publicacion inexistente
