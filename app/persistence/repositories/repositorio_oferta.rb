@@ -17,8 +17,12 @@ module Persistence
         !dataset.first(id: id_oferta).nil?
       end
 
-      def existe_oferta_usuario_auto(id_ofertante, patente)
-        dataset.where(Sequel.lit('patente ILIKE ?', patente) & Sequel.lit('id_ofertante = ?', id_ofertante)).map.count >= 1
+      def existe_oferta_usuario_auto_estado(id_ofertante, patente, estado)
+        dataset.where(
+          Sequel.lit('patente ILIKE ?', patente) & 
+          Sequel.lit('id_ofertante = ?', id_ofertante) & 
+          Sequel.lit('estado ILIKE ?', ESTADOS[estado.estado])
+        ).map.count >= 1
       end
 
       def buscar_por_patente(patente)

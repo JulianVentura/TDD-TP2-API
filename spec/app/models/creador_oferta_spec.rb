@@ -35,6 +35,18 @@ describe CreadorOferta do
       end.to raise_error(ErrorUsuarioInexistente)
     end
 
+    it('deberia crearse exitosamente si la primera fue rechazada') do
+      precio_ofertante = 13_000
+      
+      oferta = described_class.new(repo_oferta, repo_auto, repo_usuario).crear(patente, ofertante.id, precio_ofertante)
+      RechazadorOferta.new(repo_oferta).rechazar(oferta.id, propietario.id)
+      segunda_oferta = described_class.new(repo_oferta, repo_auto, repo_usuario).crear(patente, ofertante.id, precio_ofertante)
+      
+      expect(segunda_oferta.auto.patente).to eq patente
+      expect(segunda_oferta.precio).to eq precio_ofertante
+      expect(segunda_oferta.ofertante.id).to eq ofertante.id
+    end
+
     it('deberia fallar si se realiza una segunda oferta') do
       precio_ofertante = 13_000
       described_class.new(repo_oferta, repo_auto, repo_usuario).crear(patente, ofertante.id, precio_ofertante)

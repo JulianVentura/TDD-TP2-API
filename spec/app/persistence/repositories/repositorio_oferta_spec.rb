@@ -36,13 +36,13 @@ describe Persistence::Repositories::RepositorioOferta do
       repo_oferta.save(una_oferta)
     end
 
-    it 'existe_oferta_usuario_auto deberia devolver true si existe la oferta' do
-      expect(repo_oferta.existe_oferta_usuario_auto(ofertante.id, auto.patente)).to eq true
+    it 'existe_oferta_usuario_auto_estado deberia devolver true si existe la oferta' do
+      expect(repo_oferta.existe_oferta_usuario_auto_estado(ofertante.id, auto.patente, Pendiente.new)).to eq true
     end
 
-    it 'existe_oferta_usuario_auto deberia ser case insensitive para la patente' do
+    it 'existe_oferta_usuario_auto_estado deberia ser case insensitive para la patente' do
       patente_downcase = auto.patente.downcase
-      expect(repo_oferta.existe_oferta_usuario_auto(ofertante.id, patente_downcase)).to eq true
+      expect(repo_oferta.existe_oferta_usuario_auto_estado(ofertante.id, patente_downcase, Pendiente.new)).to eq true
     end
 
     it 'deberia existir esa oferta por id' do
