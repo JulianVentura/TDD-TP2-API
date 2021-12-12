@@ -66,7 +66,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
       parametros = parametros_simbolizados
 
       # modelo
-      auto_vendido = VendedorAuto.new(repo_auto, repo_usuario).vender_a_fiubak(patente, parametros[:id_prop])
+      auto_vendido = VendedorAuto.new(repo_auto, repo_usuario, repo_compra).vender_a_fiubak(patente, parametros[:id_prop])
 
       # output
       logger.info("[Vender a Fiubak]: Se vende el auto de patente #{auto_vendido.patente} a Fiubak")

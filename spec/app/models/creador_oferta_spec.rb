@@ -75,7 +75,8 @@ describe CreadorOferta do
   context 'ya existe un auto publicado por fiubak' do
     let(:patente_fiubak) { 'AB333BH' }
     let(:ex_propietario) { creador_usuario.crear_usuario('Pedro', 455, 'pedro@email.com') }
-    let(:vendedor_auto) { VendedorAuto.new(repo_auto, repo_usuario) }
+    let(:repo_compra) { Persistence::Repositories::RepositorioCompra.new }
+    let(:vendedor_auto) { VendedorAuto.new(repo_auto, repo_usuario, repo_compra) }
     let(:entregar_llaves) { EntregarLlaves.new(repo_auto, repo_usuario) }
 
     before :each do

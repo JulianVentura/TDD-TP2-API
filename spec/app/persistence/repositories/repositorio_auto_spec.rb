@@ -98,7 +98,8 @@ describe Persistence::Repositories::RepositorioAuto do
     let(:otro_usuario) { Usuario.new('jorge', 13_159, 'jorgito@gmail.com') }
     let(:creador_auto) { CreadorAuto.new(repo_auto, repo_usuario) }
     let(:cotizador_auto) { CotizadorAuto.new(repo_auto) }
-    let(:vendedor_auto) { VendedorAuto.new(repo_auto, repo_usuario) }
+    let(:repo_compra) { Persistence::Repositories::RepositorioCompra.new }
+    let(:vendedor_auto) { VendedorAuto.new(repo_auto, repo_usuario, repo_compra) }
     let(:entrega_llaves) { EntregarLlaves.new(repo_auto, repo_usuario) }
 
     before :each do

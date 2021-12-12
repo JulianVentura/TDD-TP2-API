@@ -3,6 +3,7 @@ require 'spec_helper'
 describe VendedorAuto do
   let(:repo_usuario) { Persistence::Repositories::RepositorioUsuario.new }
   let(:repo_auto) { Persistence::Repositories::RepositorioAuto.new }
+  let(:repo_compra) { Persistence::Repositories::RepositorioCompra.new }
   let(:creador_auto) { CreadorAuto.new(repo_auto, repo_usuario) }
   let(:creador_usuario) { CreadorUsuario.new(repo_usuario) }
   let(:cotizador_auto) { CotizadorAuto.new(repo_auto) }
@@ -22,7 +23,7 @@ describe VendedorAuto do
     end
 
     it 'deberia cambiar su estado al vender un auto a fiubak' do
-      auto_vendido = described_class.new(repo_auto, repo_usuario).vender_a_fiubak(patente, propietario.id)
+      auto_vendido = described_class.new(repo_auto, repo_usuario, repo_compra).vender_a_fiubak(patente, propietario.id)
       estado_esperado = EsperandoEntrega.new
       expect(auto_vendido.estado).to eq estado_esperado
     end
@@ -30,14 +31,14 @@ describe VendedorAuto do
     it 'deberia dar error si el usuario no es el propietario del auto' do
       no_propietario = creador_usuario.crear_usuario('NoJuan', 555, 'nojuan@email.com')
       expect do
-        described_class.new(repo_auto, repo_usuario).vender_a_fiubak(patente, no_propietario.id)
-      end.to raise_error(ErrorUsuarioNoEsElPropietario)
+        described_class.new(repo_auto, repo_usuario, repo_compra).vender_a_fiubak(patente, no_propietario.id)
+      end.to raise_error(ErrorVendedorNoEsElPropietario)
     end
 
     it 'deberia dar error si el auto no existe' do
       patente_no_existente = 'ABC123'
       expect do
-        described_class.new(repo_auto, repo_usuario).vender_a_fiubak(patente_no_existente, propietario.id)
+        described_class.new(repo_auto, repo_usuario, repo_compra).vender_a_fiubak(patente_no_existente, propietario.id)
       end.to raise_error(ErrorAutoNoExiste)
     end
 
@@ -48,7 +49,7 @@ describe VendedorAuto do
       kilometros = 4000
       creador_auto.crear_auto(patente, modelo, anio, kilometros, propietario.id)
       expect do
-        described_class.new(repo_auto, repo_usuario).vender_a_fiubak(patente, propietario.id)
+        described_class.new(repo_auto, repo_usuario, repo_compra).vender_a_fiubak(patente, propietario.id)
       end.to raise_error(ErrorAutoNoCotizado)
     end
   end

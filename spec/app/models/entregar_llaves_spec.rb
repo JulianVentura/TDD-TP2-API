@@ -3,10 +3,11 @@ require 'spec_helper'
 describe EntregarLlaves do
   let(:repo_usuario) { Persistence::Repositories::RepositorioUsuario.new }
   let(:repo_auto) { Persistence::Repositories::RepositorioAuto.new }
+  let(:repo_compra) { Persistence::Repositories::RepositorioCompra.new }
   let(:creador_auto) { CreadorAuto.new(repo_auto, repo_usuario) }
   let(:creador_usuario) { CreadorUsuario.new(repo_usuario) }
   let(:cotizador_auto) { CotizadorAuto.new(repo_auto) }
-  let(:vendedor_auto) { VendedorAuto.new(repo_auto, repo_usuario) }
+  let(:vendedor_auto) { VendedorAuto.new(repo_auto, repo_usuario, repo_compra) }
 
   context 'ya existe un auto vendido a fiubak' do
     let(:patente) { 'AA752OH' }
