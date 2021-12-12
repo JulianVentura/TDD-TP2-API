@@ -1,4 +1,4 @@
-require_relative 'estado'
+require_relative 'estado_auto'
 
 class Auto
   attr_reader :modelo, :kilometros, :anio, :usuario, :estado, :updated_on, :created_on, :precio

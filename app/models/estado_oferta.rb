@@ -1,7 +1,4 @@
 class EstadoOferta
-  def initialize(estado)
-    @estado = estado
-  end
 
   def ==(other)
     other.estado == @estado
@@ -12,6 +9,12 @@ class EstadoOferta
   end
 
   attr_reader :estado
+
+  protected
+
+  def initialize(estado)
+    @estado = estado
+  end
 end
 
 class Pendiente < EstadoOferta

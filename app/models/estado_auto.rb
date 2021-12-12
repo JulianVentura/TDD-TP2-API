@@ -1,7 +1,4 @@
-class Estado
-  def initialize(estado)
-    @estado = estado
-  end
+class EstadoAuto
 
   def cotizar(_precio)
     raise ErrorNoCotizable
@@ -24,9 +21,15 @@ class Estado
   end
 
   attr_reader :estado
+
+  protected
+  
+  def initialize(estado)
+    @estado = estado
+  end
 end
 
-class EnRevision < Estado
+class EnRevision < EstadoAuto
   def initialize
     super(:en_revision)
   end
@@ -36,7 +39,7 @@ class EnRevision < Estado
   end
 end
 
-class Cotizado < Estado
+class Cotizado < EstadoAuto
   def initialize
     super(:cotizado)
   end
@@ -46,7 +49,7 @@ class Cotizado < Estado
   end
 end
 
-class EsperandoEntrega < Estado
+class EsperandoEntrega < EstadoAuto
   def initialize
     super(:esperando_entrega)
   end
@@ -56,7 +59,7 @@ class EsperandoEntrega < Estado
   end
 end
 
-class Publicado < Estado
+class Publicado < EstadoAuto
   def initialize
     super(:publicado)
   end
@@ -66,7 +69,7 @@ class Publicado < Estado
   end
 end
 
-class Vendido < Estado
+class Vendido < EstadoAuto
   def initialize
     super(:vendido)
   end
