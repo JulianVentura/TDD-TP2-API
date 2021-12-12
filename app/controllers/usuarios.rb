@@ -9,7 +9,7 @@ WebTemplate::App.controllers :usuarios, :provides => [:json] do
       logger.info("[Registrar usuario]: Se registra el usuario de nombre #{nuevo_usuario.nombre} y email #{nuevo_usuario.email}")
       status 201
       {:id => nuevo_usuario.id, :nombre => nuevo_usuario.nombre, :email => nuevo_usuario.email}.to_json
-    rescue ErrorEnLaAPI => e
+    rescue ErrorDeNegocio => e
       logger.error("[Registrar usuario]: #{e.mensaje}")
       status 400
       {error: e.mensaje}.to_json
@@ -40,7 +40,7 @@ WebTemplate::App.controllers :usuarios, :provides => [:json] do
       end
 
       respuesta.to_json
-    rescue ErrorEnLaAPI => e
+    rescue ErrorDeNegocio => e
       logger.error("[Listar autos]: #{e.mensaje}")
       status 400
       {error: e.mensaje}.to_json
@@ -68,7 +68,7 @@ WebTemplate::App.controllers :usuarios, :provides => [:json] do
         }
       end
       respuesta.to_json
-    rescue ErrorEnLaAPI => e
+    rescue ErrorDeNegocio => e
       logger.error("[Consultar ofertas realizadas]: #{e.mensaje}")
       status 400
       {error: e.mensaje}.to_json

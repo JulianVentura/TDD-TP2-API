@@ -1,4 +1,4 @@
-class ErrorEnLaAPI < StandardError
+class ErrorDeNegocio < StandardError
   def initialize(mensaje)
     @mensaje = mensaje
     super()
@@ -7,153 +7,153 @@ class ErrorEnLaAPI < StandardError
   attr_reader :mensaje
 end
 
-class ErrorIdRepetido < ErrorEnLaAPI
+class ErrorIdRepetido < ErrorDeNegocio
   def initialize
     mensaje = 'Error: Ya estas registrado'
     super(mensaje)
   end
 end
 
-class ErrorEmailRepetido < ErrorEnLaAPI
+class ErrorEmailRepetido < ErrorDeNegocio
   def initialize
     mensaje = 'Error: Ya existe un usuario con ese email'
     super(mensaje)
   end
 end
 
-class ErrorFaltanArgumentos < ErrorEnLaAPI
+class ErrorFaltanArgumentos < ErrorDeNegocio
   def initialize
     mensaje = 'Error: Faltan argumentos'
     super(mensaje)
   end
 end
 
-class ErrorUsuarioInexistente < ErrorEnLaAPI
+class ErrorUsuarioInexistente < ErrorDeNegocio
   def initialize
     super('Error: Usuario inexistente')
   end
 end
 
-class ErrorPatenteRepetida < ErrorEnLaAPI
+class ErrorPatenteRepetida < ErrorDeNegocio
   def initialize
     mensaje = 'Error: Auto con patente ya registrada'
     super(mensaje)
   end
 end
 
-class ErrorNoCotizable < ErrorEnLaAPI
+class ErrorNoCotizable < ErrorDeNegocio
   def initialize
     mensaje = 'Error: Auto no cotizable'
     super(mensaje)
   end
 end
 
-class ErrorAutoNoExiste < ErrorEnLaAPI
+class ErrorAutoNoExiste < ErrorDeNegocio
   def initialize
     mensaje = 'Error: Auto no existe'
     super(mensaje)
   end
 end
 
-class ErrorUsuarioNoEsElPropietario < ErrorEnLaAPI
+class ErrorUsuarioNoEsElPropietario < ErrorDeNegocio
   def initialize
     mensaje = 'Error: Usuario no es el propietario del auto'
     super(mensaje)
   end
 end
 
-class ErrorAutoNoEsperaEntregaLlaves < ErrorEnLaAPI
+class ErrorAutoNoEsperaEntregaLlaves < ErrorDeNegocio
   def initialize
     mensaje = 'Error: Auto no espera entrega de llaves'
     super(mensaje)
   end
 end
 
-class ErrorAutoNoCotizado < ErrorEnLaAPI
+class ErrorAutoNoCotizado < ErrorDeNegocio
   def initialize
     mensaje = 'Error: Auto no cotizado'
     super(mensaje)
   end
 end
 
-class ErrorPrecioMenorACotizado < ErrorEnLaAPI
+class ErrorPrecioMenorACotizado < ErrorDeNegocio
   def initialize
     mensaje = 'Error: El precio es menor al cotizado'
     super(mensaje)
   end
 end
 
-class ErrorAutoNoEstaPublicado < ErrorEnLaAPI
+class ErrorAutoNoEstaPublicado < ErrorDeNegocio
   def initialize
     mensaje = 'Error: Auto no esta en venta'
     super(mensaje)
   end
 end
 
-class ErrorOfertaInvalida < ErrorEnLaAPI
+class ErrorOfertaInvalida < ErrorDeNegocio
   def initialize
     mensaje = 'Error: Oferta invalida'
     super(mensaje)
   end
 end
 
-class ErrorOfertaEnAutoNoParticular < ErrorEnLaAPI
+class ErrorOfertaEnAutoNoParticular < ErrorDeNegocio
   def initialize
     mensaje = 'Error: No se puede ofertar a un auto fiubak'
     super(mensaje)
   end
 end
 
-class ErrorYaSeRealizoOferta < ErrorEnLaAPI
+class ErrorYaSeRealizoOferta < ErrorDeNegocio
   def initialize
     mensaje = 'Error: No se puede realizar una oferta mas de una vez'
     super(mensaje)
   end
 end
 
-class ErrorOfertaNoExiste < ErrorEnLaAPI
+class ErrorOfertaNoExiste < ErrorDeNegocio
   def initialize
     mensaje = 'Error: Oferta no existe'
     super(mensaje)
   end
 end
 
-class ErrorOfertaUsuarioNoCoincide < ErrorEnLaAPI
+class ErrorOfertaUsuarioNoCoincide < ErrorDeNegocio
   def initialize
     mensaje = 'Error: Usuario no es el propietario de la oferta'
     super(mensaje)
   end
 end
 
-class ErrorOfertaNoPendiente < ErrorEnLaAPI
+class ErrorOfertaNoPendiente < ErrorDeNegocio
   def initialize
     mensaje = 'Error: Oferta no se encuentra en estado pendiente'
     super(mensaje)
   end
 end
 
-class ErrorPropietarioRealizaOferta < ErrorEnLaAPI
+class ErrorPropietarioRealizaOferta < ErrorDeNegocio
   def initialize
     mensaje = 'Error: No se puede ofertar sobre un auto propio'
     super(mensaje)
   end
 end
 
-class ErrorVendedorNoEsElPropietario < ErrorEnLaAPI
+class ErrorVendedorNoEsElPropietario < ErrorDeNegocio
   def initialize
     mensaje = 'Error: El vendedor no es el propietario del auto'
     super(mensaje)
   end
 end
 
-class ErrorVendedorNoPuedeComprarSuPropioAuto < ErrorEnLaAPI
+class ErrorVendedorNoPuedeComprarSuPropioAuto < ErrorDeNegocio
   def initialize
     mensaje = 'Error: El vendedor no puede comprar su propio auto'
     super(mensaje)
   end
 end
 
-class ErrorIntentoRecompra < ErrorEnLaAPI
+class ErrorIntentoRecompra < ErrorDeNegocio
   def initialize
     mensaje = 'Error: No podes comprar un auto que vendiste'
     super(mensaje)

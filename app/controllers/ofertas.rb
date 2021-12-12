@@ -21,7 +21,7 @@ WebTemplate::App.controllers :ofertas, :provides => [:json] do
         :precio => oferta_rechazada.precio,
         :estado => simbolo_estado_a_mensaje_oferta(oferta_rechazada.estado.estado)
       }.to_json
-    rescue ErrorEnLaAPI => e
+    rescue ErrorDeNegocio => e
       logger.error("[Rechazar oferta]: #{e.mensaje}")
       status 400
       {error: e.mensaje}.to_json
@@ -50,7 +50,7 @@ WebTemplate::App.controllers :ofertas, :provides => [:json] do
         :precio => oferta_aceptada.precio,
         :estado => simbolo_estado_a_mensaje_oferta(oferta_aceptada.estado.estado)
       }.to_json
-    rescue ErrorEnLaAPI => e
+    rescue ErrorDeNegocio => e
       logger.error("[Aceptar oferta]: #{e.mensaje}")
       status 400
       {error: e.mensaje}.to_json
