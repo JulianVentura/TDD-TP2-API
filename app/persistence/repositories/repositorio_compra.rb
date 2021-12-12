@@ -4,6 +4,13 @@ module Persistence
       self.table_name = :compra
       self.model_class = 'Compra'
 
+      def existe_por_patente_vendedor(patente, id_vendedor)
+        dataset.where(
+          Sequel.lit('patente ILIKE ?', patente) &
+          Sequel.lit('id_vendedor = ?', id_vendedor)
+        ).map.count >= 1
+      end
+
       protected
 
       def load_object(a_hash)

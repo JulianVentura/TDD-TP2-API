@@ -24,5 +24,11 @@ describe Persistence::Repositories::RepositorioCompra do
       compra_de_repo = described_class.new.find(@compra_id)
       expect(compra_de_repo.id).to eq(@compra_id)
     end
+
+    it 'deberia existir una compra' do
+      existe = described_class.new.existe_por_patente_vendedor(un_auto.patente, vendedor.id)
+      expect(existe).to eq true
+    end
+
   end
 end
