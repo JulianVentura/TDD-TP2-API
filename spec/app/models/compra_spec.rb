@@ -15,14 +15,14 @@ describe Compra do
   it 'deberia fallar cuando el vendedor no es el propietario' do
     vendedor_falso = Usuario.new('marcos', 34_537, 'falso@gmail.com')
 
-    expect {
+    expect do
       Compra.new(comprador, vendedor_falso, un_auto)
-    }.to raise_error(ErrorVendedorNoEsElPropietario)
+    end.to raise_error(ErrorVendedorNoEsElPropietario)
   end
 
   it 'deberia fallar cuando el vendedor y el comprador son el mismo usuario' do
-    expect {
+    expect do
       Compra.new(vendedor, vendedor, un_auto)
-    }.to raise_error(ErrorVendedorNoPuedeComprarSuPropioAuto)
+    end.to raise_error(ErrorVendedorNoPuedeComprarSuPropioAuto)
   end
 end

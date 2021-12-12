@@ -4,7 +4,7 @@ class AceptadorOferta
     @repo_auto = repo_auto
   end
 
-  def aceptar(id_oferta, id_prop)
+  def aceptar(id_oferta, id_prop) # rubocop:disable Metrics/AbcSize
     raise ErrorOfertaNoExiste unless @repo_oferta.existe_oferta_id(id_oferta)
 
     oferta = @repo_oferta.find(id_oferta)

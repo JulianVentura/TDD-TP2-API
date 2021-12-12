@@ -1,5 +1,5 @@
 WebTemplate::App.controllers :autos, :provides => [:json] do
-  post :crear, :map => '/autos' do
+  post :crear, :map => '/autos' do # rubocop:disable Metrics/BlockLength
     begin
       # input
       parametros = parametros_simbolizados
@@ -119,7 +119,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
       # base de datos
       autos = ListadorAutos.new(repo_auto).listar_publicado
       # output
-      logger.info("[Listar en venta]: Se listan los autos en venta")
+      logger.info('[Listar en venta]: Se listan los autos en venta')
       status 200
       respuesta = autos.map do |auto|
         {

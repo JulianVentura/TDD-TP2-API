@@ -24,10 +24,9 @@ module Persistence
         {
           id_comprador: compra.comprador.id,
           id_vendedor: compra.vendedor.id,
-          patente: compra.auto.patente,
+          patente: compra.auto.patente
         }
       end
     end
   end
 end
-

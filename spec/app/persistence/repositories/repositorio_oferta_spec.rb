@@ -86,7 +86,7 @@ describe Persistence::Repositories::RepositorioOferta do
   context 'cuando existen usuarios con un id muy grande' do
     before :each do
       @otro_ofertante = CreadorUsuario.new(repo_usuario).crear_usuario('Jorge', 1_234_567_890_123, 'jorge@gmail.com')
-      @otro_propietario =  CreadorUsuario.new(repo_usuario).crear_usuario('Juan', 1_234_567_890_456, 'juan@gmail.com')
+      @otro_propietario = CreadorUsuario.new(repo_usuario).crear_usuario('Juan', 1_234_567_890_456, 'juan@gmail.com')
       @otro_auto = crear_auto_publicado_p2p('ABC123', @otro_propietario, creador_auto, cotizador_auto, publicador)
       @otra_oferta = Oferta.crear(@otro_auto, @otro_ofertante, 15_000)
     end

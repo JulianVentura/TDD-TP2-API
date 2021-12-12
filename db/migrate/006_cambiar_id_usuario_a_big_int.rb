@@ -1,7 +1,7 @@
 Sequel.migration do
   up do
     set_column_type :usuario, :id, :Bignum
-  end    
+  end
 
   down do
     set_column_type :usuario, :id, Integer

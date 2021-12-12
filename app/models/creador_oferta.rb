@@ -6,7 +6,7 @@ class CreadorOferta
     @repo_usuario = repo_usuario
   end
 
-  def crear(patente, id_ofertante, precio)
+  def crear(patente, id_ofertante, precio) # rubocop:disable Metrics/AbcSize
     raise ErrorAutoNoExiste unless @repo_auto.existe_auto(patente)
     raise ErrorUsuarioInexistente unless @repo_usuario.existe_usuario(id_ofertante)
 

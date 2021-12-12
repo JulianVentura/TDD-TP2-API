@@ -30,7 +30,8 @@ describe Auto do
   end
 
   context 'cuando ya esta creado' do
-    let(:un_auto){described_class.crear('AA752OH', 'Fiat', 40_000, 1999, un_usuario)}
+    let(:un_auto) { described_class.crear('AA752OH', 'Fiat', 40_000, 1999, un_usuario) }
+
     it 'deberia actualizar su precio al cotizarse' do
       un_auto.cotizar(10_000)
       expect(un_auto.precio).to eq 10_000

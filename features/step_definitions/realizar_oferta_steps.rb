@@ -73,7 +73,6 @@ Entonces('recibo mensaje de error por ofertar mas de una vez') do
 end
 
 Dado('el vendedor me rechaza la oferta') do
-  
   body_rechazo = {
     :id_prop => id_falso
   }.to_json
