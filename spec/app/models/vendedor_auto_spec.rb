@@ -52,5 +52,13 @@ describe VendedorAuto do
         described_class.new(repo_auto, repo_usuario, repo_compra).vender_a_fiubak(patente, propietario.id)
       end.to raise_error(ErrorAutoNoCotizado)
     end
+
+    it 'deberia dar error si el usuario no existe en el repo' do
+      no_existe = Usuario.new('NoExiste', 123456, 'noexiste@email.com')
+
+      expect do
+        described_class.new(repo_auto, repo_usuario, repo_compra).vender_a_fiubak(patente, no_existe.id)
+      end.to raise_error(ErrorUsuarioInexistente)
+    end
   end
 end
