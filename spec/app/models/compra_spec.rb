@@ -19,4 +19,10 @@ describe Compra do
       Compra.new(comprador, vendedor_falso, un_auto)
     }.to raise_error(ErrorVendedorNoEsElPropietario)
   end
+
+  it 'deberia fallar cuando el vendedor y el comprador son el mismo usuario' do
+    expect {
+      Compra.new(vendedor, vendedor, un_auto)
+    }.to raise_error(ErrorVendedorNoPuedeComprarSuPropioAuto)
+  end
 end
