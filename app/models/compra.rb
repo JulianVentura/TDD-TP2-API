@@ -9,4 +9,5 @@ class Compra
   end
 
   attr_reader :comprador, :vendedor, :auto
+  attr_accessor :id, :created_on, :updated_on
 end

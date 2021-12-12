@@ -4,6 +4,7 @@ require 'spec_helper'
 RSpec.configure do |config|
   # config.include UserFactory
   config.after :each do
+    Persistence::Repositories::RepositorioCompra.new.delete_all
     Persistence::Repositories::RepositorioOferta.new.delete_all
     Persistence::Repositories::RepositorioAuto.new.delete_all
     Persistence::Repositories::RepositorioUsuario.new.delete_all
