@@ -24,7 +24,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
         :precio => nuevo_auto.precio,
         :estado => simbolo_estado_a_mensaje(nuevo_auto.estado.estado)
       }.to_json
-    rescue ErrorEnLaAPI => e
+    rescue ErrorDeNegocio => e
       logger.error("[Ingresar auto]: #{e.mensaje}")
       status 400
       {error: e.mensaje}.to_json
@@ -52,7 +52,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
         :precio => auto_cotizado.precio,
         :estado => simbolo_estado_a_mensaje(auto_cotizado.estado.estado)
       }.to_json
-    rescue ErrorEnLaAPI => e
+    rescue ErrorDeNegocio => e
       logger.error("[Cotizar]: #{e.mensaje}")
       status 400
       {error: e.mensaje}.to_json
@@ -80,7 +80,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
         :precio => auto_vendido.precio,
         :estado => simbolo_estado_a_mensaje(auto_vendido.estado.estado)
       }.to_json
-    rescue ErrorEnLaAPI => e
+    rescue ErrorDeNegocio => e
       logger.error("[Vender a Fiubak]: #{e.mensaje}")
       status 400
       {error: e.mensaje}.to_json
@@ -107,7 +107,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
         :precio => auto_fiubak.precio,
         :estado => simbolo_estado_a_mensaje(auto_fiubak.estado.estado)
       }.to_json
-    rescue ErrorEnLaAPI => e
+    rescue ErrorDeNegocio => e
       logger.error("[Entregar Llaves]: #{e.mensaje}")
       status 400
       {error: e.mensaje}.to_json
@@ -135,7 +135,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
       end
 
       respuesta.to_json
-    rescue ErrorEnLaAPI => e
+    rescue ErrorDeNegocio => e
       logger.error("[Listar en venta]: #{e.mensaje}")
       status 400
       {error: e.mensaje}.to_json
@@ -163,7 +163,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
         :precio => auto_fiubak.precio,
         :estado => simbolo_estado_a_mensaje(auto_fiubak.estado.estado)
       }.to_json
-    rescue ErrorEnLaAPI => e
+    rescue ErrorDeNegocio => e
       logger.error("[Publicar P2P]: #{e.mensaje}")
       status 400
       {error: e.mensaje}.to_json
@@ -191,7 +191,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
         :precio => auto_fiubak.precio,
         :estado => simbolo_estado_a_mensaje(auto_fiubak.estado.estado)
       }.to_json
-    rescue ErrorEnLaAPI => e
+    rescue ErrorDeNegocio => e
       logger.error("[Comprar a Fiubak]: #{e.mensaje}")
       status 400
       {error: e.mensaje}.to_json
@@ -221,7 +221,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
         :precio => oferta.precio,
         :estado => simbolo_estado_a_mensaje_oferta(oferta.estado.estado)
       }.to_json
-    rescue ErrorEnLaAPI => e
+    rescue ErrorDeNegocio => e
       logger.error("[Realizar oferta]: #{e.mensaje}")
       status 400
       {error: e.mensaje}.to_json
@@ -253,7 +253,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
         }
       end
       respuesta.to_json
-    rescue ErrorEnLaAPI => e
+    rescue ErrorDeNegocio => e
       logger.error("[Consultar ofertas recibidas]: #{e.mensaje}")
       status 400
       {error: e.mensaje}.to_json
