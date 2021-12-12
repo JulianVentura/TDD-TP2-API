@@ -177,7 +177,7 @@ WebTemplate::App.controllers :autos, :provides => [:json] do
       parametros = parametros_simbolizados
 
       # modelo
-      auto_fiubak = Comprador.new(repo_auto, repo_usuario).comprar(patente, parametros[:id_comprador])
+      auto_fiubak = Comprador.new(repo_auto, repo_usuario, repo_compra).comprar(patente, parametros[:id_comprador])
 
       # output
       logger.info("[Comprar a Fiubak]: Se compra a Fiubak el auto de patente #{auto_fiubak.patente}")

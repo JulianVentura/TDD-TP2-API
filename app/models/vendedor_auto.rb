@@ -6,12 +6,12 @@ class VendedorAuto
     @repo_compra = repo_compra
   end
 
-  def vender_a_fiubak(patente, id_usuario)
+  def vender_a_fiubak(patente, id_vendedor)
     raise ErrorAutoNoExiste unless @repo_auto.existe_auto(patente)
-    raise ErrorUsuarioInexistente unless @repo_usuario.existe_usuario(id_usuario)
+    raise ErrorUsuarioInexistente unless @repo_usuario.existe_usuario(id_vendedor)
 
     auto = @repo_auto.find(patente)
-    vendedor = @repo_usuario.find(id_usuario) # TODO: raise si usuario no existe
+    vendedor = @repo_usuario.find(id_vendedor)
     usuario_fiubak = Fiubak.new
     @repo_usuario.save(usuario_fiubak) unless @repo_usuario.existe_usuario(usuario_fiubak.id)
 

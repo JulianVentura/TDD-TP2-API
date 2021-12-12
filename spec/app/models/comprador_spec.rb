@@ -9,7 +9,7 @@ describe Comprador do
   let(:cotizador_auto) { CotizadorAuto.new(repo_auto) }
   let(:vendedor_auto) { VendedorAuto.new(repo_auto, repo_usuario, repo_compra) }
   let(:entrega) { EntregarLlaves.new(repo_auto, repo_usuario) }
-  let(:comprador) { described_class.new(repo_auto, repo_usuario) }
+  let(:comprador) { described_class.new(repo_auto, repo_usuario, repo_compra) }
 
   context 'ya existe un auto publicado' do
     let(:patente) { 'AA752OH' }
