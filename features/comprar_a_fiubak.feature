@@ -19,7 +19,7 @@ Característica: Comprar auto a FIUBAK
     Entonces obtengo un mensaje de error por auto no en venta
 
   @wip
-  Escenario: RF4 - Compra fallida intentar recomprar auto
+  Escenario: RF4 - Compra fallida al intentar recomprar auto
     Dado que vendi un auto a FIUBAK de patente "FIU123"
-    Cuando ingreso el comando "/comprar FIU123"
+    Cuando compro el auto de patente "FIU123"
     Entonces obtengo un mensaje de error por intento de recompra
