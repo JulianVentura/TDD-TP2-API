@@ -8,6 +8,7 @@ class Comprador
 
   def comprar(patente, id_comprador)
     raise ErrorAutoNoExiste unless @repo_auto.existe_auto(patente)
+    raise ErrorUsuarioInexistente unless @repo_usuario.existe_usuario(id_comprador)
 
     auto = @repo_auto.find(patente)
     comprador = @repo_usuario.find(id_comprador)  # TODO: raise si usuario no existe

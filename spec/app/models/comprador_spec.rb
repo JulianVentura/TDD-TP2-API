@@ -31,5 +31,13 @@ describe Comprador do
         comprador.comprar('NOE123', usuario_comprador.id)
       end.to raise_error(ErrorAutoNoExiste)
     end
+
+    it 'deberia dar error si el usuario no existe en el repo' do
+      no_existe = Usuario.new('NoExiste', 123456, 'noexiste@email.com')
+
+      expect do
+        described_class.new(repo_auto, repo_usuario, repo_compra).comprar(patente, no_existe.id)
+      end.to raise_error(ErrorUsuarioInexistente)
+    end
   end
 end
