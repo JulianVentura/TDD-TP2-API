@@ -13,4 +13,16 @@ describe Persistence::Repositories::RepositorioCompra do
 
     expect(described_class.new.all.count).to eq 1
   end
+
+  context 'cuando existe una compra' do
+    before :each do
+      @compra = Compra.new(comprador, vendedor, un_auto)
+      @compra_id = described_class.new.save(@compra).id
+    end
+
+    it 'deberia tener el mismo id con el que se almaceno' do
+      compra_de_repo = described_class.new.find(@compra_id)
+      expect(compra_de_repo.id).to eq(@compra_id)
+    end
+  end
 end
