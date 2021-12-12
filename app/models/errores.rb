@@ -152,3 +152,10 @@ class ErrorVendedorNoPuedeComprarSuPropioAuto < ErrorEnLaAPI
     super(mensaje)
   end
 end
+
+class ErrorIntentoRecompra < ErrorEnLaAPI
+  def initialize
+    mensaje = 'Error: No podes comprar un auto que vendiste'
+    super(mensaje)
+  end
+end

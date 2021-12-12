@@ -39,5 +39,11 @@ describe Comprador do
         described_class.new(repo_auto, repo_usuario, repo_compra).comprar(patente, no_existe.id)
       end.to raise_error(ErrorUsuarioInexistente)
     end
+
+    it 'deberia dar error si el propietario original intenta comprarlo' do
+      expect do
+        described_class.new(repo_auto, repo_usuario, repo_compra).comprar(patente, propietario.id)
+      end.to raise_error(ErrorIntentoRecompra)
+    end
   end
 end

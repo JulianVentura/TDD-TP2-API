@@ -124,9 +124,9 @@ def entregar_llaves(patente)
   Faraday.post(entregar_llaves_url_autos(patente), nil, header)
 end
 
-def comprar_auto(patente)
+def comprar_auto(patente, id=id_falso2)
   request_comprar_auto = {
-    :id_comprador => id_falso
+    :id_comprador => id
   }.to_json
   Faraday.post(comprar_auto_url(patente),request_comprar_auto,header)
 end
