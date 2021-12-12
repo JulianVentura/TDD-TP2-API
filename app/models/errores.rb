@@ -138,3 +138,10 @@ class ErrorPropietarioRealizaOferta < ErrorEnLaAPI
     super(mensaje)
   end
 end
+
+class ErrorVendedorNoEsElPropietario < ErrorEnLaAPI
+  def initialize
+    mensaje = 'Error: El vendedor no es el propietario del auto'
+    super(mensaje)
+  end
+end

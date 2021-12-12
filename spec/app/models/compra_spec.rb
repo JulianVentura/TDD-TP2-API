@@ -11,4 +11,12 @@ describe Compra do
     expect(compra.vendedor.id).to eq vendedor.id
     expect(compra.auto.patente).to eq un_auto.patente
   end
+
+  it 'deberia fallar cuando el vendedor no es el propietario' do
+    vendedor_falso = Usuario.new('marcos', 34_537, 'falso@gmail.com')
+
+    expect {
+      Compra.new(comprador, vendedor_falso, un_auto)
+    }.to raise_error(ErrorVendedorNoEsElPropietario)
+  end
 end
