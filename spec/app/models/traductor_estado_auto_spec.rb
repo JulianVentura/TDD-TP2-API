@@ -42,4 +42,32 @@ describe 'TraductorEstadoAuto' do
 
      expect(estado_texto).to eq 'en_revision'
    end
+
+   it 'deberia traducir Cotizado a texto cotizado' do
+     estado = Cotizado.new
+     estado_texto = TraductorEstadoAuto.new.simbolo_a_texto(estado.estado)
+
+     expect(estado_texto).to eq 'cotizado'
+   end
+
+   it 'deberia traducir EsperandoEntrega a texto esperando_entrega' do
+     estado = EsperandoEntrega.new
+     estado_texto = TraductorEstadoAuto.new.simbolo_a_texto(estado.estado)
+
+     expect(estado_texto).to eq 'esperando_entrega'
+   end
+
+   it 'deberia traducir Publicado a texto publicado' do
+     estado = Publicado.new
+     estado_texto = TraductorEstadoAuto.new.simbolo_a_texto(estado.estado)
+
+     expect(estado_texto).to eq 'publicado'
+   end
+
+   it 'deberia traducir Vendido a texto vendido' do
+     estado = Vendido.new
+     estado_texto = TraductorEstadoAuto.new.simbolo_a_texto(estado.estado)
+
+     expect(estado_texto).to eq 'vendido'
+   end
 end

@@ -8,7 +8,11 @@ class TraductorEstadoAuto
   }.freeze
 
   SIMBOLO_A_TEXTO = {
-    :en_revision => 'en_revision'
+    :en_revision => 'en_revision',
+    :cotizado => 'cotizado',
+    :esperando_entrega => 'esperando_entrega',
+    :publicado => 'publicado',
+    :vendido => 'vendido',
   }.freeze
 
   def initialize
