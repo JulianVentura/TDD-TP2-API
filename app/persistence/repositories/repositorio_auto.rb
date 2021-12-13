@@ -4,19 +4,9 @@ module Persistence
       self.table_name = :auto
       self.model_class = 'Auto'
 
-      ESTADOS = {
-        :en_revision => 'en_revision',
-        'en_revision' => EnRevision,
-        :cotizado => 'cotizado',
-        'cotizado' => Cotizado,
-        :esperando_entrega => 'esperando_entrega',
-        'esperando_entrega' => EsperandoEntrega,
-        :publicado => 'publicado',
-        'publicado' => Publicado,
-        :vendido => 'vendido',
-        'vendido' => Vendido
-      }.freeze
-      # TODO: faltan test unitarios que prueben los estados
+      def initialize
+        @traductor = TraductorEstadoAuto.new
+      end
 
       def existe_auto(patente)
         !dataset.first(Sequel.ilike(:patente, patente)).nil?
@@ -27,7 +17,7 @@ module Persistence
       end
 
       def por_estado(estado)
-        load_collection dataset.where(estado: ESTADOS[estado.estado])
+        load_collection dataset.where(estado: @traductor.simbolo_a_texto(estado.estado))
       end
 
       def find(patente)
@@ -41,7 +31,7 @@ module Persistence
 
       def load_object(a_hash)
         id_usuario = a_hash[:id_usuario]
-        estado = ESTADOS[a_hash[:estado]].new
+        estado = @traductor.texto_a_estado(a_hash[:estado]).new
         repo_usuario = RepositorioUsuario.new
         usuario = repo_usuario.find(id_usuario)
         Auto.crear_desde_repo(a_hash[:patente], a_hash[:modelo], a_hash[:kilometros], a_hash[:anio], usuario, a_hash[:precio], estado)
@@ -53,7 +43,7 @@ module Persistence
           modelo: auto.modelo,
           kilometros: auto.kilometros,
           anio: auto.anio,
-          estado: ESTADOS[auto.estado.estado],
+          estado: @traductor.simbolo_a_texto(auto.estado.estado),
           id_usuario: auto.usuario.id,
           precio: auto.precio
         }

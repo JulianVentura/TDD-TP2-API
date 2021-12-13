@@ -15,10 +15,6 @@ class TraductorEstadoAuto
     :vendido => 'vendido',
   }.freeze
 
-  def initialize
-    super
-  end
-
   def texto_a_estado(estado_texto)
     TEXTO_A_ESTADO[estado_texto]
   end
