@@ -7,4 +7,11 @@ describe 'TraductorEstadoOferta' do
 
      expect(estado).to eq Pendiente
    end
+
+   it 'deberia traducir Pendiente a texto pendiente' do
+     estado = Pendiente.new
+     estado_texto = TraductorEstadoOferta.new.simbolo_a_texto(estado.estado)
+
+     expect(estado_texto).to eq 'pendiente'
+   end
 end
