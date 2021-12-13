@@ -48,6 +48,6 @@ describe 'TraductorEstadoOferta' do
      expect do
        TraductorEstadoOferta.new.texto_a_estado(estado_texto)
      end.to raise_error(ErrorEstadoNoExiste)
-
    end
+
 end

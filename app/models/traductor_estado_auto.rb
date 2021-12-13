@@ -16,6 +16,7 @@ class TraductorEstadoAuto
   }.freeze
 
   def texto_a_estado(estado_texto)
+    raise ErrorEstadoNoExiste unless TEXTO_A_ESTADO[estado_texto]
     TEXTO_A_ESTADO[estado_texto]
   end
 
