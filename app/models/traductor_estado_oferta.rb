@@ -1,12 +1,15 @@
 class TraductorEstadoOferta
   TEXTO_A_ESTADO = {
     'pendiente' => Pendiente,
+    'rechazado' => Rechazado,
+    'aceptado' => Aceptado
   }.freeze
 
   SIMBOLO_A_TEXTO = {
     :pendiente => 'pendiente',
   }.freeze
 
+  #TODO: agregar error antes estado invalido
   def texto_a_estado(estado_texto)
     TEXTO_A_ESTADO[estado_texto]
   end
