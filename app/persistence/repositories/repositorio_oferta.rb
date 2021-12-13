@@ -4,14 +4,9 @@ module Persistence
       self.table_name = :oferta
       self.model_class = 'Oferta'
 
-      ESTADOS = {
-        :pendiente => 'pendiente',
-        'pendiente' => Pendiente,
-        :rechazado => 'rechazado',
-        'rechazado' => Rechazado,
-        :aceptado => 'aceptado',
-        'aceptado' => Aceptado
-      }.freeze
+      def initialize
+        @traductor = TraductorEstadoOferta.new
+      end
 
       def existe_oferta_id(id_oferta)
         !dataset.first(id: id_oferta).nil?
@@ -21,7 +16,7 @@ module Persistence
         dataset.where(
           Sequel.lit('patente ILIKE ?', patente) &
           Sequel.lit('id_ofertante = ?', id_ofertante) &
-          Sequel.lit('estado ILIKE ?', ESTADOS[estado.estado])
+          Sequel.lit('estado ILIKE ?', @traductor.simbolo_a_texto(estado.estado))
         ).map.count >= 1
       end
 
@@ -34,7 +29,7 @@ module Persistence
       end
 
       def buscar_por_patente_y_estado(patente, estado)
-        load_collection dataset.where(Sequel.lit('patente ILIKE ?', patente) & Sequel.lit('estado ILIKE ?', ESTADOS[estado.estado]))
+        load_collection dataset.where(Sequel.lit('patente ILIKE ?', patente) & Sequel.lit('estado ILIKE ?', @traductor.simbolo_a_texto(estado.estado)))
       end
 
       protected
@@ -46,7 +41,7 @@ module Persistence
         id = a_hash[:id]
         ofertante = RepositorioUsuario.new.find(id_ofertante)
         auto = RepositorioAuto.new.find(patente)
-        estado = ESTADOS[a_hash[:estado]].new
+        estado = @traductor.texto_a_estado(a_hash[:estado]).new
 
         Oferta.crear_desde_repo(auto, ofertante, precio, id, estado)
       end
@@ -56,7 +51,7 @@ module Persistence
           patente: oferta.auto.patente,
           id_ofertante: oferta.ofertante.id,
           precio: oferta.precio,
-          estado: ESTADOS[oferta.estado.estado]
+          estado: @traductor.simbolo_a_texto(oferta.estado.estado)
         }
       end
     end
