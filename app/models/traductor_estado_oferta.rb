@@ -7,6 +7,8 @@ class TraductorEstadoOferta
 
   SIMBOLO_A_TEXTO = {
     :pendiente => 'pendiente',
+    :rechazado => 'rechazado',
+    :aceptado => 'aceptado'
   }.freeze
 
   #TODO: agregar error antes estado invalido

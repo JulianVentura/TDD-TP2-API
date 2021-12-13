@@ -28,4 +28,18 @@ describe 'TraductorEstadoOferta' do
 
      expect(estado_texto).to eq 'pendiente'
    end
+
+   it 'deberia traducir Rechazado a texto rechazado' do
+     estado = Rechazado.new
+     estado_texto = TraductorEstadoOferta.new.simbolo_a_texto(estado.estado)
+
+     expect(estado_texto).to eq 'rechazado'
+   end
+
+   it 'deberia traducir Aceptado a texto aceptado' do
+     estado = Aceptado.new
+     estado_texto = TraductorEstadoOferta.new.simbolo_a_texto(estado.estado)
+
+     expect(estado_texto).to eq 'aceptado'
+   end
 end
