@@ -42,4 +42,12 @@ describe 'TraductorEstadoOferta' do
 
      expect(estado_texto).to eq 'aceptado'
    end
+
+   it 'deberia dar error si texto estado no existe' do
+     estado_texto = 'no_existe'
+     expect do
+       TraductorEstadoOferta.new.texto_a_estado(estado_texto)
+     end.to raise_error(ErrorEstadoNoExiste)
+
+   end
 end

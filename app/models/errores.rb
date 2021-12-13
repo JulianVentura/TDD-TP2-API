@@ -159,3 +159,10 @@ class ErrorIntentoRecompra < ErrorDeNegocio
     super(mensaje)
   end
 end
+
+class ErrorEstadoNoExiste < ErrorDeNegocio
+  def initialize
+    mensaje = 'Error: El estado no existe'
+    super(mensaje)
+  end
+end

@@ -11,8 +11,8 @@ class TraductorEstadoOferta
     :aceptado => 'aceptado'
   }.freeze
 
-  #TODO: agregar error antes estado invalido
   def texto_a_estado(estado_texto)
+    raise ErrorEstadoNoExiste unless TEXTO_A_ESTADO[estado_texto]
     TEXTO_A_ESTADO[estado_texto]
   end
 
