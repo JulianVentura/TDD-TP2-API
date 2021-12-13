@@ -1,6 +1,10 @@
 class TraductorEstadoAuto
   TEXTO_A_ESTADO = {
-    'en_revision' => EnRevision
+    'en_revision' => EnRevision,
+    'cotizado' => Cotizado,
+    'esperando_entrega' => EsperandoEntrega,
+    'publicado' => Publicado,
+    'vendido' => Vendido
   }.freeze
 
   SIMBOLO_A_TEXTO = {
